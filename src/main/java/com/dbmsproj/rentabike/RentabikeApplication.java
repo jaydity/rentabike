@@ -8,6 +8,6 @@ public class RentabikeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RentabikeApplication.class, args);
+		System.out.println("Hello, World!");
 	}
-
 }
