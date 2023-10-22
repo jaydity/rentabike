@@ -26,6 +26,15 @@ public class accidents {
         this.description = description;
     }
 
+    public accidents(LocalDate date, LocalTime time, String place, Long customer, int coveredByInsurance, Text description) {
+        this.date = date;
+        this.time = time;
+        this.place = place;
+        this.customer = customer;
+        this.coveredByInsurance = coveredByInsurance;
+        this.description = description;
+    }
+
     public int getAccidentNumber() {
         return accidentNumber;
     }
