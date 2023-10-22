@@ -12,7 +12,7 @@ public class bikePurchases {
 
     public bikePurchases(String registrationNumber, String cbookNumber, int price, LocalDate boughtOn, int boughtFrom, boolean isSecondHand) {
         this.registrationNumber = registrationNumber;
-        CbookNumber = cbookNumber;
+        this.CbookNumber = cbookNumber;
         this.price = price;
         this.boughtOn = boughtOn;
         this.boughtFrom = boughtFrom;
@@ -32,7 +32,7 @@ public class bikePurchases {
     }
 
     public void setCbookNumber(String cbookNumber) {
-        CbookNumber = cbookNumber;
+        this.CbookNumber = cbookNumber;
     }
 
     public int getPrice() {
@@ -64,6 +64,6 @@ public class bikePurchases {
     }
 
     public void setSecondHand(boolean secondHand) {
-        isSecondHand = secondHand;
+        this.isSecondHand = secondHand;
     }
 }
