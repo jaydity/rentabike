@@ -1,4 +1,4 @@
-package com.dbmsproj.rentabike;
+package com.dbmsproj.rentabike.Models;
 
 public class customers {
     private Long customerId;
