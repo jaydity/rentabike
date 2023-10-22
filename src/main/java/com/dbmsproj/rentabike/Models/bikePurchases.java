@@ -9,4 +9,61 @@ public class bikePurchases {
     private LocalDate boughtOn;
     private int boughtFrom;
     private boolean isSecondHand;
+
+    public bikePurchases(String registrationNumber, String cbookNumber, int price, LocalDate boughtOn, int boughtFrom, boolean isSecondHand) {
+        this.registrationNumber = registrationNumber;
+        CbookNumber = cbookNumber;
+        this.price = price;
+        this.boughtOn = boughtOn;
+        this.boughtFrom = boughtFrom;
+        this.isSecondHand = isSecondHand;
+    }
+
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    public String getCbookNumber() {
+        return CbookNumber;
+    }
+
+    public void setCbookNumber(String cbookNumber) {
+        CbookNumber = cbookNumber;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public LocalDate getBoughtOn() {
+        return boughtOn;
+    }
+
+    public void setBoughtOn(LocalDate boughtOn) {
+        this.boughtOn = boughtOn;
+    }
+
+    public int getBoughtFrom() {
+        return boughtFrom;
+    }
+
+    public void setBoughtFrom(int boughtFrom) {
+        this.boughtFrom = boughtFrom;
+    }
+
+    public boolean isSecondHand() {
+        return isSecondHand;
+    }
+
+    public void setSecondHand(boolean secondHand) {
+        isSecondHand = secondHand;
+    }
 }
