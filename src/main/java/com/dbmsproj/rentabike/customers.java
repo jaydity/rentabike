@@ -1,4 +1,4 @@
-package spring_boot_proj.proj_spring.models;
+package com.dbmsproj.rentabike;
 
 public class customers {
     private Long customerId;
