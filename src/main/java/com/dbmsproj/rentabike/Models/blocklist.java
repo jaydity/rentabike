@@ -14,4 +14,34 @@ public class blocklist {
         activeFrom=blockedOn.plusMonths(2);
         return activeFrom;
     }
+
+    public blocklist(Long customer, Text reason, LocalDate blockedOn) {
+        this.customer = customer;
+        this.reason = reason;
+        this.blockedOn = blockedOn;
+    }
+
+    public Long getCustomer() {
+        return customer;
+    }
+
+    public Text getReason() {
+        return reason;
+    }
+
+    public LocalDate getBlockedOn() {
+        return blockedOn;
+    }
+
+    public void setCustomer(Long customer) {
+        this.customer = customer;
+    }
+
+    public void setReason(Text reason) {
+        this.reason = reason;
+    }
+
+    public void setBlockedOn(LocalDate blockedOn) {
+        this.blockedOn = blockedOn;
+    }
 }
