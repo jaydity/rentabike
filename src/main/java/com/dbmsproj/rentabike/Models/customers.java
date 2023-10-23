@@ -18,17 +18,13 @@ public class customers {
     private String customerLastName;
     private String CustomerAddress;
     private String phone;
-    private enum IdentityProof{
-        aadharCard,
-        voterCard,
-        passport
-    }
+    private String IdentityProof;
     private String IdNumber;
     private String driversLicenseId;
     private int numberOfAccidents;
 
     public customers(   String customerFirstName, String customerMiddleName,
-                        String customerLastName, String customerAddress, String phone, String idNumber,
+                        String customerLastName, String customerAddress, String phone, String IdentityProof, String idNumber,
                         String driversLicenseId, int numberOfAccidents
                     ) {
         this.customerFirstName = customerFirstName;
@@ -36,9 +32,50 @@ public class customers {
         this.customerLastName = customerLastName;
         this.CustomerAddress = customerAddress;
         this.phone = phone;
+        this.IdentityProof=IdentityProof;
         this.IdNumber = idNumber;
         this.driversLicenseId = driversLicenseId;
         this.numberOfAccidents = numberOfAccidents;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public String getCustomerFirstName() {
+        return customerFirstName;
+    }
+
+    public String getCustomerMiddleName() {
+        return customerMiddleName;
+    }
+
+    public String getCustomerLastName() {
+        return customerLastName;
+    }
+
+    public String getCustomerAddress() {
+        return CustomerAddress;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getIdentityProof() {
+        return IdentityProof;
+    }
+
+    public String getIdNumber() {
+        return IdNumber;
+    }
+
+    public String getDriversLicenseId() {
+        return driversLicenseId;
+    }
+
+    public int getNumberOfAccidents() {
+        return numberOfAccidents;
     }
 
     public void setCustomerId(Long customerId) {
@@ -64,7 +101,6 @@ public class customers {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
     public void setIdNumber(String idNumber) {
         this.IdNumber = idNumber;
     }
@@ -75,5 +111,9 @@ public class customers {
 
     public void setNumberOfAccidents(int numberOfAccidents) {
         this.numberOfAccidents = numberOfAccidents;
+    }
+
+    public void setIdentityProof(String identityProof) {
+        IdentityProof = identityProof;
     }
 }
