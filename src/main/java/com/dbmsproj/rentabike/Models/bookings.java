@@ -39,6 +39,18 @@ public class bookings {
         this.feedback = feedback;
     }
 
+    public bookings(Long customerId, String registrationNumber, LocalDateTime bookingTime, LocalDateTime pickupTime, LocalDateTime returnTime, int downPayment, int totalPayment, int issuedBy, TextArea feedback) {
+        this.customerId = customerId;
+        RegistrationNumber = registrationNumber;
+        this.bookingTime = bookingTime;
+        this.pickupTime = pickupTime;
+        this.returnTime = returnTime;
+        this.downPayment = downPayment;
+        TotalPayment = totalPayment;
+        this.issuedBy = issuedBy;
+        this.feedback = feedback;
+    }
+
     public Long getBookingId() {
         return bookingId;
     }
