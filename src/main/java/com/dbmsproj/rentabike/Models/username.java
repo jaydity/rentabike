@@ -12,13 +12,13 @@ public class username {
     private String username;
     private String password;
     private String email;
-    private Long customer;
+    private Long customerId;
 
     public username(String username, String password, String email, Long customer) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.customer = customer;
+        this.customerId = customer;
     }
 
 //    public username(Long userId, String username, String password, String email, Long customer) {
@@ -62,10 +62,10 @@ public class username {
     }
 
     public Long getCustomer() {
-        return customer;
+        return customerId;
     }
 
     public void setCustomer(Long customer) {
-        this.customer = customer;
+        this.customerId = customer;
     }
 }
