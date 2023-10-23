@@ -14,9 +14,7 @@ public class accidents {
     private LocalDate date;
     private LocalTime time;
     private String place;
-    //    private Long booking;
     private Long customer;
-    //    private String bike;
     private int coveredByInsurance;
     private Text description;
 
@@ -37,6 +35,34 @@ public class accidents {
         this.customer = customer;
         this.coveredByInsurance = coveredByInsurance;
         this.description = description;
+    }
+
+    public int getAccidentNumber() {
+        return accidentNumber;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public Long getCustomer() {
+        return customer;
+    }
+
+    public int getCoveredByInsurance() {
+        return coveredByInsurance;
+    }
+
+    public Text getDescription() {
+        return description;
     }
 
     public void setAccidentNumber(int accidentNumber) {
