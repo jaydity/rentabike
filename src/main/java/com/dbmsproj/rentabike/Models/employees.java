@@ -1,26 +1,28 @@
 package com.dbmsproj.rentabike.Models;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Getter
+@Setter
 public class employees {
     private int employeeId;
     private String employeeName;
     private String phoneNumber;
+    private String email;
+    private String address;
 
-    public employees(int employeeId, String employeeName, String phoneNumber) {
+
+
+    public employees(int employeeId, String employeeName, String phoneNumber, String email, String address) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.phoneNumber = phoneNumber;
-    }
+        this.email = email;
+        this.address = address;
 
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public String getEmployeeName() {
-        return employeeName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
     }
 
     public void setEmployeeId(int employeeId) {
@@ -33,5 +35,13 @@ public class employees {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

@@ -1,5 +1,10 @@
 package com.dbmsproj.rentabike.Models;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class bikes {
     private String registrationNumber;
     private String bikeModel;

@@ -2,10 +2,10 @@ package com.dbmsproj.rentabike.Models;
 
 
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@Setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -39,42 +39,6 @@ public class customers {
         this.IdNumber = idNumber;
         this.driversLicenseId = driversLicenseId;
         this.numberOfAccidents = numberOfAccidents;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public String getCustomerFirstName() {
-        return customerFirstName;
-    }
-
-    public String getCustomerMiddleName() {
-        return customerMiddleName;
-    }
-
-    public String getCustomerLastName() {
-        return customerLastName;
-    }
-
-    public String getCustomerAddress() {
-        return CustomerAddress;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getIdNumber() {
-        return IdNumber;
-    }
-
-    public String getDriversLicenseId() {
-        return driversLicenseId;
-    }
-
-    public int getNumberOfAccidents() {
-        return numberOfAccidents;
     }
 
     public void setCustomerId(Long customerId) {

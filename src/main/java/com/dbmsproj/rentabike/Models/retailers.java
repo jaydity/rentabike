@@ -1,6 +1,11 @@
 package com.dbmsproj.rentabike.Models;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class retailers {
     private int retailerId;
     private String phoneNumber;
@@ -10,18 +15,6 @@ public class retailers {
         this.retailerId = retailerId;
         this.phoneNumber = phoneNumber;
         this.address = address;
-    }
-
-    public int getRetailerId() {
-        return retailerId;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
     }
 
     public void setRetailerId(int retailerId) {

@@ -1,9 +1,13 @@
 package com.dbmsproj.rentabike.Models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.w3c.dom.Text;
 
 import java.time.LocalDate;
 
+@Getter
+@Setter
 public class blocklist {
     private Long customer;
     private Text reason;

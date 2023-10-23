@@ -1,7 +1,12 @@
 package com.dbmsproj.rentabike.Models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
+@Getter
+@Setter
 public class bikePurchases {
     private String registrationNumber;
     private String CbookNumber;

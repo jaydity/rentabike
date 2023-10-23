@@ -1,10 +1,14 @@
 package com.dbmsproj.rentabike.Models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.w3c.dom.Text;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Getter
+@Setter
 public class accidents {
     private int accidentNumber;
     private LocalDate date;
@@ -35,56 +39,28 @@ public class accidents {
         this.description = description;
     }
 
-    public int getAccidentNumber() {
-        return accidentNumber;
-    }
-
     public void setAccidentNumber(int accidentNumber) {
         this.accidentNumber = accidentNumber;
-    }
-
-    public LocalDate getDate() {
-        return date;
     }
 
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public LocalTime getTime() {
-        return time;
-    }
-
     public void setTime(LocalTime time) {
         this.time = time;
-    }
-
-    public String getPlace() {
-        return place;
     }
 
     public void setPlace(String place) {
         this.place = place;
     }
 
-    public Long getCustomer() {
-        return customer;
-    }
-
     public void setCustomer(Long customer) {
         this.customer = customer;
     }
 
-    public int getCoveredByInsurance() {
-        return coveredByInsurance;
-    }
-
     public void setCoveredByInsurance(int coveredByInsurance) {
         this.coveredByInsurance = coveredByInsurance;
-    }
-
-    public Text getDescription() {
-        return description;
     }
 
     public void setDescription(Text description) {
