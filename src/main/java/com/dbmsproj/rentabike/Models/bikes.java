@@ -9,16 +9,15 @@ public class bikes {
     private String registrationNumber;
     private String bikeModel;
     //    private String owner;
-    private enum bikeStatus{
-        ok, good, excellent
-    }
+    private String bikeStatus;
     private String CBookNumber;
     private String Insurance;
     private boolean isAvailable;
 
-    public bikes(String registrationNumber, String bikeModel, String CBookNumber, String insurance, boolean isAvailable) {
+    public bikes(String registrationNumber, String bikeModel, String bikeStatus, String CBookNumber, String insurance, boolean isAvailable) {
         this.registrationNumber = registrationNumber;
         this.bikeModel = bikeModel;
+        this.bikeStatus=bikeStatus;
         this.CBookNumber = CBookNumber;
         this.Insurance = insurance;
         this.isAvailable = isAvailable;
@@ -38,6 +37,10 @@ public class bikes {
 
     public String getInsurance() {
         return Insurance;
+    }
+
+    public String getBikeStatus() {
+        return bikeStatus;
     }
 
     public boolean isAvailable() {
@@ -62,5 +65,9 @@ public class bikes {
 
     public void setAvailable(boolean available) {
         this.isAvailable = available;
+    }
+
+    public void setBikeStatus(String bikeStatus) {
+        this.bikeStatus = bikeStatus;
     }
 }
