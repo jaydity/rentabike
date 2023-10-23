@@ -17,6 +17,23 @@ public class retailers {
         this.address = address;
     }
 
+    public retailers(String phoneNumber, String address) {
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+    public int getRetailerId() {
+        return retailerId;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
     public void setRetailerId(int retailerId) {
         this.retailerId = retailerId;
     }
