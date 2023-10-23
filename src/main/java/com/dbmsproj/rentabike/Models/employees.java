@@ -25,6 +25,33 @@ public class employees {
 
     }
 
+    public employees(String employeeName, String phoneNumber, String email, String address) {
+        this.employeeName = employeeName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
