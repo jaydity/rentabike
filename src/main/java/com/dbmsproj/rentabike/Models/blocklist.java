@@ -48,4 +48,8 @@ public class blocklist {
     public void setBlockedOn(LocalDate blockedOn) {
         this.blockedOn = blockedOn;
     }
+
+    public void setActiveFrom(LocalDate activeFrom) {
+        this.activeFrom = activeFrom;
+    }
 }
