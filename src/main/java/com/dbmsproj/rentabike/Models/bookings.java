@@ -19,7 +19,7 @@ public class bookings {
     private LocalDateTime returnTime;
     private int downPayment;
     private int TotalPayment;
-    private int issuedBy;
+//    private int issuedBy;
     private TextArea feedback;
 
     public bookings(
@@ -35,7 +35,7 @@ public class bookings {
         this.returnTime = returnTime;
         this.downPayment = downPayment;
         this.TotalPayment = totalPayment;
-        this.issuedBy = issuedBy;
+//        this.issuedBy = issuedBy;
         this.feedback = feedback;
     }
 
@@ -47,7 +47,7 @@ public class bookings {
         this.returnTime = returnTime;
         this.downPayment = downPayment;
         TotalPayment = totalPayment;
-        this.issuedBy = issuedBy;
+//        this.issuedBy = issuedBy;
         this.feedback = feedback;
     }
 
@@ -83,9 +83,9 @@ public class bookings {
         return TotalPayment;
     }
 
-    public int getIssuedBy() {
-        return issuedBy;
-    }
+//    public int getIssuedBy() {
+//        return issuedBy;
+//    }
 
     public TextArea getFeedback() {
         return feedback;
@@ -123,9 +123,9 @@ public class bookings {
         this.TotalPayment = totalPayment;
     }
 
-    public void setIssuedBy(int issuedBy) {
-        this.issuedBy = issuedBy;
-    }
+//    public void setIssuedBy(int issuedBy) {
+//        this.issuedBy = issuedBy;
+//    }
 
     public void setFeedback(TextArea feedback) {
         this.feedback = feedback;
