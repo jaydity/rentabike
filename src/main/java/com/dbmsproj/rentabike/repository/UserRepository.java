@@ -1,4 +1,4 @@
-package com.dbmsproj.rentabike.repository;
+package com.dbmsproj.rentabike.Repository;
 
 import org.springframework.stereotype.Repository;
 
