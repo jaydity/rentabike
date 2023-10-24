@@ -21,7 +21,7 @@ public class bookingsRepository {
         String s="UPDATE bookings SET bookingTime=?,returnTime=? WHERE bookingId=?";
         tmp.update(s,b.getBookingTime(),b.getReturnTime(),b.getBookingId());
     }
-    public void deleteBooking(Integer bookingId){
+    public void deleteBooking(Long bookingId){
         String s="DELETE FROM bookings WHERE bookingId=?";
         tmp.update(s,bookingId);
     }

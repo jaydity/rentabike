@@ -14,7 +14,7 @@ public class retailersRepository {
         String s="INSERT INTO retailers(phoneNumber,address) INTO VALUES(?,?)";
         tmp.update(s,r.getPhoneNumber(),r.getAddress());
     }
-    public void deleteRetailer(Integer retailerId){
+    public void deleteRetailer(int retailerId){
         String s="DELETE FROM retailers WHERE retailerId=?";
         tmp.update(s,retailerId);
     }
