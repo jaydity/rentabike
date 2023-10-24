@@ -7,18 +7,20 @@ import jakarta.persistence.Id;
 //@Entity
 public class username {
 //    @Id
-    private Long userId;
-//    @Column(unique = true)
+//    private Long userId;
+//    @Column(unique = true
     private String username;
     private String password;
     private String email;
-    private Long customerId;
+    private String role;
+//    private Long customerId;
 
-    public username(String username, String password, String email, Long customer) {
+    public username(String username, String password, String email, String Role) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.customerId = customer;
+        this.role=Role;
+//        this.customerId = customer;
     }
 
 //    public username(Long userId, String username, String password, String email, Long customer) {
@@ -29,13 +31,13 @@ public class username {
 //        this.customer = customer;
 //    }
 
-    public Long getUserId() {
-        return userId;
-    }
+//    public Long getUserId() {
+//        return userId;
+//    }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+//    public void setUserId(Long userId) {
+//        this.userId = userId;
+//    }
 
     public String getUsername() {
         return username;
@@ -61,11 +63,19 @@ public class username {
         this.email = email;
     }
 
-    public Long getCustomer() {
-        return customerId;
+//    public Long getCustomer() {
+//        return customerId;
+//    }
+//
+//    public void setCustomer(Long customer) {
+//        this.customerId = customer;
+//    }
+
+    public String getRole() {
+        return role;
     }
 
-    public void setCustomer(Long customer) {
-        this.customerId = customer;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

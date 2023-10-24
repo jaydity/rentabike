@@ -18,13 +18,13 @@ public class customers {
     private String customerLastName;
     private String CustomerAddress;
     private String phone;
-    private String IdentityProof;
-    private String IdNumber;
+//    private String IdentityProof;
+//    private String IdNumber;
     private String driversLicenseId;
     private int numberOfAccidents;
 
     public customers(   String customerFirstName, String customerMiddleName,
-                        String customerLastName, String customerAddress, String phone, String IdentityProof, String idNumber,
+                        String customerLastName, String customerAddress, String phone,
                         String driversLicenseId, int numberOfAccidents
                     ) {
         this.customerFirstName = customerFirstName;
@@ -32,8 +32,8 @@ public class customers {
         this.customerLastName = customerLastName;
         this.CustomerAddress = customerAddress;
         this.phone = phone;
-        this.IdentityProof=IdentityProof;
-        this.IdNumber = idNumber;
+//        this.IdentityProof=IdentityProof;
+//        this.IdNumber = idNumber;
         this.driversLicenseId = driversLicenseId;
         this.numberOfAccidents = numberOfAccidents;
     }
@@ -62,13 +62,13 @@ public class customers {
         return phone;
     }
 
-    public String getIdentityProof() {
-        return IdentityProof;
-    }
+//    public String getIdentityProof() {
+//        return IdentityProof;
+//    }
 
-    public String getIdNumber() {
-        return IdNumber;
-    }
+//    public String getIdNumber() {
+//        return IdNumber;
+//    }
 
     public String getDriversLicenseId() {
         return driversLicenseId;
@@ -101,9 +101,10 @@ public class customers {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public void setIdNumber(String idNumber) {
-        this.IdNumber = idNumber;
-    }
+
+//    public void setIdNumber(String idNumber) {
+//        this.IdNumber = idNumber;
+//    }
 
     public void setDriversLicenseId(String driversLicenseId) {
         this.driversLicenseId = driversLicenseId;
@@ -113,7 +114,7 @@ public class customers {
         this.numberOfAccidents = numberOfAccidents;
     }
 
-    public void setIdentityProof(String identityProof) {
-        IdentityProof = identityProof;
-    }
+//    public void setIdentityProof(String identityProof) {
+//        IdentityProof = identityProof;
+//    }
 }
