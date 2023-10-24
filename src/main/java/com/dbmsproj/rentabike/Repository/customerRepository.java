@@ -19,7 +19,7 @@ public class customerRepository {
     }
 
     public void deleteCustomer(String licenseId){
-        String s="DELETE FROM customers WHERE driversLicenseId-?";
+        String s="DELETE FROM customers WHERE driversLicenseId=?";
         tmp.update(s,licenseId);
     }
 

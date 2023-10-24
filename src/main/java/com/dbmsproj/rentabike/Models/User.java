@@ -1,11 +1,7 @@
 package com.dbmsproj.rentabike.Models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
 //@Entity
-public class username {
+public class User {
 //    @Id
 //    private Long userId;
 //    @Column(unique = true
@@ -15,7 +11,7 @@ public class username {
     private String role;
 //    private Long customerId;
 
-    public username(String username, String password, String email, String Role) {
+    public User(String username, String password, String email, String Role) {
         this.username = username;
         this.password = password;
         this.email = email;

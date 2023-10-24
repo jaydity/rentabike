@@ -17,8 +17,8 @@ public class bikesRepository {
         String s="DELETE FROM bikes WHERE registrationNumber=?";
         tmp.update(s,registrationNumber);
     }
-    public void updateBike(bikes b){
+    public void updateBike(String registrationNumber,String availability){
         String s="UPDATE bikes SET isAvailable=? WHERE registrationNumber=?";
-        tmp.update(s,b.isAvailable(),b.getRegistrationNumber());
+        tmp.update(s,availability,registrationNumber);
     }
 }
