@@ -1,6 +1,12 @@
 package com.dbmsproj.rentabike.Models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 //@Entity
+@Getter
+@Setter
+
 public class User {
 //    @Id
 //    private Long userId;
@@ -19,6 +25,10 @@ public class User {
 //        this.customerId = customer;
     }
 
+    public User() {
+
+    }
+
 //    public username(Long userId, String username, String password, String email, Long customer) {
 //        this.userId = userId;
 //        this.username = username;
@@ -35,24 +45,12 @@ public class User {
 //        this.userId = userId;
 //    }
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public void setEmail(String email) {
@@ -66,10 +64,6 @@ public class User {
 //    public void setCustomer(Long customer) {
 //        this.customerId = customer;
 //    }
-
-    public String getRole() {
-        return role;
-    }
 
     public void setRole(String role) {
         this.role = role;
