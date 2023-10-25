@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -17,14 +18,14 @@ public class bookings {
     private LocalDateTime bookingTime;
     private LocalDateTime pickupTime;
     private LocalDateTime returnTime;
-    private int downPayment;
-    private int TotalPayment;
+    private long downPayment;
+    private long TotalPayment;
 //    private int issuedBy;
     private TextArea feedback;
 
     public bookings(
                 Long bookingId, Long customerId, String registrationNumber, LocalDateTime bookingTime,
-                LocalDateTime pickupTime, LocalDateTime returnTime, int downPayment, int totalPayment,
+                LocalDateTime pickupTime, LocalDateTime returnTime,
                 int issuedBy, TextArea feedback
             ) {
         this.bookingId = bookingId;
@@ -33,12 +34,39 @@ public class bookings {
         this.bookingTime = bookingTime;
         this.pickupTime = pickupTime;
         this.returnTime = returnTime;
-        this.downPayment = downPayment;
-        this.TotalPayment = totalPayment;
+        this.downPayment = (long) ((0.05)*payment());
+        this.TotalPayment = payment();
 //        this.issuedBy = issuedBy;
         this.feedback = feedback;
     }
+    public long payment(){
+        LocalDateTime startdate=this.getPickupTime();
+        LocalDateTime enddate=this.getReturnTime();
+        Duration duration=Duration.between(startdate,enddate);
+        long hours = duration.toHours();
 
+        // Define your rate per hour
+        long ratePerHour = 40; // Change this to your actual rate
+        long pay=hours * ratePerHour;
+
+        // Calculate the payment
+        if (hours > 12) {
+            // Calculate the additional hours
+            long additionalHours = hours - 12;
+
+            // Calculate the payment for additional hours
+            long additionalPayment = additionalHours * ratePerHour;
+
+            // Apply a 5% discount to the additional payment
+            double discount = 0.05; // 5% discount
+            pay -= (long) (additionalPayment * discount);
+
+            // Add the additional payment to the total payment
+          //  pay += additionalPayment;
+        }
+
+        return pay;
+    }
     public bookings(Long customerId, String registrationNumber, LocalDateTime bookingTime, LocalDateTime pickupTime, LocalDateTime returnTime, int downPayment, int totalPayment, int issuedBy, TextArea feedback) {
         this.customerId = customerId;
         RegistrationNumber = registrationNumber;
@@ -51,17 +79,11 @@ public class bookings {
         this.feedback = feedback;
     }
 
-    public Long getBookingId() {
-        return bookingId;
-    }
+    public Long getBookingId() { return bookingId;}
 
-    public Long getCustomerId() {
-        return customerId;
-    }
+    public Long getCustomerId() { return customerId;}
 
-    public String getRegistrationNumber() {
-        return RegistrationNumber;
-    }
+    public String getRegistrationNumber() {return RegistrationNumber;}
 
     public LocalDateTime getBookingTime() {
         return bookingTime;
@@ -71,25 +93,21 @@ public class bookings {
         return pickupTime;
     }
 
-    public LocalDateTime getReturnTime() {
-        return returnTime;
-    }
+    public LocalDateTime getReturnTime() {return returnTime;}
 
     public int getDownPayment() {
-        return downPayment;
+        return (int) ((0.05)*payment());
     }
 
     public int getTotalPayment() {
-        return TotalPayment;
+        return (int) payment();
     }
 
 //    public int getIssuedBy() {
 //        return issuedBy;
 //    }
 
-    public TextArea getFeedback() {
-        return feedback;
-    }
+    public TextArea getFeedback() {return feedback;}
 
     public void setBookingId(Long bookingId) {
         this.bookingId = bookingId;
