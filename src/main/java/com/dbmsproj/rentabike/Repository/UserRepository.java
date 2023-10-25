@@ -16,11 +16,11 @@ public class UserRepository {
     JdbcTemplate jdbcTemplate;
 
     public void AddUser(User user){
-        String sql_query = "INSERT INTO users (username,password,email,role) VALUES (?,?,?,?)";
+        String sql_query = "INSERT INTO users (username,password,phone,role) VALUES (?,?,?,?)";
         jdbcTemplate.update(sql_query,
                 user.getUsername(),
                 user.getPassword(),
-                user.getEmail(),
+                user.getPhone(),
                 user.getRole()
         );
     }
@@ -32,7 +32,7 @@ public class UserRepository {
 //          user.setLast_name(rs.getString("last_name"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password"));
-        user.setEmail(rs.getString("email"));
+        user.setphone(rs.getString("email"));
         user.setRole(rs.getString("role"));
         return user;
     };

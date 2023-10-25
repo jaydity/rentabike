@@ -13,14 +13,14 @@ public class User {
 //    @Column(unique = true
     private String username;
     private String password;
-    private String email;
+    private String phone;
     private String role;
 //    private Long customerId;
 
-    public User(String username, String password, String email, String Role) {
+    public User(String username, String password, String phone, String Role) {
         this.username = username;
         this.password = password;
-        this.email = email;
+        this.phone = phone;
         this.role=Role;
 //        this.customerId = customer;
     }
@@ -29,7 +29,22 @@ public class User {
 
     }
 
-//    public username(Long userId, String username, String password, String email, Long customer) {
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getRole() {
+        return role;
+    }
+    //    public username(Long userId, String username, String password, String email, Long customer) {
 //        this.userId = userId;
 //        this.username = username;
 //        this.password = password;
@@ -53,8 +68,8 @@ public class User {
         this.password = password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setphone(String phone) {
+        this.phone = phone;
     }
 
 //    public Long getCustomer() {

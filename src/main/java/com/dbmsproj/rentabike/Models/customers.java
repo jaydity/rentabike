@@ -12,19 +12,20 @@ import lombok.*;
 public class customers {
 
     @Id
+    private String phone;
     private Long customerId;
     private String customerFirstName;
     private String customerMiddleName;
     private String customerLastName;
     private String CustomerAddress;
-    private String phone;
+//    private String phone;
 //    private String IdentityProof;
 //    private String IdNumber;
     private String driversLicenseId;
     private int numberOfAccidents;
 
-    public customers(   String customerFirstName, String customerMiddleName,
-                        String customerLastName, String customerAddress, String phone,
+    public customers(   String phone, String customerFirstName, String customerMiddleName,
+                        String customerLastName, String customerAddress,
                         String driversLicenseId, int numberOfAccidents
                     ) {
         this.customerFirstName = customerFirstName;

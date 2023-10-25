@@ -1,4 +1,4 @@
-package com.dbmsproj.rentabike.repository;
+package com.dbmsproj.rentabike.Repository;
 
 import com.dbmsproj.rentabike.Models.bikePurchases;
 import org.springframework.beans.factory.annotation.Autowired;
