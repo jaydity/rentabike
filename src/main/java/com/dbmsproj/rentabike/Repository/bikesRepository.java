@@ -10,8 +10,8 @@ public class bikesRepository {
     @Autowired
     private JdbcTemplate tmp;
     public void insertBike(bikes b){
-        String s="INSERT INTO bikes(registrationNumber,bikeModel,bikeStatus,CBookNumber,Insurance,isAvailable) VALUES(?,?,?,?,?,?)";
-        tmp.update(s,b.getRegistrationNumber(),b.getBikeModel(),b.getBikeStatus(),b.getCBookNumber(),b.getInsurance(),b.isAvailable());
+        String s="INSERT INTO bikes(registrationNumber,bikeModel,bikeStatus,CBookNumber,Insurance,isAvailable, ratePerHour) VALUES(?,?,?,?,?,?)";
+        tmp.update(s,b.getRegistrationNumber(),b.getBikeModel(),b.getBikeStatus(),b.getCBookNumber(),b.getInsurance(),b.isAvailable(), b.getRatePerHour());
     }
     public void deleteBike(String registrationNumber){
         String s="DELETE FROM bikes WHERE registrationNumber=?";
