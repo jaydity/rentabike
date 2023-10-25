@@ -21,4 +21,9 @@ public class bikesRepository {
         String s="UPDATE bikes SET isAvailable=? WHERE registrationNumber=?";
         tmp.update(s,availability,registrationNumber);
     }
+
+    public long selectRatePerHour(String registrationNumber){
+        String s="SELECT ratePerHour FROM bikes WHERE bikes.registrationNumber=?";
+        return tmp.queryForObject(s,long.class,registrationNumber);
+    }
 }

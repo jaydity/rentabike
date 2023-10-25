@@ -25,4 +25,6 @@ public class bookingsRepository {
         String s="DELETE FROM bookings WHERE bookingId=?";
         tmp.update(s,bookingId);
     }
+
+
 }
