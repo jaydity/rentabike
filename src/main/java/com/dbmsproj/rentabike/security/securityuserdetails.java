@@ -4,6 +4,7 @@ import com.dbmsproj.rentabike.Models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.util.Collection;
 
 public class securityuserdetails implements UserDetails {
@@ -36,8 +37,11 @@ public class securityuserdetails implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-//        Implement a function from the help of blocklist and time for which the
-//        user will get locked access permission.
+//        if (user.blocklist() != null) {
+//            LocalDate activeFrom = user.getBlocklist().getActiveFrom();
+//            LocalDate now = LocalDate.now();
+//            return now.isAfter(activeFrom);
+//        }
         return true;
     }
 
