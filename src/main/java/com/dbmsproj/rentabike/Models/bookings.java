@@ -1,7 +1,12 @@
 package com.dbmsproj.rentabike.Models;
 
+import com.dbmsproj.rentabike.Repository.bikesRepository;
+import com.dbmsproj.rentabike.Service.bikesService;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.time.Duration;
@@ -11,6 +16,8 @@ import java.time.LocalTime;
 
 @Getter
 @Setter
+@Component
+@NoArgsConstructor
 public class bookings {
     private Long bookingId;
     private Long customerId;
@@ -22,6 +29,9 @@ public class bookings {
     private long TotalPayment;
 //    private int issuedBy;
     private TextArea feedback;
+    @Autowired
+    private bikesService bS;
+
 
     public bookings(
                 Long bookingId, Long customerId, String registrationNumber, LocalDateTime bookingTime,
@@ -39,6 +49,7 @@ public class bookings {
 //        this.issuedBy = issuedBy;
         this.feedback = feedback;
     }
+
     public long payment(){
         LocalDateTime startdate=this.getPickupTime();
         LocalDateTime enddate=this.getReturnTime();
@@ -46,7 +57,9 @@ public class bookings {
         long hours = duration.toHours();
 
         // Define your rate per hour
-        long ratePerHour = 40; // Change this to your actual rate
+//        bikesRepository bR=null;
+        long ratePerHour=bS.bikesRatePerHour(RegistrationNumber);
+//        long ratePerHour = 40; // Change this to your actual rate
         long pay=hours * ratePerHour;
 
         // Calculate the payment

@@ -1,4 +1,4 @@
-package com.dbmsproj.rentabike.repository;
+package com.dbmsproj.rentabike.Repository;
 
 import com.dbmsproj.rentabike.Models.bookings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +25,6 @@ public class bookingsRepository {
         String s="DELETE FROM bookings WHERE bookingId=?";
         tmp.update(s,bookingId);
     }
+
+
 }

@@ -13,14 +13,16 @@ public class bikes {
     private String CBookNumber;
     private String Insurance;
     private boolean isAvailable;
+    private long ratePerHour;
 
-    public bikes(String registrationNumber, String bikeModel, String bikeStatus, String CBookNumber, String insurance, boolean isAvailable) {
+    public bikes(String registrationNumber, String bikeModel, String bikeStatus, String CBookNumber, String insurance, boolean isAvailable,long ratePerHour) {
         this.registrationNumber = registrationNumber;
         this.bikeModel = bikeModel;
         this.bikeStatus=bikeStatus;
         this.CBookNumber = CBookNumber;
         this.Insurance = insurance;
         this.isAvailable = isAvailable;
+        this.ratePerHour=ratePerHour;
     }
 
     public String getRegistrationNumber() {
@@ -47,6 +49,8 @@ public class bikes {
         return isAvailable;
     }
 
+    public long getRatePerHour(){ return ratePerHour; }
+
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
     }
@@ -70,4 +74,6 @@ public class bikes {
     public void setBikeStatus(String bikeStatus) {
         this.bikeStatus = bikeStatus;
     }
+
+    public void setRatePerHour(long ratePerHour){ this.ratePerHour = ratePerHour; }
 }
