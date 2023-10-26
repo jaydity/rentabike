@@ -25,7 +25,7 @@ public class UserController {
                                @RequestParam("username") String username,
                                @RequestParam("password") String password,
                                @RequestParam("phone") String phone,
-                               @RequestParam("UserId") Long UserId,
+                               //@RequestParam("UserId") Long UserId,
                                @RequestParam("UserFirstName") String UserFirstName,
                                @RequestParam("UserMiddleName") String UserMiddleName,
                                @RequestParam("UserLastName") String UserLastName,
@@ -34,7 +34,7 @@ public class UserController {
                                //@RequestParam("numberOfAccidents") int numberOfAccidents,
                               // @RequestParam("phone") String phone;
                                @RequestParam("numberOfAccidents") int numberOfAccidents){
-        User user = new User(username,password,phone,UserId,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,numberOfAccidents);
+        User user = new User(username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,numberOfAccidents);
         userRepository.AddUser(user);
         return "home";
     }

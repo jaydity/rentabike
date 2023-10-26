@@ -46,6 +46,20 @@ public class User {
 
     }
 
+    public User(String username, String password, String phone, String userFirstName, String userMiddleName, String userLastName, String userAddress, String driversLicenseId, int numberOfAccidents) {
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        //this.UserId=UserId;
+        //this.role=Role;
+        this.UserFirstName = UserFirstName;
+        this.UserMiddleName = UserMiddleName;
+        this.UserLastName = UserLastName;
+        this.UserAddress = UserAddress;
+        this.driversLicenseId = driversLicenseId;
+        this.numberOfAccidents = numberOfAccidents;
+    }
+
     public String getUsername() {
         return username;
     }

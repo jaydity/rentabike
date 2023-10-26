@@ -16,12 +16,12 @@ public class UserRepository {
     JdbcTemplate jdbcTemplate;
 
     public void AddUser(User user){
-        String sql_query = "INSERT INTO User (username,password,phone,UserId,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,numberOfAccidents) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String sql_query = "INSERT INTO User (username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,numberOfAccidents) VALUES (?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql_query,
                 user.getUsername(),
                 user.getPassword(),
                 user.getPhone(),
-                user.getUserId(),
+                //user.getUserId(),
                 user.getUserFirstName(),
                 user.getUserMiddleName(),
                 user.getUserLastName(),
