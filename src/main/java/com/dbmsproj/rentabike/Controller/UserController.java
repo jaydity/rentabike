@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -38,16 +39,25 @@ public class UserController {
         userRepository.AddUser(user);
         return "home";
     }
+    @RequestMapping(path="/")
+    public String defaulthome() {
+        return "home";
+    }
 
-    @GetMapping(path="/signin")
+    @GetMapping(path={"/signin","/login"})
     public String usersignIn(){
         System.out.println("donewithusersignin");
          //return "login";
 
+        return "login";
+    }
+    @RequestMapping(path = "/register")
+    public String userRegistration() {
+        System.out.println("donewithuserregistration");
         return "register";
     }
 
-    @GetMapping("/home")
+    @RequestMapping("/home")
     public String home(){
         return "home";
     }
