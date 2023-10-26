@@ -32,7 +32,7 @@ public class UserRepository {
 //          user.setLast_name(rs.getString("last_name"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password"));
-        user.setphone(rs.getString("email"));
+        user.setphone(rs.getString("phone"));
         user.setRole(rs.getString("role"));
         return user;
     };
