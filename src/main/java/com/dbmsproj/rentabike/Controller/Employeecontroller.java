@@ -1,4 +1,4 @@
-package com.dbmsproj.rentabike.controller;
+package com.dbmsproj.rentabike.Controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
