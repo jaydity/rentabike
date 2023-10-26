@@ -33,7 +33,8 @@ public class UserController {
 
     @GetMapping(path="/signin")
     public String usersignIn(){
-        return "login";
+//        return "login";
+        return "register";
     }
 
     @GetMapping("/home")
