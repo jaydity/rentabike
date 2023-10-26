@@ -43,10 +43,7 @@ public class customers {
         return customerId;
     }
 
-    public String getCustomerFirstName() {
-        return customerFirstName;
-    }
-
+    public String getCustomerFirstName() {return customerFirstName;}
     public String getCustomerMiddleName() {
         return customerMiddleName;
     }

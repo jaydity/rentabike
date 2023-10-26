@@ -21,19 +21,29 @@ public class UserController {
         return "register";
     }
     @PostMapping(path="/register")
-    public String RegisterUser(@RequestParam("id") Long id,
+    public String RegisterUser(//@RequestParam("id") Long id,
                                @RequestParam("username") String username,
                                @RequestParam("password") String password,
                                @RequestParam("phone") String phone,
-                               @RequestParam("role") String role){
-        User user = new User(username,password,phone,role);
+                               @RequestParam("UserId") Long UserId,
+                               @RequestParam("UserFirstName") String UserFirstName,
+                               @RequestParam("UserMiddleName") String UserMiddleName,
+                               @RequestParam("UserLastName") String UserLastName,
+                               @RequestParam("UserAddress") String UserAddress,
+                               @RequestParam("driversLicenseId") String driversLicenseId,
+                               //@RequestParam("numberOfAccidents") int numberOfAccidents,
+                              // @RequestParam("phone") String phone;
+                               @RequestParam("numberOfAccidents") int numberOfAccidents){
+        User user = new User(username,password,phone,UserId,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,numberOfAccidents);
         userRepository.AddUser(user);
         return "home";
     }
 
     @GetMapping(path="/signin")
     public String usersignIn(){
-//        return "login";
+        System.out.println("donewithusersignin");
+         //return "login";
+
         return "register";
     }
 
@@ -41,8 +51,5 @@ public class UserController {
     public String home(){
         return "home";
     }
-
-
-
 
 }

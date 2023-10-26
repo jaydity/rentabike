@@ -16,12 +16,18 @@ public class UserRepository {
     JdbcTemplate jdbcTemplate;
 
     public void AddUser(User user){
-        String sql_query = "INSERT INTO users (username,password,phone,role) VALUES (?,?,?,?)";
+        String sql_query = "INSERT INTO User (username,password,phone,UserId,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,numberOfAccidents) VALUES (?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql_query,
                 user.getUsername(),
                 user.getPassword(),
                 user.getPhone(),
-                user.getRole()
+                user.getUserId(),
+                user.getUserFirstName(),
+                user.getUserMiddleName(),
+                user.getUserLastName(),
+                user.getUserAddress(),
+                user.getDriversLicenseId(),
+                user.getNumberOfAccidents()
         );
     }
 
@@ -33,7 +39,15 @@ public class UserRepository {
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password"));
         user.setphone(rs.getString("phone"));
-        user.setRole(rs.getString("role"));
+        //user.setRole(rs.getString("role"));
+        user.setUserId(rs.getLong("UserId"));
+        user.setUserFirstName(rs.getString("UserFirstName"));
+        user.setUserMiddleName(rs.getString("UserMiddleName"));
+        user.setUserLastName(rs.getString("UserLastName"));
+        user.setUserAddress(rs.getString("UserAddress"));
+        user.setDriversLicenseId(rs.getString("DriversLicenseId"));
+        user.setNumberOfAccidents(rs.getInt("NumberOfAccidents"));
+
         return user;
     };
 
