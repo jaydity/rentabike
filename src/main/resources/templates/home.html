@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +24,7 @@
             background-color: #939d75;
             color: #fff;
             padding: 10px;
+            text-decoration: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -97,30 +98,32 @@
 </header>
 
 <nav>
-    <img src="images/RentABike_logo.png" height="150" width="50" alt="Logo">
+    <a href="home.html"><img src="images/RentABike_logo.png" height="150" width="50" alt="Logo"></a>
     <ul>
-        <li><a href="#">Home</a></li>
-        <!--        <li><a href="#">Franchise</a></li>-->
-        <li><a href="#">Blog</a></li>
-        <li><a href="login.html">Login/Signup</a></li>
-        <li><a href="tel:+917337430918">📞7337430918</a></li>
-        <li><a href="tel:+918527333874">📞8527333874</a></li>
+        <li><a href="home.html" style="text-decoration: none">Home</a></li>
+        <li><a href="#" style="text-decoration: none">Blog</a></li>
+        <li><a href="login.html" style="text-decoration: none">Login/Signup</a></li>
+        <li><a href="tel:+917337430918" style="text-decoration: none">📞7337430918</a></li>
+        <li><a style="text-decoration: none" href="tel:+911234567890">📞1234567890</a></li>
     </ul>
 </nav>
 <div class="search-form">
-    <label for="pickupDate">Pickup Date:</label>
-    <input type="date" id="pickupDate" class="search-input">
+    <form>
+        <label for="pickupDate">Pickup Date:</label>
+        <input type="date" id="pickupDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required="True">
 
-    <label for="pickupTime">Pickup Time (HH:00):</label>
-    <input type="text" id="pickupTime" class="search-input" placeholder="Enter pickup time">
+        <label for="pickupTime">Pickup Time (HH:00):</label>
+        <input type="text" id="pickupTime" class="search-input" placeholder="Enter pickup time" required>
 
-    <label for="returnDate">Return Date:</label>
-    <input type="date" id="returnDate" class="search-input">
+        <label for="returnDate">Return Date:</label>
+        <input type="date" id="returnDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
 
-    <label for="returnTime">Return Time (HH:00):</label>
-    <input type="text" id="returnTime" class="search-input" placeholder="Enter return time">
+        <label for="returnTime">Return Time (HH:00):</label>
+        <input type="text" id="returnTime" class="search-input" placeholder="Enter return time" required>
+        <button type="submit" <a href="register.html"></a> search></button>
 
-    <a href="#" class="search-button">Search</a>
+<!--        <a href="register.html" class="search-button" type="button">Search</a>-->
+    </form>
 </div>
 
 <footer>
@@ -183,5 +186,24 @@
 
     <p>&copy; 2023 RentABike Solutions Private Limited | All Rights Reserved</p>
 </footer>
+
+<script>
+    function validateDates() {
+        var pickupDate = new Date(document.getElementById('pickupDate').value);
+        var pickupTime = document.getElementById('pickupTime').value;
+        var returnDate = new Date(document.getElementById('returnDate').value);
+        var returnTime = document.getElementById('returnTime').value;
+        var errorMessage = document.getElementById('errorMessage');
+
+        if (pickupDate > returnDate || (pickupDate.getTime() === returnDate.getTime() && pickupTime >= returnTime)) {
+            errorMessage.textContent = 'Error: Pickup date and time must be before return date and time.';
+        } else {
+            // Reset error message and proceed with search
+            errorMessage.textContent = '';
+            // Add your search logic here
+            alert('Search button clicked!');
+        }
+    }
+</script>
 </body>
 </html>
