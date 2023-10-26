@@ -55,6 +55,21 @@
             padding: 20px;
             text-align: center;
         }
+        .search-form {
+            border: 5px solid rgba(1.0, 0, 0, 0.05);
+            margin-top: 20px;
+            text-align: center;
+        }
+        .search-input {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .search-button {
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
         footer {
             background-color: #f5efef;
@@ -69,6 +84,7 @@
             border-radius: 8px;
             overflow: auto;
         }
+
         table thead {
             font-size:x-large;
         }
@@ -91,6 +107,21 @@
         <li><a href="tel:+918527333874">📞8527333874</a></li>
     </ul>
 </nav>
+<div class="search-form">
+    <label for="pickupDate">Pickup Date:</label>
+    <input type="date" id="pickupDate" class="search-input">
+
+    <label for="pickupTime">Pickup Time (HH:00):</label>
+    <input type="text" id="pickupTime" class="search-input" placeholder="Enter pickup time">
+
+    <label for="returnDate">Return Date:</label>
+    <input type="date" id="returnDate" class="search-input">
+
+    <label for="returnTime">Return Time (HH:00):</label>
+    <input type="text" id="returnTime" class="search-input" placeholder="Enter return time">
+
+    <a href="#" class="search-button">Search</a>
+</div>
 
 <footer>
     <div class="table-closer">
