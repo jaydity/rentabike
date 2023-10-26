@@ -29,6 +29,15 @@ public class securityuserdetails implements UserDetails {
     public String getUsername() {
         return user.getUsername();
     }
+//    @Override
+//    public String getPhone() {
+//        return user.getPhone();
+//    }
+//    @Override
+//    public String getRole() {
+//        return user.getRole();
+//    }
+
 
     @Override
     public boolean isAccountNonExpired() {

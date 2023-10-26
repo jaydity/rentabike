@@ -1,4 +1,4 @@
-package com.dbmsproj.rentabike.service;
+package com.dbmsproj.rentabike.Service;
 
 import com.dbmsproj.rentabike.Models.User;
 import com.dbmsproj.rentabike.Repository.UserRepository;
@@ -11,8 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service("Check")
-
+@Service
 public class userservice implements UserDetailsService{
 
     @Autowired
