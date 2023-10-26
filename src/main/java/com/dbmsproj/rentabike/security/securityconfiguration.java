@@ -1,5 +1,6 @@
 package com.dbmsproj.rentabike.security;
 
+import com.dbmsproj.rentabike.Service.userservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -9,34 +10,35 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import com.dbmsproj.rentabike.service.*;
 import org.springframework.security.web.SecurityFilterChain;
-import static org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance;
+import org.springframework.stereotype.Service;
+
 import static org.springframework.security.config.Customizer.withDefaults;
+import static org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance;
 
 
 @Configuration
 @EnableWebSecurity
 public class securityconfiguration {
     @Autowired
-    @Qualifier("Check")
-    private userservice userservice;
+//    @Qualifier()
+    private userservice userservices;
 
-    securityconfiguration(userservice userService) {
-        this.userservice = userService;
+    securityconfiguration(userservice userServices) {
+        this.userservices = userServices;
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         UserDetailsService userService;
-        auth.userDetailsService(userservice).passwordEncoder(getInstance());
+        auth.userDetailsService(userservices).passwordEncoder(getInstance());
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((auth) -> auth
 //                                .requestMatchers("/login","/signin","/register","/home","/").permitAll()
-                                .requestMatchers("/login","/signin").permitAll()
+                                .requestMatchers("/login","/home","/signin").permitAll()
                                 .anyRequest().authenticated()
 //                        .requestMatchers("/signin", "/signup","/login","/css/login.css", "/register","/css/*","/js/*","/pics/*").permitAll()
 //                        .requestMatchers("/restaurants").hasRole("ADMIN")
