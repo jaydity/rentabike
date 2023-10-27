@@ -10,14 +10,13 @@ import lombok.*;
 //@AllArgsConstructor
 
 public class User {
-//    @Id
+    //    @Id
 //    private Long userId;
 //    @Column(unique = true
+    private Long UserId;
     private String username;
     private String password;
     private String phone;
-    private Long UserId;
-    //    public String getRole() {return role;}
     private String userFirstName;
     private String userMiddleName;
     private String userLastName;
@@ -25,22 +24,18 @@ public class User {
     private String driversLicenseId;
     private int numberOfAccidents;
 
-//    private Long customerId;
-
-    public User(String username, String password, String phone,Long UserId, String UserFirstName, String UserMiddleName,
+    public User(String username, String password, String phone, Long UserId, String UserFirstName, String UserMiddleName,
                 String UserLastName, String UserAddress, String driversLicenseId, int numberOfAccidents) {
         this.username = username;
         this.password = password;
         this.phone = phone;
-        this.UserId=UserId;
-        //this.role=Role;
+        this.UserId = UserId;
         this.userFirstName = UserFirstName;
         this.userMiddleName = UserMiddleName;
         this.userLastName = UserLastName;
         this.userAddress = UserAddress;
         this.driversLicenseId = driversLicenseId;
         this.numberOfAccidents = numberOfAccidents;
-//        this.customerId = customer;
     }
 
     public User() {
@@ -51,8 +46,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.phone = phone;
-        //this.UserId=UserId;
-        //this.role=Role;
         this.userFirstName = userFirstName;
         this.userMiddleName = userMiddleName;
         this.userLastName = userLastName;
@@ -60,23 +53,6 @@ public class User {
         this.driversLicenseId = driversLicenseId;
         this.numberOfAccidents = numberOfAccidents;
     }
-
-
-    //    public username(Long userId, String username, String password, String email, Long customer) {
-//        this.userId = userId;
-//        this.username = username;
-//        this.password = password;
-//        this.email = email;
-//        this.customer = customer;
-//    }
-
-//    public Long getUserId() {
-//        return userId;
-//    }
-
-//    public void setUserId(Long userId) {
-//        this.userId = userId;
-//    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -89,7 +65,11 @@ public class User {
     public void setphone(String phone) {
         this.phone = phone;
     }
-    public void setUserId(Long UserId){ this.UserId=UserId;}
+
+    public void setUserId(Long UserId) {
+        this.UserId = UserId;
+    }
+
     public void setUserFirstName(String userFirstName) {
         this.userFirstName = userFirstName;
     }
@@ -105,6 +85,7 @@ public class User {
     public void setUserAddress(String UserAddress) {
         this.userAddress = UserAddress;
     }
+
     public void setDriversLicenseId(String driversLicenseId) {
         this.driversLicenseId = driversLicenseId;
     }
@@ -112,15 +93,4 @@ public class User {
     public void setNumberOfAccidents(int numberOfAccidents) {
         this.numberOfAccidents = numberOfAccidents;
     }
-
-
-//    public Long getCustomer() {
-//        return customerId;
-//    }
-//
-//    public void setCustomer(Long customer) {
-//        this.customerId = customer;
-//    }
-
-    //public void setRole(String role) {this.role = role;}
 }

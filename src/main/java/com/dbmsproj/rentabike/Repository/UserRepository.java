@@ -19,6 +19,7 @@ public class UserRepository {
         System.out.println("Inside AddUser");
 
         String sql_query = "INSERT INTO RENTABIKE.users(username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId) VALUES (?,?,?,?,?,?,?,?)";
+        try {
         jdbcTemplate.update(sql_query,
                 user.getUsername(),
                 user.getPassword(),
@@ -31,19 +32,21 @@ public class UserRepository {
                 user.getDriversLicenseId()
                 // user.getNumberOfAccidents()
         );
-        System.out.println("User Added");
+            System.out.println("User Added");
+        }
+        catch (Exception e){
+            System.out.println( "Could not add user with the given details, there already exists user with the same username or driving license number please try again");
+//            throw e;
+        }
+
     }
 
     private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
         User user = new User();
-//        user.setId(rs.getLong("id"));
-//          user.setFirst_name(rs.getString("first_name"));
-//          user.setLast_name(rs.getString("last_name"));
         user.setUserId(rs.getLong("UserId"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password"));
         user.setphone(rs.getString("phone"));
-        //user.setRole(rs.getString("role"));
         user.setUserFirstName(rs.getString("UserFirstName"));
         user.setUserMiddleName(rs.getString("UserMiddleName"));
         user.setUserLastName(rs.getString("UserLastName"));
@@ -56,7 +59,7 @@ public class UserRepository {
 
     public User getUserByUsername(String username){
         System.out.println("Inside getUserByUsername");
-        String sql = "Select * from users where username = ?";
+        String sql = "Select * from users where username = " + "'"+username+"'";
         return jdbcTemplate.queryForObject(sql, userRowMapper);
     }
 }

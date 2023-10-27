@@ -38,17 +38,17 @@ public class securityconfiguration {
         http
                 .authorizeHttpRequests((auth) -> auth
 //                                .requestMatchers("/login","/signin","/register","/home","/").permitAll()
-                                .requestMatchers("/","/home","/signin","/register","login","/availableBikes").permitAll()
+                                .requestMatchers("/","/home","/register","login","/availableBikes","/images/*").permitAll()
                                 .anyRequest().authenticated()
 //                        .requestMatchers("/signin", "/signup","/login","/css/login.css", "/register","/css/*","/js/*","/pics/*").permitAll()
 //                        .requestMatchers("/restaurants").hasRole("ADMIN")
 //                        .anyRequest().authenticated()
                 )
                 .formLogin((formLogin) -> formLogin
-                        .loginPage("/signin")
+                        .loginPage("/login")
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/home", true)
-
+                        .permitAll()
                 )
                 .httpBasic(withDefaults());
         return http.csrf(AbstractHttpConfigurer::disable).build();

@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RentABike - Bike Rentals</title>
     <style>
-        /* Add your custom styles here */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+            min-height: 200vh; /* Ensure the body takes at least the full height of the viewport */
         }
 
         header {
@@ -124,7 +123,7 @@
 </header>
 
 <nav>
-    <a href="/home"><img src="../static/images/RentABike_logo.png" height="50" width="70" alt="Logo"></a>
+    <a href="/home"><img src="/images/RentABike_logo.png" height="50" width="70" alt="Logo"></a>
     <ul>
         <li><a href="/home" style="text-decoration: none">Home</a></li>
         <li><a href="/blog" style="text-decoration: none">Blog</a></li>
@@ -135,15 +134,15 @@
 </nav>
 
 <div class="login-container">
-    <form class="login-form" style="background-color:#cde8e8 ; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 300px;">
+    <form method="post"role="form" th:action="@{/login}" class="login-form" style="background-color:#cde8e8 ; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 300px;">
         <label for="username" class="form-label">Username:</label>
         <input type="text" id="username" name="username" placeholder="Enter your username" class="form-input" required>
 
         <label for="password" class="form-label">Password:</label>
         <input type="password" id="password" name="password" placeholder="Enter your password" class="form-input" required>
 
-        <label for="phone" class="form-label">Phone:</label>
-        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" class="form-input" required>
+<!--        <label for="phone" class="form-label">Phone:</label>-->
+<!--        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" class="form-input" required>-->
 
         <button type="submit" class="login-button">Login</button>
 
@@ -162,16 +161,16 @@
             <tbody>
             <tr>
                 <td>
-                    <img src="../static/images/largestFleet.jpg" width="250" height="200" alt="Largest Fleet Size">
+                    <img src="/images/largestFleet.jpg" width="250" height="200" alt="Largest Fleet Size">
                 </td>
                 <td>
-                    <img src="../static/images/GoodService.jpg" width="250" height="200" alt="Good service">
+                    <img src="/images/GoodService.jpg" width="250" height="200" alt="Good service">
                 </td>
                 <td>
-                    <img src="../static/images/GoodBikes.jpeg" width="250" height="200" alt="Bikes condition">
+                    <img src="/images/GoodBikes.jpeg" width="250" height="200" alt="Bikes condition">
                 </td>
                 <td>
-                    <img src="../static/images/freeCancellation.jpg" width="250" height="200" alt="Easy Cancellation">
+                    <img src="/images/freeCancellation.jpg" width="250" height="200" alt="Easy Cancellation">
                 </td>
             </tr>
             <tr>
@@ -180,7 +179,7 @@
                     <p>We boast the largest fleet of top-quality bikes, ensuring you have a wide range of choices for your ride.</p>
                 </td>
                 <td>
-                    <h3>Good servivces</h3>
+                    <h3>Good services</h3>
                     <p>Our employees are very polite and will provide good services.</p>
                 </td>
                 <td>
@@ -211,10 +210,31 @@
     <p>&copy; 2023 RentABike Solutions Private Limited | All Rights Reserved</p>
 </div>
 
-<<<<<<< HEAD
-=======
     <p style="text-align: center;">Don't have an account? <a style="text-decoration: none; color: #007bff;" class="register-link" href="/register">Register</a></p>
 </form>
->>>>>>> 6d9b0b8a686ed5f2e04675db3153ac094ec59b8d
 </body>
 </html>
+<!--<!DOCTYPE html>-->
+
+<!--<html xmlns:th="https://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--    <title>User Information Form</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>User Information Form</h1>-->
+<!--<form method="post" role="form" th:action="@{/login}">-->
+<!--    <div class="section text-center">-->
+<!--        <h4 class="mb-4 pb-3">Log In</h4>-->
+<!--        <div class="form-group">-->
+<!--            <input type="username" name="username" class="form-style" placeholder="Your username" id="username" autocomplete="off">-->
+<!--            <i class="input-icon uil uil-at"></i>-->
+<!--        </div>-->
+<!--        <div class="form-group mt-2">-->
+<!--            <input type="password" name="password" class="form-style" placeholder="Your Password" id="password" autocomplete="off">-->
+<!--            <i class="input-icon uil uil-lock-alt"></i>-->
+<!--        </div>-->
+<!--        <input type="submit" class="btn mt-4">-->
+<!--    </div>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
