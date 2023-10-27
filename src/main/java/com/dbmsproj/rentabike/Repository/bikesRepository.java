@@ -15,7 +15,7 @@ public class bikesRepository {
     @Autowired
     private JdbcTemplate tmp;
     public void insertBike(bikes b){
-        String s="INSERT INTO bikes(registrationNumber,bikeModel,bikeStatus,CBookNumber,Insurance,isAvailable, ratePerHour) VALUES(?,?,?,?,?,?)";
+        String s="INSERT INTO RENTABIKE.bikes(registration_number,bike_model,bike_status,CBook_number,insurance,is_available, rate_per_hour) VALUES(?,?,?,?,?,?,?)";
         tmp.update(s,b.getRegistrationNumber(),b.getBikeModel(),b.getBikeStatus(),b.getCBookNumber(),b.getInsurance(),b.isAvailable(), b.getRatePerHour());
     }
     public void deleteBike(String registrationNumber){
@@ -28,7 +28,7 @@ public class bikesRepository {
     }
 
     public long selectRatePerHour(String registrationNumber){
-        String s="SELECT ratePerHour FROM bikes WHERE bikes.registrationNumber=?";
+        String s="SELECT ratePerHour FROM bikes WHERE registrationNumber=?";
         return tmp.queryForObject(s,long.class,registrationNumber);
     }
 
@@ -49,6 +49,10 @@ public class bikesRepository {
 
     public List<bikes> getAllAvailableBikes(){
         String s="SELECT * FROM RENTABIKE.bikes WHERE is_available=1";
+        return tmp.query(s,new BikeRowMapper());
+    }
+    public List<bikes> getAllBikes(){
+        String s="SELECT * FROM RENTABIKE.bikes";
         return tmp.query(s,new BikeRowMapper());
     }
 
