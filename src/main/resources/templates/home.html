@@ -58,10 +58,11 @@
         .search-form {
             border: 5px solid rgba(1.0, 0, 0, 0.05);
             margin-top: 20px;
+            padding: 10px;
             text-align: center;
         }
         .search-input {
-            padding: 8px;
+            padding: 12px;
             font-size: 16px;
         }
 
@@ -107,23 +108,146 @@
     </ul>
 </nav>
 <div class="search-form">
-    <form action="/register">
+    <form action="/availableBikes" onsubmit="return validateDates()">
         <label for="pickupDate">Pickup Date:</label>
         <input type="date" id="pickupDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
 
-        <label for="pickupTime">Pickup Time (HH:00):</label>
-        <input type="text" id="pickupTime" class="search-input" placeholder="Enter pickup time" required>
+        <label for="pickupTime">Pickup Time:</label>
+        <select id="pickupTime" class="search-input" required>
+            <script>
+                for (var i = 1; i <= 24; i++) {
+                    document.write('<option value="' + i + '">' + (i < 10 ? '0' + i : i) + ':00</option>');
+                }
+            </script>
+        </select>
 
         <label for="returnDate">Return Date:</label>
-        <input type="date" id="returnDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
+        <input type="date" id="returnDate" class="search-input" required>
 
-        <label for="returnTime">Return Time (HH:00):</label>
-        <input type="text" id="returnTime" class="search-input" placeholder="Enter return time" required>
-        <button type="submit" formaction="/login">search</button>
+        <!-- Inside your form -->
+        <label for="returnTime">Return Time:</label>
+        <select id="returnTime" class="search-input" required>
+            <script>
+                for (var i = 0; i <= 23; i++) {
+                    document.write('<option value="' + i + '">' + (i < 10 ? '0' + i : i) + ':00</option>');
+                }
+            </script>
+        </select>
 
-<!--        <a href="register.html" class="search-button" type="button">Search</a>-->
+        <!-- Error message placeholder -->
+        <p id="errorMessage" style="color: red;"></p>
+
+        <br>
+        <button type="submit" formaction="/login">Search</button>
     </form>
+
+    <script>
+        function validateDates() {
+            var pickupDate = new Date(document.getElementById('pickupDate').value);
+            var pickupTime = parseInt(document.getElementById('pickupTime').value);
+            var returnDate = new Date(document.getElementById('returnDate').value);
+            var returnTime = parseInt(document.getElementById('returnTime').value);
+
+            var currentDate = new Date();
+
+            if (pickupDate < currentDate) {
+                document.getElementById('errorMessage').textContent = 'Error: Pickup date cannot be in the past.';
+                return false;
+            }
+
+            if (returnDate < pickupDate) {
+                document.getElementById('errorMessage').textContent = 'Error: Return date must be after pickup date.';
+                return false;
+            }
+
+            if (returnDate.getTime() === pickupDate.getTime() && pickupTime >= returnTime) {
+                document.getElementById('errorMessage').textContent = 'Error: Pickup time must be before return time on the same day.';
+                return false;
+            }
+
+            // Reset error message if validation succeeds
+            document.getElementById('errorMessage').textContent = '';
+
+            return true;
+        }
+    </script>
 </div>
+<!--<div class="search-form">-->
+<!--    <form onsubmit="return validateDates()">-->
+<!--        <label for="pickupDate">Pickup Date:</label>-->
+<!--        <input type="date" id="pickupDate" class="search-input" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" required>-->
+
+<!--        <label for="pickupTime">Pickup Time:</label>-->
+<!--        <select id="pickupTime" class="search-input" required>-->
+<!--            <script>-->
+<!--                for (var i = 1; i <= 24; i++) {-->
+<!--                    document.write('<option value="' + i + '">' + (i < 10 ? '0' + i : i) + ':00</option>');-->
+<!--                }-->
+<!--            </script>-->
+<!--        </select>-->
+
+<!--        <label for="returnDate">Return Date:</label>-->
+<!--        <input type="date" id="returnDate" class="search-input" required>-->
+
+<!--        &lt;!&ndash; Inside your form &ndash;&gt;-->
+<!--        <label for="returnTime">Return Time:</label>-->
+<!--        <select id="returnTime" class="search-input" required>-->
+<!--            <script>-->
+<!--                for (var i = 0; i <= 23; i++) {-->
+<!--                    document.write('<option value="' + i + '">' + (i < 10 ? '0' + i : i) + ':00</option>');-->
+<!--                }-->
+<!--            </script>-->
+<!--        </select>-->
+
+<!--        &lt;!&ndash; Error message placeholder &ndash;&gt;-->
+<!--        <p id="errorMessage" style="color: red;"></p>-->
+
+<!--        <br>-->
+<!--        <button type="submit">Search</button>-->
+<!--    </form>-->
+
+<!--    <script>-->
+<!--        function validateDates() {-->
+<!--            var pickupDate = new Date(document.getElementById('pickupDate').value);-->
+<!--            var pickupTime = parseInt(document.getElementById('pickupTime').value);-->
+<!--            var returnDate = new Date(document.getElementById('returnDate').value);-->
+<!--            var returnTime = parseInt(document.getElementById('returnTime').value);-->
+
+<!--            var currentDate = new Date();-->
+<!--            var tomorrow = new Date();-->
+<!--            tomorrow.setDate(currentDate.getDate() + 1);-->
+
+<!--            if (pickupDate < tomorrow) {-->
+<!--                document.getElementById('errorMessage').textContent = 'Error: Pickup date must be at least tomorrow.';-->
+<!--                return false;-->
+<!--            }-->
+
+<!--            if (pickupDate < currentDate) {-->
+<!--                document.getElementById('errorMessage').textContent = 'Error: Pickup date cannot be in the past.';-->
+<!--                return false;-->
+<!--            }-->
+
+<!--            if (returnDate < pickupDate) {-->
+<!--                document.getElementById('errorMessage').textContent = 'Error: Return date must be after pickup date.';-->
+<!--                return false;-->
+<!--            }-->
+
+<!--            if (returnDate.getTime() === pickupDate.getTime() && pickupTime >= returnTime) {-->
+<!--                document.getElementById('errorMessage').textContent = 'Error: Pickup time must be before return time on the same day.';-->
+<!--                return false;-->
+<!--            }-->
+
+<!--            // Reset error message if validation succeeds-->
+<!--            document.getElementById('errorMessage').textContent = '';-->
+
+<!--            // Perform your search logic here-->
+<!--            // ...-->
+<!--            document.getElementById('errorMessage').textContent = 'Error: Return date must be after today date.';-->
+<!--            return false; // Prevent form submission-->
+<!--        }-->
+<!--    </script>-->
+<!--</div>-->
+
 
 <footer>
     <div class="table-closer">
@@ -195,7 +319,8 @@
         var errorMessage = document.getElementById('errorMessage');
 
         if (pickupDate > returnDate || (pickupDate.getTime() === returnDate.getTime() && pickupTime >= returnTime)) {
-            errorMessage.textContent = 'Error: Pickup date and time must be before return date and time.';
+            errorMessage.textContent = 'Error: Pickup time must be before return time.';
+            return false;
         } else {
             // Reset error message and proceed with search
             errorMessage.textContent = '';

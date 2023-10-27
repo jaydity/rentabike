@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RentABike - Bike Rentals</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+
+    header {
+      background-color: rgba(196, 137, 154, 0.76);
+      color: #000a33;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #939d75;
+      color: #fff;
+      padding: 10px;
+      text-decoration: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    table {
+
+      width: 100%;
+      /*border-collapse:collapse;*/
+      margin-top: 20px;
+      border: #000;
+    }
+
+    nav img {
+      height: 50px;
+      width: 70px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li {
+      margin-right: 10px;
+    }
+
+    section {
+      padding: 20px;
+      text-align: center;
+    }
+    .search-form {
+      border: 5px solid rgba(1.0, 0, 0, 0.05);
+      margin-top: 20px;
+      text-align: center;
+    }
+    .search-input {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    .search-button {
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #f5efef;
+      color: #0e0000;
+      padding: 10px;
+      text-align: center;
+    }
+    .table-closer {
+      border: 5px solid #153941;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      overflow: auto;
+    }
+
+    table thead {
+      font-size:x-large;
+    }
+
+  </style>
+</head>
+<body>
+<header>
+  <h1>RentABike</h1>
+</header>
+
+<nav>
+  <a href="/home"><img src="/images/RentABike_logo.png" height="50" width="70" alt="Logo"></a>
+  <ul>
+    <li><a href="/home" style="text-decoration: none">Home</a></li>
+    <li><a href="/blog" style="text-decoration: none">Blog</a></li>
+    <!-- Update the following line for the profile and logout links -->
+    <li> username</li>
+    <li><a href="/profile" style="text-decoration: none">Profile</a></li>
+    <li><a href="/logout" style="text-decoration: none">Logout</a></li>
+    <li><a href="tel:+917337430918" style="text-decoration: none">📞7337430918</a></li>
+    <li><a style="text-decoration: none" href="tel:+911234567890">📞1234567890</a></li>
+  </ul>
+</nav>
+
+<div class="search-form">
+  <form action="/availableBikes">
+    <label for="pickupDate">Pickup Date:</label>
+    <input type="date" id="pickupDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
+
+    <label for="pickupTime">Pickup Time (HH:00):</label>
+    <input type="text" id="pickupTime" class="search-input" placeholder="Enter pickup time" required>
+
+    <label for="returnDate">Return Date:</label>
+    <input type="date" id="returnDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
+
+    <label for="returnTime">Return Time (HH:00):</label>
+    <input type="text" id="returnTime" class="search-input" placeholder="Enter return time" required>
+    <button type="submit" formaction="/login">search</button>
+
+    <!--        <a href="register.html" class="search-button" type="button">Search</a>-->
+  </form>
+</div>
+
+<footer>
+  <div class="table-closer">
+    <table>
+      <thead>
+      <tr>
+        <th colspan="4">Why to choose RentABike?</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <img src="/images/largestFleet.jpg" width="250" height="200" alt="Largest Fleet Size">
+        </td>
+        <td>
+          <img src="/images/GoodService.jpg" width="250" height="200" alt="Good service">
+        </td>
+        <td>
+          <img src="/images/GoodBikes.jpeg" width="250" height="200" alt="Bikes condition">
+        </td>
+        <td>
+          <img th:src="@{/images/freeCancellation.jpg}" width="250" height="200" alt="Easy Cancellation">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h3>Largest fleet size</h3>
+          <p>We boast the largest fleet of top-quality bikes, ensuring you have a wide range of choices for your ride.</p>
+        </td>
+        <td>
+          <h3>Good services</h3>
+          <p>Our employees are very polite and will provide good services.</p>
+        </td>
+        <td>
+          <h3>Bikes in condition</h3>
+          <p>All bikes are well serviced and are in good condition.</p>
+        </td>
+        <td>
+          <h3>Easy cancellation and refund policies</h3>
+          <p>We understand plans can change. Our flexible cancellation and refund policies make it easy for you to adjust your bookings.</p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Address</h2>
+  <p>Address line1</p>
+  <p>Address line2</p>
+  <p>Karnataka, 111111 India</p>
+
+  <h2>Explore</h2>
+  <p>About Us</p>
+  <p>Help</p>
+  <p>Contact us</p>
+  <p>Privacy policies</p>
+  <p>Terms and conditions</p>
+
+
+  <p>&copy; 2023 RentABike Solutions Private Limited | All Rights Reserved</p>
+</footer>
+
+<script>
+  function validateDates() {
+    var pickupDate = new Date(document.getElementById('pickupDate').value);
+    var pickupTime = document.getElementById('pickupTime').value;
+    var returnDate = new Date(document.getElementById('returnDate').value);
+    var returnTime = document.getElementById('returnTime').value;
+    var errorMessage = document.getElementById('errorMessage');
+
+    if (pickupDate > returnDate || (pickupDate.getTime() === returnDate.getTime() && pickupTime >= returnTime)) {
+      errorMessage.textContent = 'Error: Pickup date and time must be before return date and time.';
+    } else {
+      // Reset error message and proceed with search
+      errorMessage.textContent = '';
+      // Add your search logic here
+      alert('Search button clicked!');
+    }
+  }
+</script>
+</body>
+</html>
