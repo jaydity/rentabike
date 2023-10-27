@@ -16,7 +16,9 @@ public class UserRepository {
     JdbcTemplate jdbcTemplate;
 
     public void AddUser(User user){
-        String sql_query = "INSERT INTO users (username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,numberOfAccidents) VALUES (?,?,?,?,?,?,?,?,?)";
+        System.out.println("Inside AddUser");
+
+        String sql_query = "INSERT INTO users (username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId) VALUES (?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql_query,
                 user.getUsername(),
                 user.getPassword(),
@@ -26,9 +28,10 @@ public class UserRepository {
                 user.getUserMiddleName(),
                 user.getUserLastName(),
                 user.getUserAddress(),
-                user.getDriversLicenseId(),
-                user.getNumberOfAccidents()
+                user.getDriversLicenseId()
+                // user.getNumberOfAccidents()
         );
+        System.out.println("User Added");
     }
 
     private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
@@ -36,11 +39,11 @@ public class UserRepository {
 //        user.setId(rs.getLong("id"));
 //          user.setFirst_name(rs.getString("first_name"));
 //          user.setLast_name(rs.getString("last_name"));
+        user.setUserId(rs.getLong("UserId"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password"));
         user.setphone(rs.getString("phone"));
         //user.setRole(rs.getString("role"));
-        user.setUserId(rs.getLong("UserId"));
         user.setUserFirstName(rs.getString("UserFirstName"));
         user.setUserMiddleName(rs.getString("UserMiddleName"));
         user.setUserLastName(rs.getString("UserLastName"));
@@ -52,6 +55,7 @@ public class UserRepository {
     };
 
     public User getUserByUsername(String username){
+        System.out.println("Inside getUserByUsername");
         String sql = "Select * from users where username = ?";
         return jdbcTemplate.queryForObject(sql, userRowMapper);
     }

@@ -3,6 +3,7 @@ package com.dbmsproj.rentabike.Models;
 import lombok.*;
 
 //@Entity
+//@Table(name = "users")
 @Getter
 @Setter
 @Data
@@ -15,8 +16,8 @@ public class User {
     private String username;
     private String password;
     private String phone;
-    //private String role;
     private Long UserId;
+    //    public String getRole() {return role;}
     private String UserFirstName;
     private String UserMiddleName;
     private String UserLastName;
@@ -60,42 +61,7 @@ public class User {
         this.numberOfAccidents = numberOfAccidents;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-    public Long getUserId() {
-        return UserId;
-    }
-
-
-    //    public String getRole() {return role;}
-    public String getUserFirstName() {return UserFirstName;}
-    public String getUserMiddleName() {
-        return UserMiddleName;
-    }
-
-    public String getUserLastName() {
-        return UserLastName;
-    }
-
-    public String getUserAddress() {
-        return UserAddress;
-    }
-    public String getDriversLicenseId() {
-        return driversLicenseId;
-    }
-
-    public int getNumberOfAccidents() {
-        return numberOfAccidents;
-    }
     //    public username(Long userId, String username, String password, String email, Long customer) {
 //        this.userId = userId;
 //        this.username = username;

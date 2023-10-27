@@ -19,7 +19,7 @@ public class UserController {
     }
     @GetMapping(path="/register")
     public String Register(){
-        return "register";
+        return "/register";
     }
     @PostMapping(path="/register")
     public String RegisterUser(//@RequestParam("id") Long id,
@@ -35,8 +35,10 @@ public class UserController {
                                //@RequestParam("numberOfAccidents") int numberOfAccidents,
                               // @RequestParam("phone") String phone;
                                @RequestParam("numberOfAccidents") int numberOfAccidents){
+        System.out.println("Inside RegisterUser");
         User user = new User(username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,numberOfAccidents);
         userRepository.AddUser(user);
+        System.out.println("User Added");
         return "home";
     }
     @RequestMapping(path="/")
@@ -46,7 +48,7 @@ public class UserController {
 
     @GetMapping(path={"/signin","/login"})
     public String usersignIn(){
-        System.out.println("donewithusersignin");
+        // System.out.println("donewithusersignin");
          //return "login";
 
         return "login";

@@ -24,8 +24,8 @@ public class securityconfiguration {
 //    @Qualifier()
     private userservice userservices;
 
-    securityconfiguration(userservice userServices) {
-        this.userservices = userServices;
+    securityconfiguration(userservice userservices) {
+        this.userservices = userservices;
     }
 
     @Autowired
