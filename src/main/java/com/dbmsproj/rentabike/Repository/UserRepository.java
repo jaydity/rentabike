@@ -18,7 +18,7 @@ public class UserRepository {
     public void AddUser(User user){
         System.out.println("Inside AddUser");
 
-        String sql_query = "INSERT INTO users (username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId) VALUES (?,?,?,?,?,?,?,?)";
+        String sql_query = "INSERT INTO RENTABIKE.users(username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId) VALUES (?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql_query,
                 user.getUsername(),
                 user.getPassword(),

@@ -17,26 +17,20 @@ public class UserController {
     public UserController(UserRepository userRepository){
         this.userRepository = userRepository;
     }
-    @GetMapping(path="/register")
-    public String Register(){
-        return "/register";
-    }
     @PostMapping(path="/register")
-    public String RegisterUser(//@RequestParam("id") Long id,
+    public String RegisterUser(
                                @RequestParam("username") String username,
                                @RequestParam("password") String password,
                                @RequestParam("phone") String phone,
-                               //@RequestParam("UserId") Long UserId,
                                @RequestParam("UserFirstName") String UserFirstName,
                                @RequestParam("UserMiddleName") String UserMiddleName,
                                @RequestParam("UserLastName") String UserLastName,
                                @RequestParam("UserAddress") String UserAddress,
-                               @RequestParam("driversLicenseId") String driversLicenseId,
-                               //@RequestParam("numberOfAccidents") int numberOfAccidents,
-                              // @RequestParam("phone") String phone;
-                               @RequestParam("numberOfAccidents") int numberOfAccidents){
+                               @RequestParam("driversLicenseId") String driversLicenseId
+                               ){
         System.out.println("Inside RegisterUser");
-        User user = new User(username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,numberOfAccidents);
+        System.out.println(username+" " + password+" "+phone+" "+UserFirstName+" "+UserMiddleName+" "+UserLastName+" "+UserAddress+" "+driversLicenseId);
+        User user = new User(username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,0);
         userRepository.AddUser(user);
         System.out.println("User Added");
         return "home";
