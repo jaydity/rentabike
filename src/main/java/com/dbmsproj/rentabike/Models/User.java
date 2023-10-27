@@ -18,10 +18,10 @@ public class User {
     private String phone;
     private Long UserId;
     //    public String getRole() {return role;}
-    private String UserFirstName;
-    private String UserMiddleName;
-    private String UserLastName;
-    private String UserAddress;
+    private String userFirstName;
+    private String userMiddleName;
+    private String userLastName;
+    private String userAddress;
     private String driversLicenseId;
     private int numberOfAccidents;
 
@@ -34,10 +34,10 @@ public class User {
         this.phone = phone;
         this.UserId=UserId;
         //this.role=Role;
-        this.UserFirstName = UserFirstName;
-        this.UserMiddleName = UserMiddleName;
-        this.UserLastName = UserLastName;
-        this.UserAddress = UserAddress;
+        this.userFirstName = UserFirstName;
+        this.userMiddleName = UserMiddleName;
+        this.userLastName = UserLastName;
+        this.userAddress = UserAddress;
         this.driversLicenseId = driversLicenseId;
         this.numberOfAccidents = numberOfAccidents;
 //        this.customerId = customer;
@@ -53,10 +53,10 @@ public class User {
         this.phone = phone;
         //this.UserId=UserId;
         //this.role=Role;
-        this.UserFirstName = UserFirstName;
-        this.UserMiddleName = UserMiddleName;
-        this.UserLastName = UserLastName;
-        this.UserAddress = UserAddress;
+        this.userFirstName = userFirstName;
+        this.userMiddleName = userMiddleName;
+        this.userLastName = userLastName;
+        this.userAddress = userAddress;
         this.driversLicenseId = driversLicenseId;
         this.numberOfAccidents = numberOfAccidents;
     }
@@ -91,19 +91,19 @@ public class User {
     }
     public void setUserId(Long UserId){ this.UserId=UserId;}
     public void setUserFirstName(String userFirstName) {
-        this.UserFirstName = userFirstName;
+        this.userFirstName = userFirstName;
     }
 
     public void setUserMiddleName(String userMiddleName) {
-        this.UserMiddleName = userMiddleName;
+        this.userMiddleName = userMiddleName;
     }
 
     public void setUserLastName(String userLastName) {
-        this.UserLastName = userLastName;
+        this.userLastName = userLastName;
     }
 
     public void setUserAddress(String UserAddress) {
-        this.UserAddress = UserAddress;
+        this.userAddress = UserAddress;
     }
     public void setDriversLicenseId(String driversLicenseId) {
         this.driversLicenseId = driversLicenseId;

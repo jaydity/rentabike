@@ -22,10 +22,10 @@ public class UserController {
                                @RequestParam("username") String username,
                                @RequestParam("password") String password,
                                @RequestParam("phone") String phone,
-                               @RequestParam("UserFirstName") String UserFirstName,
-                               @RequestParam("UserMiddleName") String UserMiddleName,
-                               @RequestParam("UserLastName") String UserLastName,
-                               @RequestParam("UserAddress") String UserAddress,
+                               @RequestParam("userFirstName") String UserFirstName,
+                               @RequestParam("userMiddleName") String UserMiddleName,
+                               @RequestParam("userLastName") String UserLastName,
+                               @RequestParam("userAddress") String UserAddress,
                                @RequestParam("driversLicenseId") String driversLicenseId
                                ){
         System.out.println("Inside RegisterUser");
