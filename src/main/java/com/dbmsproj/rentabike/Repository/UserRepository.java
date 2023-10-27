@@ -19,6 +19,7 @@ public class UserRepository {
         System.out.println("Inside AddUser");
 
         String sql_query = "INSERT INTO RENTABIKE.users(username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId) VALUES (?,?,?,?,?,?,?,?)";
+        try {
         jdbcTemplate.update(sql_query,
                 user.getUsername(),
                 user.getPassword(),
@@ -31,7 +32,13 @@ public class UserRepository {
                 user.getDriversLicenseId()
                 // user.getNumberOfAccidents()
         );
-        System.out.println("User Added");
+            System.out.println("User Added");
+        }
+        catch (Exception e){
+            System.out.println( "Could not add user with the given details, there already exists user with the same username or driving license number please try again");
+//            throw e;
+        }
+
     }
 
     private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
