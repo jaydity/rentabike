@@ -32,9 +32,6 @@ public class adminService {
     private blocklistRepository blocklistRepository;
 
     @Autowired
-    private customerRepository customerRepository;
-
-    @Autowired
     private retailersRepository retailersRepository;
 
     public void addbike(bikes bike, bikePurchases newBike){
