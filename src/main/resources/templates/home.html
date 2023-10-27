@@ -109,16 +109,16 @@
 <div class="search-form">
     <form action="/register">
         <label for="pickupDate">Pickup Date:</label>
-        <input type="date" id="pickupDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
+        <input type="datetime-local" id="pickupDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
 
-        <label for="pickupTime">Pickup Time (HH:00):</label>
-        <input type="text" id="pickupTime" class="search-input" placeholder="Enter pickup time" required>
+<!--        <label for="pickupTime">Pickup Time (HH:00):</label>-->
+<!--        <input type="text" id="pickupTime" class="search-input" placeholder="Enter pickup time" required>-->
 
         <label for="returnDate">Return Date:</label>
-        <input type="date" id="returnDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
+        <input type="datetime-local" id="returnDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
 
-        <label for="returnTime">Return Time (HH:00):</label>
-        <input type="text" id="returnTime" class="search-input" placeholder="Enter return time" required>
+<!--        <label for="returnTime">Return Time (HH:00):</label>-->
+<!--        <input type="text" id="returnTime" class="search-input" placeholder="Enter return time" required>-->
         <button type="submit" formaction="/login">search</button>
 
 <!--        <a href="register.html" class="search-button" type="button">Search</a>-->
