@@ -5,17 +5,10 @@ import com.dbmsproj.rentabike.Repository.bikesRepository;
 import com.dbmsproj.rentabike.Repository.bikePurchasesRepository;
 import com.dbmsproj.rentabike.Repository.blocklistRepository;
 import com.dbmsproj.rentabike.Repository.bookingsRepository;
-import com.dbmsproj.rentabike.Repository.customerRepository;
 import com.dbmsproj.rentabike.Repository.retailersRepository;
-import com.dbmsproj.rentabike.Repository.accidentsRepository;
 import com.dbmsproj.rentabike.Models.bikes;
 import com.dbmsproj.rentabike.Models.bikePurchases;
-import com.dbmsproj.rentabike.Models.User;
-import com.dbmsproj.rentabike.Models.customers;
 import com.dbmsproj.rentabike.Models.retailers;
-import com.dbmsproj.rentabike.Models.blocklist;
-
-
 
 
 import org.springframework.beans.factory.annotation.Autowired;
