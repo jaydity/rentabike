@@ -1,217 +1,241 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>RentABike - Bike Rentals</title>-->
+<!--    <style>-->
+<!--        /* Add your custom styles here */-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */-->
+<!--        }-->
+
+<!--        header {-->
+<!--            background-color: rgba(196, 137, 154, 0.76);-->
+<!--            color: #000a33;-->
+<!--            padding: 10px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        nav {-->
+<!--            background-color: #939d75;-->
+<!--            color: #fff;-->
+<!--            padding: 10px;-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--        }-->
+
+<!--        nav img {-->
+<!--            height: 50px;-->
+<!--            width: 70px;-->
+<!--        }-->
+
+<!--        nav ul {-->
+<!--            list-style: none;-->
+<!--            display: flex;-->
+<!--            gap: 20px;-->
+<!--        }-->
+
+<!--        nav ul li {-->
+<!--            margin-right: 10px;-->
+<!--        }-->
+
+<!--        .login-container {-->
+<!--            flex: 1;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--        }-->
+
+<!--        .login-form {-->
+<!--            background-color: #fff;-->
+<!--            padding: 20px;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            width: 300px;-->
+<!--        }-->
+
+<!--        .form-label {-->
+<!--            display: block;-->
+<!--            margin-bottom: 8px;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+
+<!--        .form-input {-->
+<!--            width: 100%;-->
+<!--            padding: 8px;-->
+<!--            margin-bottom: 16px;-->
+<!--            box-sizing: border-box;-->
+<!--        }-->
+
+<!--        .login-button {-->
+<!--            background-color: #4caf50;-->
+<!--            color: #fff;-->
+<!--            padding: 10px;-->
+<!--            border: none;-->
+<!--            border-radius: 4px;-->
+<!--            cursor: pointer;-->
+<!--            width: 100%;-->
+<!--        }-->
+
+<!--        .login-button:hover {-->
+<!--            background-color: #45a049;-->
+<!--        }-->
+
+<!--        .register-link {-->
+<!--            text-decoration: none;-->
+<!--            color: #007bff;-->
+<!--        }-->
+
+<!--        .register-link:hover {-->
+<!--            text-decoration: underline;-->
+<!--        }-->
+
+<!--        .footer-container {-->
+<!--            background-color: #f5efef;-->
+<!--            color: #0e0000;-->
+<!--            padding: 10px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .table-closer {-->
+<!--            border: 5px solid #153941;-->
+<!--            padding: 20px;-->
+<!--            margin-top: 20px;-->
+<!--            border-radius: 8px;-->
+<!--            overflow: auto;-->
+<!--        }-->
+
+<!--        table thead {-->
+<!--            font-size: x-large;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<header>-->
+<!--    <h1>RentABike</h1>-->
+<!--</header>-->
+
+<!--<nav>-->
+<!--    <a href="/home"><img src="/images/RentABike_logo.png" height="50" width="70" alt="Logo"></a>-->
+<!--    <ul>-->
+<!--        <li><a href="/home" style="text-decoration: none">Home</a></li>-->
+<!--        <li><a href="/blog" style="text-decoration: none">Blog</a></li>-->
+<!--        <li><a href="/login" style="text-decoration: none">Login/Signup</a></li>-->
+<!--        <li><a href="tel:+917337430918" style="text-decoration: none">📞7337430918</a></li>-->
+<!--        <li><a style="text-decoration: none" href="tel:+911234567890">📞1234567890</a></li>-->
+<!--    </ul>-->
+<!--</nav>-->
+
+<!--<div class="login-container">-->
+<!--    <form class="login-form" style="background-color:#cde8e8 ; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 300px;">-->
+<!--        <label for="username" class="form-label">Username:</label>-->
+<!--        <input type="text" id="username" name="username" placeholder="Enter your username" class="form-input" required>-->
+
+<!--        <label for="password" class="form-label">Password:</label>-->
+<!--        <input type="password" id="password" name="password" placeholder="Enter your password" class="form-input" required>-->
+
+<!--&lt;!&ndash;        <label for="phone" class="form-label">Phone:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" class="form-input" required>&ndash;&gt;-->
+
+<!--        <button type="submit" class="login-button">Login</button>-->
+
+<!--        <p style="text-align: center;">Don't have an account? <a href="/register" class="register-link">Register</a></p>-->
+<!--    </form>-->
+<!--</div>-->
+
+<!--<div class="footer-container">-->
+<!--    <div class="table-closer">-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th colspan="4">Why to choose RentABike?</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <img src="/images/largestFleet.jpg" width="250" height="200" alt="Largest Fleet Size">-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <img src="/images/GoodService.jpg" width="250" height="200" alt="Good service">-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <img src="/images/GoodBikes.jpeg" width="250" height="200" alt="Bikes condition">-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <img src="/images/freeCancellation.jpg" width="250" height="200" alt="Easy Cancellation">-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <h3>Largest fleet size</h3>-->
+<!--                    <p>We boast the largest fleet of top-quality bikes, ensuring you have a wide range of choices for your ride.</p>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <h3>Good servivces</h3>-->
+<!--                    <p>Our employees are very polite and will provide good services.</p>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <h3>Bikes in condition</h3>-->
+<!--                    <p>All bikes are well serviced and are in good condition.</p>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <h3>Easy cancellation and refund policies</h3>-->
+<!--                    <p>We understand plans can change. Our flexible cancellation and refund policies make it easy for you to adjust your bookings.</p>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+
+<!--    <h2>Address</h2>-->
+<!--    <p>Address line1</p>-->
+<!--    <p>Address line2</p>-->
+<!--    <p>Karnataka, 111111 India</p>-->
+
+<!--    <h2>Explore</h2>-->
+<!--    <p>About Us</p>-->
+<!--    <p>Help</p>-->
+<!--    <p>Contact us</p>-->
+<!--    <p>Privacy policies</p>-->
+<!--    <p>Terms and conditions</p>-->
+
+<!--    <p>&copy; 2023 RentABike Solutions Private Limited | All Rights Reserved</p>-->
+<!--</div>-->
+
+<!--    <p style="text-align: center;">Don't have an account? <a style="text-decoration: none; color: #007bff;" class="register-link" href="/register">Register</a></p>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RentABike - Bike Rentals</title>
-    <style>
-        /* Add your custom styles here */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
-        }
-
-        header {
-            background-color: rgba(196, 137, 154, 0.76);
-            color: #000a33;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav {
-            background-color: #939d75;
-            color: #fff;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav img {
-            height: 50px;
-            width: 70px;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav ul li {
-            margin-right: 10px;
-        }
-
-        .login-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .login-form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-        }
-
-        .login-button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .login-button:hover {
-            background-color: #45a049;
-        }
-
-        .register-link {
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        .register-link:hover {
-            text-decoration: underline;
-        }
-
-        .footer-container {
-            background-color: #f5efef;
-            color: #0e0000;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .table-closer {
-            border: 5px solid #153941;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-            overflow: auto;
-        }
-
-        table thead {
-            font-size: x-large;
-        }
-    </style>
+    <title>User Information Form</title>
 </head>
 <body>
-
-<header>
-    <h1>RentABike</h1>
-</header>
-
-<nav>
-    <a href="/home"><img src="/images/RentABike_logo.png" height="50" width="70" alt="Logo"></a>
-    <ul>
-        <li><a href="/home" style="text-decoration: none">Home</a></li>
-        <li><a href="/blog" style="text-decoration: none">Blog</a></li>
-        <li><a href="/login" style="text-decoration: none">Login/Signup</a></li>
-        <li><a href="tel:+917337430918" style="text-decoration: none">📞7337430918</a></li>
-        <li><a style="text-decoration: none" href="tel:+911234567890">📞1234567890</a></li>
-    </ul>
-</nav>
-
-<div class="login-container">
-    <form class="login-form" style="background-color:#cde8e8 ; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 300px;">
-        <label for="username" class="form-label">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter your username" class="form-input" required>
-
-        <label for="password" class="form-label">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" class="form-input" required>
-
-        <label for="phone" class="form-label">Phone:</label>
-        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" class="form-input" required>
-
-        <button type="submit" class="login-button">Login</button>
-
-        <p style="text-align: center;">Don't have an account? <a href="/register" class="register-link">Register</a></p>
-    </form>
-</div>
-
-<div class="footer-container">
-    <div class="table-closer">
-        <table>
-            <thead>
-            <tr>
-                <th colspan="4">Why to choose RentABike?</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <img src="/images/largestFleet.jpg" width="250" height="200" alt="Largest Fleet Size">
-                </td>
-                <td>
-                    <img src="/images/GoodService.jpg" width="250" height="200" alt="Good service">
-                </td>
-                <td>
-                    <img src="/images/GoodBikes.jpeg" width="250" height="200" alt="Bikes condition">
-                </td>
-                <td>
-                    <img src="/images/freeCancellation.jpg" width="250" height="200" alt="Easy Cancellation">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>Largest fleet size</h3>
-                    <p>We boast the largest fleet of top-quality bikes, ensuring you have a wide range of choices for your ride.</p>
-                </td>
-                <td>
-                    <h3>Good servivces</h3>
-                    <p>Our employees are very polite and will provide good services.</p>
-                </td>
-                <td>
-                    <h3>Bikes in condition</h3>
-                    <p>All bikes are well serviced and are in good condition.</p>
-                </td>
-                <td>
-                    <h3>Easy cancellation and refund policies</h3>
-                    <p>We understand plans can change. Our flexible cancellation and refund policies make it easy for you to adjust your bookings.</p>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<h1>User Information Form</h1>
+<form method="post" role="form" th:action="@{/login}">
+    <div class="section text-center">
+        <h4 class="mb-4 pb-3">Log In</h4>
+        <div class="form-group">
+            <input type="username" name="username" class="form-style" placeholder="Your username" id="username" autocomplete="off">
+            <i class="input-icon uil uil-at"></i>
+        </div>
+        <div class="form-group mt-2">
+            <input type="password" name="password" class="form-style" placeholder="Your Password" id="password" autocomplete="off">
+            <i class="input-icon uil uil-lock-alt"></i>
+        </div>
+        <input type="submit" class="btn mt-4">
     </div>
-
-    <h2>Address</h2>
-    <p>Address line1</p>
-    <p>Address line2</p>
-    <p>Karnataka, 111111 India</p>
-
-    <h2>Explore</h2>
-    <p>About Us</p>
-    <p>Help</p>
-    <p>Contact us</p>
-    <p>Privacy policies</p>
-    <p>Terms and conditions</p>
-
-    <p>&copy; 2023 RentABike Solutions Private Limited | All Rights Reserved</p>
-</div>
-
-    <p style="text-align: center;">Don't have an account? <a style="text-decoration: none; color: #007bff;" class="register-link" href="/register">Register</a></p>
 </form>
 </body>
 </html>

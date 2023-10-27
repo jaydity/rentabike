@@ -2,6 +2,7 @@ package com.dbmsproj.rentabike.Controller;
 
 import com.dbmsproj.rentabike.Models.User;
 import com.dbmsproj.rentabike.Repository.UserRepository;
+import com.dbmsproj.rentabike.Service.userservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UserController {
     private UserRepository userRepository;
+    @Autowired
+    private userservice userService;
+
 
     @Autowired
     public UserController(UserRepository userRepository){
         this.userRepository = userRepository;
+    }
+
+    @RequestMapping(path = "/register")
+    public String userRegistration() {
+        System.out.println("donewithuserregistration");
+        return "register";
     }
     @PostMapping(path="/register")
     public String RegisterUser(
@@ -40,17 +50,10 @@ public class UserController {
         return "home";
     }
 
-    @GetMapping(path={"/signin","/login"})
-    public String usersignIn(){
-        // System.out.println("donewithusersignin");
-         //return "login";
-
-        return "login";
-    }
-    @RequestMapping(path = "/register")
-    public String userRegistration() {
-        System.out.println("donewithuserregistration");
-        return "register";
+    @GetMapping(path={"/login"})
+    public String userlogIn(){
+        System.out.println("started user login");
+         return "login";
     }
 
     @RequestMapping("/home")
