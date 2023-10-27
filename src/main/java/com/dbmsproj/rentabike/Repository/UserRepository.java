@@ -16,7 +16,7 @@ public class UserRepository {
     JdbcTemplate jdbcTemplate;
 
     public void AddUser(User user){
-        String sql_query = "INSERT INTO User (username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,numberOfAccidents) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql_query = "INSERT INTO users (username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,numberOfAccidents) VALUES (?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql_query,
                 user.getUsername(),
                 user.getPassword(),
@@ -52,7 +52,7 @@ public class UserRepository {
     };
 
     public User getUserByUsername(String username){
-        String sql = "Select * from users where username = "+"'"+username+"'";
+        String sql = "Select * from users where username = ?";
         return jdbcTemplate.queryForObject(sql, userRowMapper);
     }
 }
