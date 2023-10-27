@@ -1,4 +1,4 @@
-package com.dbmsproj.rentabike.service;
+package com.dbmsproj.rentabike.Service;
 
 import com.dbmsproj.rentabike.Repository.UserRepository;
 import com.dbmsproj.rentabike.Repository.bikesRepository;
