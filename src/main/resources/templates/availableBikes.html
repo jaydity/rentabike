@@ -68,6 +68,20 @@
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
         }
     </style>
+    <script>
+        // Function to calculate total hours
+        function calculateTotalHours() {
+            var pickupDate = document.getElementById('pickupDate').value;
+            var returnDate = document.getElementById('returnDate').value;
+            var pickupDateTime = new Date(pickupDate);
+            var returnDateTime = new Date(returnDate);
+            var timeDiff = Math.abs(returnDateTime - pickupDateTime);
+            var hours = Math.ceil(timeDiff / (1000 * 60 * 60));
+
+            // Set the calculated hours value in a hidden input field
+            document.getElementById('hours').value = hours;
+        }
+    </script>
 </head>
 <body>
 <h1>Available Bikes</h1>
@@ -80,6 +94,7 @@
         <th>CBook Number</th>
         <th>Insurance</th>
         <th>Rate per Hour</th>
+        <th>Total payment</th>
         <th>Actions</th>
     </tr>
     <tr th:each="bike : ${availableBikes}">
@@ -90,10 +105,17 @@
         <td th:text="${bike.CBookNumber}"></td>
         <td th:text="${bike.Insurance}"></td>
         <td th:text="${bike.ratePerHour}"></td>
+        <td th:text="${bike.ratePerHour * hours}"></td>
         <td>
-            <form th:action="@{/payment}" method="get">
+            <form th:action="@{/payment}" method="get" onsubmit="calculateTotalHours()">
+                <!-- Your existing form fields -->
+
+                <!-- Hidden input field to store calculated hours -->
+                <input type="hidden" id="hours" name="hours">
+
                 <button class="book-now-button" type="submit">Book Now</button>
             </form>
+
         </td>
     </tr>
 </table>

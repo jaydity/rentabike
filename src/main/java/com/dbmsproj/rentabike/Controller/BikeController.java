@@ -17,8 +17,11 @@ public class BikeController {
         this.BikesRepo=BikesRepo;
     }
     @GetMapping("/availableBikes")
-    public String getAvailableBikes(Model model){
+    public String getAvailableBikes(@RequestParam(name = "hours", required = false) Integer hours,Model model){
         System.out.println("Inside availableBikes");
+        if(hours!=null){
+            model.addAttribute("hours",hours);
+        }
         List<bikes> availableBikes=BikesRepo.getAllAvailableBikes();
         model.addAttribute("availableBikes",availableBikes);
         return "availableBikes";
