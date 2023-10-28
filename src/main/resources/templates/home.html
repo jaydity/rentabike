@@ -89,6 +89,24 @@
         table thead {
             font-size:x-large;
         }
+        .search-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #2ecc71; /* Change to a green color */
+            color: #fff; /* White text color */
+            border: none;
+            border-radius: 25px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Depth and shadow effect */
+            transition: background-color 0.3s, transform 0.2s, opacity 0.2s; /* Add transition effects for hover */
+        }
+
+        .search-button:hover {
+            background-color: #27ae60; /* Slightly darker green color on hover */
+            transform: scale(1.05); /* Slight scaling effect on hover */
+            opacity: 0.9; /* Slightly reduce opacity on hover */
+        }
+
 
     </style>
 </head>
@@ -120,7 +138,7 @@
         <b><p id="returnError" style="color: red;"></p></b>
 
         <br>
-        <button type="submit" formaction="/availableBikes">Search</button>
+        <button type="submit" formaction="/availableBikes" class="search-button">Search</button>
     </form>
 </div>
 <footer>
