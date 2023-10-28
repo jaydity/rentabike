@@ -48,4 +48,9 @@ public class BikeController {
     public String goToAddBike(){
         return "addBike";
     }
+
+    @GetMapping("/payment")
+    public String goToPayment(){
+        return "payment";
+    }
 }

@@ -43,7 +43,7 @@ public class securityconfiguration {
         http
                 .authorizeHttpRequests((auth) -> auth
 //                                .requestMatchers("/login","/signin","/register","/home","/").permitAll()
-                                .requestMatchers("/", "/home", "/register", "login", "logout", "/availableBikes", "/images/*", "/addBike", "/bikes","/homeUser","/profile", "/admin").permitAll()
+                                .requestMatchers("/", "/home", "/register", "login", "logout", "/availableBikes", "/images/*", "/addBike", "/bikes","/homeUser","/profile", "/admin","/payment").permitAll()
                                 .anyRequest().authenticated()
 //                        .requestMatchers("/signin", "/signup","/login","/css/login.css", "/register","/css/*","/js/*","/pics/*").permitAll()
 //                        .requestMatchers("/restaurants").hasRole("ADMIN")

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lan="en">
+<head>
+  <title>Payment</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #354f82;
+      color: #fff;
+      padding: 20px;
+      font-size: 24px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .payment-button {
+      background-color: #354f82;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      padding: 12px 20px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .payment-button:hover {
+      background-color: #293d6d;
+    }
+
+    .input-box {
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      width: 100%;
+    }
+
+    .credit-card-details {
+      border: 1px solid #e0e0e0;
+      border-radius: 25px;
+      padding: 20px;
+    }
+
+    .credit-card-details label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .required-label {
+      color: #e74c3c;
+    }
+
+    .required {
+      border: 1px solid #e74c3c;
+    }
+  </style>
+</head>
+<body>
+<header>
+  Payment
+</header>
+<div class="container">
+  <form>
+    <div class="credit-card-details">
+      <label for="cardNumber">Card Number:</label>
+      <input type="text" id="cardNumber" name="cardNumber" class="input-box required" placeholder="Enter Card Number">
+
+      <label for="expiryDate">Expiry Date:</label>
+      <input type="text" id="expiryDate" name="expiryDate" class="input-box required" placeholder="MM/YY">
+
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" name="cvv" class="input-box required" placeholder="CVV">
+    </div>
+
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" value="${amountFromBackend}" class="input-box" disabled>
+
+    <button class="payment-button">Pay Now</button>
+  </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+</body>
+</html>
