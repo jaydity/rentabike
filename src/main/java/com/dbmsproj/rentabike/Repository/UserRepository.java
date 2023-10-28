@@ -53,6 +53,7 @@ public class UserRepository {
         user.setUserAddress(rs.getString("UserAddress"));
         user.setDriversLicenseId(rs.getString("DriversLicenseId"));
         user.setNumberOfAccidents(rs.getInt("NumberOfAccidents"));
+        user.setRole(rs.getString("Role"));
 
         return user;
     };

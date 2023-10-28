@@ -23,9 +23,10 @@ public class User {
     private String userAddress;
     private String driversLicenseId;
     private int numberOfAccidents;
+    private String Role;
 
     public User(String username, String password, String phone, Long UserId, String UserFirstName, String UserMiddleName,
-                String UserLastName, String UserAddress, String driversLicenseId, int numberOfAccidents) {
+                String UserLastName, String UserAddress, String driversLicenseId, int numberOfAccidents,String Role) {
         this.username = username;
         this.password = password;
         this.phone = phone;
@@ -36,6 +37,7 @@ public class User {
         this.userAddress = UserAddress;
         this.driversLicenseId = driversLicenseId;
         this.numberOfAccidents = numberOfAccidents;
+        this.Role=Role;
     }
 
     public User() {
@@ -92,5 +94,8 @@ public class User {
 
     public void setNumberOfAccidents(int numberOfAccidents) {
         this.numberOfAccidents = numberOfAccidents;
+    }
+    public void setRole(String Role) {
+        this.Role = Role;
     }
 }
