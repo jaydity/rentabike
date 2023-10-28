@@ -73,6 +73,7 @@
 <h1>Available Bikes</h1>
 <table>
     <tr>
+        <th>Image(for representational purpose only</th>
         <th>Registration Number</th>
         <th>Bike Model</th>
         <th>Bike Status</th>
@@ -82,6 +83,7 @@
         <th>Actions</th>
     </tr>
     <tr th:each="bike : ${availableBikes}">
+        <td> <img th:src="@{'/bikes/' + ${bike.getBikeModel()} + '.jpg'}" alt="Image not found" height="200" width="200"> </td>
         <td th:text="${bike.registrationNumber}"></td>
         <td th:text="${bike.bikeModel}"></td>
         <td th:text="${bike.bikeStatus}"></td>
