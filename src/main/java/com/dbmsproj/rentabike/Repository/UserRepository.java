@@ -60,6 +60,12 @@ public class UserRepository {
     public User getUserByUsername(String username){
         System.out.println("Inside getUserByUsername");
         String sql = "Select * from users where username = " + "'"+username+"'";
+    try {
         return jdbcTemplate.queryForObject(sql, userRowMapper);
+    }
+    catch (Exception e){
+        System.out.println("No user found with the given username");
+        return null;
+    }
     }
 }
