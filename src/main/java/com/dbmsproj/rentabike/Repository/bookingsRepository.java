@@ -1,8 +1,10 @@
 package com.dbmsproj.rentabike.Repository;
 
+import com.dbmsproj.rentabike.Models.User;
 import com.dbmsproj.rentabike.Models.bookings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
@@ -15,6 +17,8 @@ import java.util.List;
 public class bookingsRepository {
     @Autowired
     private JdbcTemplate tmp;
+    @Autowired
+    UserRepository userRepository;
 
     public void insertBooking(bookings b){
         String s="INSERT INTO bookings(customerId,RegistrationNumber,bookingTime,pickupTime,returnTime,downPayment,TotalPayment,feedback) VALUES(?,?,?,?,?,?,?,?)";
@@ -34,9 +38,26 @@ public class bookingsRepository {
         return tmp.query(s, new BeanPropertyRowMapper<>(bookings.class), username);
     }
 
+    RowMapper<bookings> bookingsRowMapper = (rs,rowNum) ->{
+        bookings booking = new bookings();
+//        booking.setBookingId(rs.getLong("booking_id"));
+//        booking.setCustomerId(rs.getLong("customer_id"));
+        booking.setRegistrationNumber(rs.getString("registration_number"));
+        booking.setBookingTime(rs.getTimestamp("booking_time").toLocalDateTime());
+        booking.setPickupTime(rs.getTimestamp("pickup_time").toLocalDateTime());
+        booking.setReturnTime(rs.getTimestamp("return_time").toLocalDateTime());
+        booking.setTotalPayment(rs.getInt("total_payment"));
+        booking.setFeedback(rs.getString("feedback"));
+        return booking;
+
+    };
+
 
     public List<bookings> findByUsername(String username) {
-        String sql = "SELECT * FROM BOOKINGS WHERE USERNAME=?";
-        return tmp.query(sql, new Object[]{username}, new BeanPropertyRowMapper<>(bookings.class));
+        User user = userRepository.getUserByUsername(username);
+        String sql = "SELECT * FROM BOOKINGS WHERE customerId=" + user.getUserId();
+        return tmp.query(sql,bookingsRowMapper);
     }
 }
+//
+// long x = tmp.queryforObject()

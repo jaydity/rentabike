@@ -10,21 +10,22 @@ import org.springframework.stereotype.Service;
 
 @Repository
 @Service
-
 public class UserRepository {
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    private  JdbcTemplate jdbcTemplate;
+
+    public UserRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public void AddUser(User user){
         System.out.println("Inside AddUser");
-
-        String sql_query = "INSERT INTO RENTABIKE.users(username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId) VALUES (?,?,?,?,?,?,?,?)";
+        System.out.println(user.toString());
+        String sql_query = "INSERT INTO users(username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId) VALUES (?,?,?,?,?,?,?,?)";
         try {
         jdbcTemplate.update(sql_query,
                 user.getUsername(),
                 user.getPassword(),
                 user.getPhone(),
-                //user.getUserId(),
                 user.getUserFirstName(),
                 user.getUserMiddleName(),
                 user.getUserLastName(),
@@ -38,10 +39,9 @@ public class UserRepository {
             System.out.println( "Could not add user with the given details, there already exists user with the same username or driving license number please try again");
 //            throw e;
         }
-
     }
 
-    private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
+    private static final RowMapper<User> userRowMapper = (rs, rowNum) -> {
         User user = new User();
         user.setUserId(rs.getLong("UserId"));
         user.setUsername(rs.getString("username"));

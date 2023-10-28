@@ -3,11 +3,14 @@ package com.dbmsproj.rentabike.Controller;
 import com.dbmsproj.rentabike.Models.User;
 import com.dbmsproj.rentabike.Repository.UserRepository;
 import com.dbmsproj.rentabike.Service.userservice;
+import com.dbmsproj.rentabike.security.SecurityServices;
+import com.dbmsproj.rentabike.security.securityuserdetails;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -20,29 +23,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final userservice userService;
+    private final SecurityServices securityServices;
+
+
     @Autowired
-    private userservice userService;
+    public UserController(UserRepository userRepository, userservice userService, SecurityServices securityServices) {
+        this.userRepository = userRepository;
+        this.userService = userService;
+        this.securityServices=securityServices;
+    }
 
     @RequestMapping(path = "/register")
-    public String userRegistration() {
+    public String userRegistration(Model model) {
+        model.addAttribute("User",new User());
         System.out.println("donewithuserregistration");
         return "register";
     }
     @PostMapping(path="/register")
-    public String RegisterUser(
-                               @RequestParam("username") String username,
-                               @RequestParam("password") String password,
-                               @RequestParam("phone") String phone,
-                               @RequestParam("userFirstName") String UserFirstName,
-                               @RequestParam("userMiddleName") String UserMiddleName,
-                               @RequestParam("userLastName") String UserLastName,
-                               @RequestParam("userAddress") String UserAddress,
-                               @RequestParam("driversLicenseId") String driversLicenseId
-                               ){
-        System.out.println("Inside RegisterUser");
-        System.out.println(username+" " + password +" "+phone+" "+UserFirstName+" "+UserMiddleName+" "+UserLastName+" "+UserAddress+" "+driversLicenseId);
-        User user = new User(username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId,0);
+    public String RegisterUser(User user){
+        System.out.println(user.toString());
+        user.setUserId(0L);
         userRepository.AddUser(user);
         System.out.println("User Added");
         return "home";
@@ -69,18 +71,30 @@ public class UserController {
     }
     @RequestMapping("/home")
     public String home(){
+        User user=securityServices.findLoggedInUser();
+        if(user!=null) return "/homeUser";
         return "home";
     }
     @GetMapping("/homeUser")
-    public String homeUser(){
+    public String homeUser()
+    {
         return "homeUser";
     }
     @GetMapping("/profile")
-    public String profile(){return "profile";}
+    public String profile(Model model){
+        User user=securityServices.findLoggedInUser();
+        model.addAttribute("user",user);
+        return "profile";
+    }
     @GetMapping("/error")
     public String error(){return "error";}
 
     @GetMapping("/admin")
     public String admin(){return "admin";}
+
+    @GetMapping("/blog")
+    public String blog(){
+        return "blog";
+    }
 
 }

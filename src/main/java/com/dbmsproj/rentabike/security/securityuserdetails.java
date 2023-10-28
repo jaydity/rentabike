@@ -1,15 +1,24 @@
 package com.dbmsproj.rentabike.security;
 
 import com.dbmsproj.rentabike.Models.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Collection;
 
-public class securityuserdetails implements UserDetails {
+@Getter
+public class securityuserdetails implements UserDetails{
 
-    private final User user;
+    private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public securityuserdetails(User user){
         this.user = user;
     }
@@ -25,11 +34,12 @@ public class securityuserdetails implements UserDetails {
         return user.getPassword();
     }
 
+
     @Override
     public String getUsername() {
         return user.getUsername();
     }
-//    @Override
+//    @Override/,hy
 //    public String getPhone() {
 //        return user.getPhone();
 //    }

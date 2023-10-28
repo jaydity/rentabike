@@ -42,7 +42,7 @@ public class User {
 
     }
 
-    public User(String username, String password, String phone, String userFirstName, String userMiddleName, String userLastName, String userAddress, String driversLicenseId, int numberOfAccidents) {
+    public User(String username, String password, String phone, String userFirstName, String userMiddleName, String userLastName, String userAddress, String driversLicenseId) {
         this.username = username;
         this.password = password;
         this.phone = phone;
@@ -51,7 +51,7 @@ public class User {
         this.userLastName = userLastName;
         this.userAddress = userAddress;
         this.driversLicenseId = driversLicenseId;
-        this.numberOfAccidents = numberOfAccidents;
+     //   this.numberOfAccidents = 0;
     }
 
     public void setUsername(String username) {
@@ -93,4 +93,6 @@ public class User {
     public void setNumberOfAccidents(int numberOfAccidents) {
         this.numberOfAccidents = numberOfAccidents;
     }
+
+
 }
