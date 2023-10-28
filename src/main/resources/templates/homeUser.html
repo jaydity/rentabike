@@ -89,6 +89,25 @@
       font-size:x-large;
     }
 
+    .search-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #2ecc71; /* Change to a green color */
+      color: #fff; /* White text color */
+      border: none;
+      border-radius: 25px; /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Depth and shadow effect */
+      transition: background-color 0.3s, transform 0.2s, opacity 0.2s; /* Add transition effects for hover */
+    }
+
+    .search-button:hover {
+      background-color: #27ae60; /* Slightly darker green color on hover */
+      transform: scale(1.05); /* Slight scaling effect on hover */
+      opacity: 0.9; /* Slightly reduce opacity on hover */
+    }
+
+
   </style>
 </head>
 <body>
@@ -111,16 +130,19 @@
 </nav>
 
 <div class="search-form">
-  <form action="/availableBikes">
-    <label for="pickupDate">Pickup Date:</label>
-    <input type="datetime-local" id="pickupDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
+  <form action="/availableBikes" onsubmit="return validateDatesAndTimes()">
+    <label for="pickupDate">Pickup Date and Time:</label>
+    <input type="datetime-local" id="pickupDate" class="search-input" required>
 
-
-    <label for="returnDate">Return Date:</label>
+    <label for="returnDate">Return Date and Time:</label>
     <input type="datetime-local" id="returnDate" class="search-input" required>
-    <button type="submit" formaction="/availableBikes">search</button>
 
-    <!--        <a href="register.html" class="search-button" type="button">Search</a>-->
+    <!-- Error message placeholders -->
+    <b><p id="pickupError" style="color: red;"></p></b>
+    <b><p id="returnError" style="color: red;"></p></b>
+
+    <br>
+    <button type="submit" formaction="/availableBikes" class="search-button">Search</button>
   </form>
 </div>
 
@@ -186,21 +208,39 @@
 </footer>
 
 <script>
-  function validateDates() {
-    var pickupDate = new Date(document.getElementById('pickupDate').value);
-    var pickupTime = document.getElementById('pickupTime').value;
-    var returnDate = new Date(document.getElementById('returnDate').value);
-    var returnTime = document.getElementById('returnTime').value;
-    var errorMessage = document.getElementById('errorMessage');
+  // Function to validate pickup and return dates and times
+  function validateDatesAndTimes() {
+    const pickupDateInput = document.getElementById('pickupDate');
+    const returnDateInput = document.getElementById('returnDate');
+    const pickupError = document.getElementById('pickupError');
+    const returnError = document.getElementById('returnError');
 
-    if (pickupDate > returnDate || (pickupDate.getTime() === returnDate.getTime() && pickupTime >= returnTime)) {
-      errorMessage.textContent = 'Error: Pickup date and time must be before return date and time.';
-    } else {
-      // Reset error message and proceed with search
-      errorMessage.textContent = '';
-      // Add your search logic here
-      alert('Search button clicked!');
+    // Clear previous error messages
+    pickupError.textContent = '';
+    returnError.textContent = '';
+
+    const now = new Date();
+    const pickupDateTime = new Date(pickupDateInput.value);
+    const returnDateTime = new Date(returnDateInput.value);
+
+    if (pickupDateTime <= now) {
+      pickupError.textContent = 'Pickup date and time must be in the future';
+      return false; // Prevent form submission
     }
+
+    if (returnDateTime <= now) {
+      returnError.textContent = 'Return date and time must be in the future';
+      return false; // Prevent form submission
+    }
+
+    if (pickupDateTime >= returnDateTime) {
+      pickupError.textContent = 'Pickup date and time must be before return date and time';
+      return false; // Prevent form submission
+    }
+
+    // Add additional validation as needed
+
+    return true; // Form submission will proceed if all validation checks pass
   }
 </script>
 </body>
