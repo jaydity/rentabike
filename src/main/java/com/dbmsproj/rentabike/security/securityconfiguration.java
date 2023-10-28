@@ -5,11 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Service;
 
@@ -33,12 +37,13 @@ public class securityconfiguration {
         UserDetailsService userService;
         auth.userDetailsService(userservices).passwordEncoder(getInstance());
     }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((auth) -> auth
 //                                .requestMatchers("/login","/signin","/register","/home","/").permitAll()
-                                .requestMatchers("/","/home","/register","login","/availableBikes","/images/*","/addBike","/bikes").permitAll()
+                                .requestMatchers("/", "/home", "/register", "login", "logout", "/availableBikes", "/images/*", "/addBike", "/bikes","/homeUser","/profile").permitAll()
                                 .anyRequest().authenticated()
 //                        .requestMatchers("/signin", "/signup","/login","/css/login.css", "/register","/css/*","/js/*","/pics/*").permitAll()
 //                        .requestMatchers("/restaurants").hasRole("ADMIN")
@@ -47,10 +52,20 @@ public class securityconfiguration {
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/home", true)
+                        .defaultSuccessUrl("/homeUser", true)
                         .permitAll()
+                )
+                .logout((logout) ->
+                        logout.deleteCookies("remove")
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/").permitAll()
                 )
                 .httpBasic(withDefaults());
         return http.csrf(AbstractHttpConfigurer::disable).build();
     }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 }
+
