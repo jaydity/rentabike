@@ -4,9 +4,12 @@ import com.dbmsproj.rentabike.Models.bookings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public class bookingsRepository {
@@ -26,5 +29,14 @@ public class bookingsRepository {
         tmp.update(s,bookingId);
     }
 
+    public List<bookings> getBookings(String username){
+        String s = "SELECT * FROM BOOKINGS WHERE USERNAME=?";
+        return tmp.query(s, new BeanPropertyRowMapper<>(bookings.class), username);
+    }
 
+
+    public List<bookings> findByUsername(String username) {
+        String sql = "SELECT * FROM BOOKINGS WHERE USERNAME=?";
+        return tmp.query(sql, new Object[]{username}, new BeanPropertyRowMapper<>(bookings.class));
+    }
 }

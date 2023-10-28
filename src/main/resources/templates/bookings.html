@@ -138,14 +138,13 @@
             </tr>
             </thead>
             <tbody>
-            <!-- Use Thymeleaf's th:each to iterate over the list of bookings -->
-            <tr th:each="booking : ${availableBookings}">
-                <td th:text="${booking.bikeModel}"></td>
-                <td th:text="${booking.dateOfBooking}"></td>
-                <td th:text="${booking.pickupDate}"></td>
-                <td th:text="${booking.returnDate}"></td>
-                <td th:text="${booking.payment}"></td>
-                <td th:text="${booking.feedback}"></td>
+            <tr th:each="bookings:${bookings}">
+                <td th:text="${bookings.bikeModel}"></td>
+                <td th:text="${bookings.dateOfBooking}"></td>
+                <td th:text="${bookings.pickupDate}"></td>
+                <td th:text="${bookings.returnDate}"></td>
+                <td th:text="${bookings.payment}"></td>
+                <td th:text="${bookings.feedback}"></td>
             </tr>
             </tbody>
         </table>
