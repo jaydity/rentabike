@@ -1,34 +1,39 @@
 package com.dbmsproj.rentabike.Models;
 
-import com.dbmsproj.rentabike.Repository.bikesRepository;
 import com.dbmsproj.rentabike.Service.bikesService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.w3c.dom.Text;
 
 import java.awt.*;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Getter
 @Setter
 @Component
 @NoArgsConstructor
 public class bookings {
+    @Getter
     private Long bookingId;
+    @Getter
     private Long customerId;
+    @Getter
     private String RegistrationNumber;
+    @Getter
     private LocalDateTime bookingTime;
+    @Getter
     private LocalDateTime pickupTime;
+    @Getter
     private LocalDateTime returnTime;
     private long downPayment;
     private long TotalPayment;
 //    private int issuedBy;
-    private TextArea feedback;
+    @Getter
+    private String feedback;
     @Autowired
     private bikesService bS;
 
@@ -36,7 +41,7 @@ public class bookings {
     public bookings(
                 Long bookingId, Long customerId, String registrationNumber, LocalDateTime bookingTime,
                 LocalDateTime pickupTime, LocalDateTime returnTime,
-                int issuedBy, TextArea feedback
+                int issuedBy, String feedback
             ) {
         this.bookingId = bookingId;
         this.customerId = customerId;
@@ -80,7 +85,7 @@ public class bookings {
 
         return pay;
     }
-    public bookings(Long customerId, String registrationNumber, LocalDateTime bookingTime, LocalDateTime pickupTime, LocalDateTime returnTime, int downPayment, int totalPayment, int issuedBy, TextArea feedback) {
+    public bookings(Long customerId, String registrationNumber, LocalDateTime bookingTime, LocalDateTime pickupTime, LocalDateTime returnTime, int downPayment, int totalPayment, int issuedBy, String feedback) {
         this.customerId = customerId;
         RegistrationNumber = registrationNumber;
         this.bookingTime = bookingTime;
@@ -91,22 +96,6 @@ public class bookings {
 //        this.issuedBy = issuedBy;
         this.feedback = feedback;
     }
-
-    public Long getBookingId() { return bookingId;}
-
-    public Long getCustomerId() { return customerId;}
-
-    public String getRegistrationNumber() {return RegistrationNumber;}
-
-    public LocalDateTime getBookingTime() {
-        return bookingTime;
-    }
-
-    public LocalDateTime getPickupTime() {
-        return pickupTime;
-    }
-
-    public LocalDateTime getReturnTime() {return returnTime;}
 
     public int getDownPayment() {
         return (int) ((0.05)*payment());
@@ -119,8 +108,6 @@ public class bookings {
 //    public int getIssuedBy() {
 //        return issuedBy;
 //    }
-
-    public TextArea getFeedback() {return feedback;}
 
     public void setBookingId(Long bookingId) {
         this.bookingId = bookingId;
@@ -158,7 +145,7 @@ public class bookings {
 //        this.issuedBy = issuedBy;
 //    }
 
-    public void setFeedback(TextArea feedback) {
+    public void setFeedback(String feedback) {
         this.feedback = feedback;
     }
 }

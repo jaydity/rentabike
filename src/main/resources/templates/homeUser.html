@@ -102,7 +102,7 @@
     <li><a href="/home" style="text-decoration: none">Home</a></li>
     <li><a href="/blog" style="text-decoration: none">Blog</a></li>
     <!-- Update the following line for the profile and logout links -->
-    <li> username</li>
+<!--    <li th:text="${user.username}"></li>-->
     <li><a href="/profile" style="text-decoration: none">Profile</a></li>
     <li><a href="/logout" style="text-decoration: none">Logout</a></li>
     <li><a href="tel:+917337430918" style="text-decoration: none">📞7337430918</a></li>
@@ -113,16 +113,11 @@
 <div class="search-form">
   <form action="/availableBikes">
     <label for="pickupDate">Pickup Date:</label>
-    <input type="date" id="pickupDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
+    <input type="datetime-local" id="pickupDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
 
-    <label for="pickupTime">Pickup Time (HH:00):</label>
-    <input type="text" id="pickupTime" class="search-input" placeholder="Enter pickup time" required>
 
     <label for="returnDate">Return Date:</label>
-    <input type="date" id="returnDate" class="search-input" min="<?php echo date('Y-m-d'); ?>" required>
-
-    <label for="returnTime">Return Time (HH:00):</label>
-    <input type="text" id="returnTime" class="search-input" placeholder="Enter return time" required>
+    <input type="datetime-local" id="returnDate" class="search-input" required>
     <button type="submit" formaction="/login">search</button>
 
     <!--        <a href="register.html" class="search-button" type="button">Search</a>-->

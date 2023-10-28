@@ -42,7 +42,7 @@ public class securityconfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((auth) -> auth
-                                .requestMatchers("/", "/home", "/register", "login", "logout", "/availableBikes", "/images/*", "/addBike", "/bikes","/homeUser","/profile", "/admin","/payment").permitAll()
+                                .requestMatchers("/", "/home", "/register", "login", "logout", "/availableBikes", "/images/*", "/addBike", "/bikes","/homeUser","/profile", "/admin","/payment","/bookings").permitAll()
                                 .requestMatchers("/addBike").hasRole("ADMIN")
                                 .anyRequest().authenticated()
 //                        .requestMatchers("/signin", "/signup","/login","/css/login.css", "/register","/css/*","/js/*","/pics/*").permitAll()
@@ -53,6 +53,7 @@ public class securityconfiguration {
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/homeUser", true)
+                        .failureForwardUrl("/login")
                         .permitAll()
                 )
                 .logout((logout) ->
