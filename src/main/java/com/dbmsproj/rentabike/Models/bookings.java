@@ -36,10 +36,10 @@ public class bookings {
 //    private String feedback;
 
     public bookings(
-                Long bookingId, Long customerId, String registrationNumber, LocalDateTime bookingTime,
-                LocalDateTime pickupTime, LocalDateTime returnTime,
-                int issuedBy
-            ) {
+            Long bookingId, Long customerId, String registrationNumber, LocalDateTime bookingTime,
+            LocalDateTime pickupTime, LocalDateTime returnTime,
+            int issuedBy
+    ) {
         this.bookingId = bookingId;
         this.customerId = customerId;
         this.RegistrationNumber = registrationNumber;
@@ -52,7 +52,7 @@ public class bookings {
 //        this.feedback = feedback;
     }
 
-//    public long payment(){
+    //    public long payment(){
 //
 //        LocalDateTime startdate=this.getPickupTime();
 //        LocalDateTime enddate=this.getReturnTime();

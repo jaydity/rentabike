@@ -110,6 +110,30 @@
 
   </style>
   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var pickupDateInput = document.getElementById("pickupDate");
+      var returnDateInput = document.getElementById("returnDate");
+      var errorMessage = document.getElementById("error-message");
+
+      function validateDates() {
+        var pickupDateTime = new Date(pickupDateInput.value);
+        var returnDateTime = new Date(returnDateInput.value);
+
+        if (pickupDateTime >= returnDateTime) {
+          errorMessage.textContent = "Return time should be in the future of pickup time.";
+          returnDateInput.setCustomValidity("Invalid return time");
+        } else {
+          errorMessage.textContent = "";
+          returnDateInput.setCustomValidity("");
+        }
+      }
+
+      // Add event listeners
+      pickupDateInput.addEventListener("input", validateDates);
+      returnDateInput.addEventListener("input", validateDates);
+    });
+  </script>
+  <script>
     function calculateTotalHours() {
       // Get pickup and return date values from the input fields
       var pickupDate = new Date(document.getElementById('pickupDate').value);
@@ -140,7 +164,7 @@
     <li><a href="/home" style="text-decoration: none">Home</a></li>
     <li><a href="/blog" style="text-decoration: none">Blog</a></li>
     <!-- Update the following line for the profile and logout links -->
-<!--    <li th:text="${user.username}"></li>-->
+    <!--    <li th:text="${user.username}"></li>-->
     <li><a href="/profile" style="text-decoration: none">Profile</a></li>
     <li><a href="/logout" style="text-decoration: none">Logout</a></li>
     <li><a href="tel:+917337430918" style="text-decoration: none">📞7337430918</a></li>
@@ -149,16 +173,16 @@
 </nav>
 
 <div class="search-form">
-<!--<<<<<<< Updated upstream-->
-<!--  <form th:action="@{/availableBikes}" onsubmit="calculateTotalHours()">-->
-<!--    <label for="pickupDate">Pickup Date and Time:</label>-->
-<!--    <input type="datetime-local" id="pickupDate" class="search-input" required>-->
+  <!--<<<<<<< Updated upstream-->
+  <!--  <form th:action="@{/availableBikes}" onsubmit="calculateTotalHours()">-->
+  <!--    <label for="pickupDate">Pickup Date and Time:</label>-->
+  <!--    <input type="datetime-local" id="pickupDate" class="search-input" required>-->
 
-<!--    <label for="returnDate">Return Date and Time:</label>-->
-<!--    <input type="datetime-local" id="returnDate" class="search-input" required>-->
-<!--=======-->
+  <!--    <label for="returnDate">Return Date and Time:</label>-->
+  <!--    <input type="datetime-local" id="returnDate" class="search-input" required>-->
+  <!--=======-->
   <form th:action="@{/availableBikes}" onsubmit="calculateTotalHours()" method="post">
-<!--  <form action="/availableBikes" method="post">-->
+    <!--  <form action="/availableBikes" method="post">-->
 
     <label for="pickupDate">Pickup Date:</label>
     <input type="datetime-local" id="pickupDate" class="search-input" name="pickupDate" required>
@@ -166,8 +190,9 @@
 
     <label for="returnDate">Return Date:</label>
     <input type="datetime-local" id="returnDate" class="search-input" name="returnDate" required>
+    <p id="error-message" style="color: red;"></p>
     <button type="submit">search</button>
-<!--&gt;>>>>>> Stashed changes-->
+    <!--&gt;>>>>>> Stashed changes-->
 
     <!-- Error message placeholders -->
     <b><p id="pickupError" style="color: red;"></p></b>
@@ -177,6 +202,18 @@
     <input type="hidden" id="hours" name="hours" value="0">
 
     <button class="search-button" type="submit">Search</button>
+    <script>
+    // Function to set the min attribute of datetime-local inputs to the current date and time
+    function setMinDateTime() {
+    var now = new Date();
+    var formattedNow = now.toISOString().slice(0, 16);
+    document.getElementById("pickupDate").min = formattedNow;
+    document.getElementById("returnDate").min = formattedNow;
+    }
+
+    // Call the function when the page loads
+    window.onload = setMinDateTime;
+    </script>
   </form>
 
 </div>

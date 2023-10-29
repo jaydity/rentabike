@@ -22,17 +22,17 @@ public class UserRepository {
         System.out.println(user.toString());
         String sql_query = "INSERT INTO users(username,password,phone,UserFirstName,UserMiddleName,UserLastName,UserAddress,driversLicenseId) VALUES (?,?,?,?,?,?,?,?)";
         try {
-        jdbcTemplate.update(sql_query,
-                user.getUsername(),
-                user.getPassword(),
-                user.getPhone(),
-                user.getUserFirstName(),
-                user.getUserMiddleName(),
-                user.getUserLastName(),
-                user.getUserAddress(),
-                user.getDriversLicenseId()
-                // user.getNumberOfAccidents()
-        );
+            jdbcTemplate.update(sql_query,
+                    user.getUsername(),
+                    user.getPassword(),
+                    user.getPhone(),
+                    user.getUserFirstName(),
+                    user.getUserMiddleName(),
+                    user.getUserLastName(),
+                    user.getUserAddress(),
+                    user.getDriversLicenseId()
+                    // user.getNumberOfAccidents()
+            );
             System.out.println("User Added");
         }
         catch (Exception e){
@@ -61,12 +61,12 @@ public class UserRepository {
     public User getUserByUsername(String username){
         System.out.println("Inside getUserByUsername");
         String sql = "Select * from users where username = " + "'"+username+"'";
-    try {
-        return jdbcTemplate.queryForObject(sql, userRowMapper);
-    }
-    catch (Exception e){
-        System.out.println("No user found with the given username");
-        return null;
-    }
+        try {
+            return jdbcTemplate.queryForObject(sql, userRowMapper);
+        }
+        catch (Exception e){
+            System.out.println("No user found with the given username");
+            return null;
+        }
     }
 }

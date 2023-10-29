@@ -113,69 +113,69 @@
 
     $.ajax(
             {
-                url: "/payment",
-                type: "POST",
-                dataType: 'json',
-                data: new URLSearchParams({
-                  amount: amount
-                }).toString(),
-                keepalive: 5000,
-                contentType:'application/x-www-form-urlencoded',
-                success: function (response) {
-                  console.log(response);
-                  if (response.status === "created") {
-                    alert("Redirecting to payment page");
-                    let options = {
-                      key: "rzp_test_sQ8dXiMJeBHGZW", // Enter the Key ID generated from the Dashboard
-                      amount: response.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-                      currency: "INR",
-                      name: "RentABike",
-                      description: "Bike Booking",
-                      image: "images/RentABike_logo.png",
-                      orderId: response.id,
-                      handler: function (response) {
-                        alert("Payment Successful");
-                        console.log(response.razorpay_payment_id)
-                        console.log(response.razorpay_order_id)
-                        console.log(response.razorpay_signature)
-                        console.log("Payment successful!")
-                        window.location.href = "/paymentsuccess";
-                      },
-                      prefill: {
-                        name: "",
-                        email: "",
-                        phone_number: "",
-                      },
-                      notes:{
-                        address: "RentABike bike rental services, Karnataka",
-                      },
-                      theme: {
-                        color: "#3399cc",
-                      },
-                    }
-                    let paymentObject = new Razorpay(options);
-
-                    paymentObject.on("payment.failed", function (response){
-                      console.log(response.error.code);
-                      console.log(response.error.description);
-                      console.log(response.error.source);
-                      alert("Payment failed because of reason: "+ response.error.reason);
-                    })
-                    paymentObject.open();
+              url: "/payment",
+              type: "POST",
+              dataType: 'json',
+              data: new URLSearchParams({
+                amount: amount
+              }).toString(),
+              keepalive: 5000,
+              contentType:'application/x-www-form-urlencoded',
+              success: function (response) {
+                console.log(response);
+                if (response.status === "created") {
+                  alert("Redirecting to payment page");
+                  let options = {
+                    key: "rzp_test_sQ8dXiMJeBHGZW", // Enter the Key ID generated from the Dashboard
+                    amount: response.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    currency: "INR",
+                    name: "RentABike",
+                    description: "Bike Booking",
+                    image: "images/RentABike_logo.png",
+                    orderId: response.id,
+                    handler: function (response) {
+                      alert("Payment Successful");
+                      console.log(response.razorpay_payment_id)
+                      console.log(response.razorpay_order_id)
+                      console.log(response.razorpay_signature)
+                      console.log("Payment successful!")
+                      window.location.href = "/paymentsuccess";
+                    },
+                    prefill: {
+                      name: "",
+                      email: "",
+                      phone_number: "",
+                    },
+                    notes:{
+                      address: "RentABike bike rental services, Karnataka",
+                    },
+                    theme: {
+                      color: "#3399cc",
+                    },
                   }
-                  if (response.status === "success") {
-                    // alert("Payment Successful");
-                    console.log("Redirecting to /blog");
-                    window.location.href = "/blog"; // Redirect to the "/blog" page
-                  }
+                  let paymentObject = new Razorpay(options);
 
-
-                },
-                error: function (e) {
-                    console.log(e);
-                    alert("Payment Failed!");
-                  }
+                  paymentObject.on("payment.failed", function (response){
+                    console.log(response.error.code);
+                    console.log(response.error.description);
+                    console.log(response.error.source);
+                    alert("Payment failed because of reason: "+ response.error.reason);
+                  })
+                  paymentObject.open();
                 }
+                if (response.status === "success") {
+                  // alert("Payment Successful");
+                  console.log("Redirecting to /blog");
+                  window.location.href = "/blog"; // Redirect to the "/blog" page
+                }
+
+
+              },
+              error: function (e) {
+                console.log(e);
+                alert("Payment Failed!");
+              }
+            }
     )
   }
 </script>

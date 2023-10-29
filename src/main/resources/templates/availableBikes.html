@@ -107,16 +107,16 @@
         <td th:text="${bike.ratePerHour}"></td>
         <td th:text="${bike.ratePerHour * hours}"></td>
         <td>
-<!--<<<<<<< Updated upstream-->
+            <!--<<<<<<< Updated upstream-->
             <form th:action="@{/payment}" method="get" onsubmit="calculateTotalHours()">
                 <!-- Your existing form fields -->
 
                 <!-- Hidden input field to store calculated hours -->
                 <input type="hidden" id="hours" name="hours" value="">
-<!--=======-->
-<!--            <form th:action="@{/payment}" method="get" >-->
+                <!--=======-->
+                <!--            <form th:action="@{/payment}" method="get" >-->
                 <input type="hidden" th:value="${bike.registrationNumber}" name="reg_no">
-<!--&gt;>>>>>> Stashed changes-->
+                <!--&gt;>>>>>> Stashed changes-->
                 <button class="book-now-button" type="submit">Book Now</button>
             </form>
 

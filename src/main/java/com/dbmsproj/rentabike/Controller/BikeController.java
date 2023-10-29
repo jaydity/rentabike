@@ -18,7 +18,7 @@ public class BikeController {
     public BikeController(bikesRepository BikesRepo){
         this.BikesRepo=BikesRepo;
     }
-//<<<<<<< Updated upstream
+    //<<<<<<< Updated upstream
 //    @GetMapping("/availableBikes")
 //    public String getAvailableBikes(@RequestParam(name = "hours", required = false) Integer hours,Model model){
 //        System.out.println("Inside availableBikes");
@@ -58,14 +58,14 @@ public class BikeController {
     }
     @PostMapping("/addBike")
     public String addBike(
-                           @RequestParam("registrationNumber") String registrationNumber,
-                           @RequestParam("bikeModel") String bikeModel,
-                           @RequestParam("bikeStatus") String bikeStatus,
-                           @RequestParam("CBookNumber") String CBookNumber,
-                           @RequestParam("Insurance") String Insurance,
-                           @RequestParam("isAvailable") boolean isAvailable,
-                           @RequestParam("ratePerHour") long ratePerHour
-                         ){
+            @RequestParam("registrationNumber") String registrationNumber,
+            @RequestParam("bikeModel") String bikeModel,
+            @RequestParam("bikeStatus") String bikeStatus,
+            @RequestParam("CBookNumber") String CBookNumber,
+            @RequestParam("Insurance") String Insurance,
+            @RequestParam("isAvailable") boolean isAvailable,
+            @RequestParam("ratePerHour") long ratePerHour
+    ){
         System.out.println("inside addBike");
         bikes bike=new bikes(registrationNumber,bikeModel,bikeStatus,CBookNumber,Insurance,isAvailable,ratePerHour);
         BikesRepo.insertBike(bike);

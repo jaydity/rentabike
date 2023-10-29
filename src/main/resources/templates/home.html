@@ -109,7 +109,30 @@
 
 
     </style>
-    <!-- Add these script tags inside the <head> section of your HTML -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var pickupDateInput = document.getElementById("pickupDate");
+            var returnDateInput = document.getElementById("returnDate");
+            var errorMessage = document.getElementById("error-message");
+
+            function validateDates() {
+                var pickupDateTime = new Date(pickupDateInput.value);
+                var returnDateTime = new Date(returnDateInput.value);
+
+                if (pickupDateTime >= returnDateTime) {
+                    errorMessage.textContent = "Return time should be in the future of pickup time.";
+                    returnDateInput.setCustomValidity("Invalid return time");
+                } else {
+                    errorMessage.textContent = "";
+                    returnDateInput.setCustomValidity("");
+                }
+            }
+
+            // Add event listeners
+            pickupDateInput.addEventListener("input", validateDates);
+            returnDateInput.addEventListener("input", validateDates);
+        });
+    </script>
 
     <script>
         function calculateTotalHours() {
@@ -121,7 +144,7 @@
             var timeDiff = Math.abs(returnDate - pickupDate);
 
             // Convert time difference to hours
-            var totalHours = Math.floor(timeDiff / (1000 * 60 * 60));
+            var totalHours = Math.ceil(timeDiff / (1000 * 60 * 60));
 
             // Display the total hours (you can customize this part based on your UI)
             alert('Total Hours: ' + totalHours);
@@ -140,7 +163,7 @@
     <a href="/home"><img src="/images/RentABike_logo.png" height="50" width="70" alt="Logo"></a>
     <ul>
         <li><a href="/home" style="text-decoration: none">Home</a></li>
-        <li><a href="/blog" style="text-decoration: none">Blog</a></li>
+        <li><a href="/blog" style="text-decoration: none" >Blog</a></li>
         <li><a href="/login" style="text-decoration: none">Login/Signup</a></li>
         <li><a href="tel:+917337430918" style="text-decoration: none">📞7337430918</a></li>
         <li><a style="text-decoration: none" href="tel:+911234567890">📞1234567890</a></li>
@@ -154,29 +177,26 @@
         <label for="returnDate">Return Date and Time:</label>
         <input type="datetime-local" id="returnDate" class="search-input" required>
 
-        <!-- Error message placeholders -->
-        <b><p id="pickupError" style="color: red;"></p></b>
-        <b><p id="returnError" style="color: red;"></p></b>
+        <p id="error-message" style="color: red;"></p>
 
         <br>
         <input type="hidden" id="hours" name="hours">
 
         <button class="search-button" type="submit">Search</button>
+
+        <script>
+            // Function to set the min attribute of datetime-local inputs to the current date and time
+            function setMinDateTime() {
+                var now = new Date();
+                var formattedNow = now.toISOString().slice(0, 16);
+                document.getElementById("pickupDate").min = formattedNow;
+                document.getElementById("returnDate").min = formattedNow;
+            }
+
+            // Call the function when the page loads
+            window.onload = setMinDateTime;
+        </script>
     </form>
-<!--    <form action="/availableBikes" onsubmit="return validateDatesAndTimes()">-->
-<!--        <label for="pickupDate">Pickup Date and Time:</label>-->
-<!--        <input type="datetime-local" id="pickupDate" class="search-input" required>-->
-
-<!--        <label for="returnDate">Return Date and Time:</label>-->
-<!--        <input type="datetime-local" id="returnDate" class="search-input" required>-->
-
-<!--        &lt;!&ndash; Error message placeholders &ndash;&gt;-->
-<!--        <b><p id="pickupError" style="color: red;"></p></b>-->
-<!--        <b><p id="returnError" style="color: red;"></p></b>-->
-
-<!--        <br>-->
-<!--        <button type="submit" formaction="/availableBikes" class="search-button">Search</button>-->
-<!--    </form>-->
 </div>
 <footer>
     <div class="table-closer">
@@ -238,42 +258,5 @@
 
     <p>&copy; 2023 RentABike Solutions Private Limited | All Rights Reserved</p>
 </footer>
-
-<script>
-    // Function to validate pickup and return dates and times
-    function validateDatesAndTimes() {
-        const pickupDateInput = document.getElementById('pickupDate');
-        const returnDateInput = document.getElementById('returnDate');
-        const pickupError = document.getElementById('pickupError');
-        const returnError = document.getElementById('returnError');
-
-        // Clear previous error messages
-        pickupError.textContent = '';
-        returnError.textContent = '';
-
-        const now = new Date();
-        const pickupDateTime = new Date(pickupDateInput.value);
-        const returnDateTime = new Date(returnDateInput.value);
-
-        if (pickupDateTime <= now) {
-            pickupError.textContent = 'Pickup date and time must be in the future';
-            return false; // Prevent form submission
-        }
-
-        if (returnDateTime <= now) {
-            returnError.textContent = 'Return date and time must be in the future';
-            return false; // Prevent form submission
-        }
-
-        if (pickupDateTime >= returnDateTime) {
-            pickupError.textContent = 'Pickup date and time must be before return date and time';
-            return false; // Prevent form submission
-        }
-
-        // Add additional validation as needed
-
-        return true; // Form submission will proceed if all validation checks pass
-    }
-</script>
 </body>
 </html>

@@ -53,7 +53,7 @@ public class User {
         this.userLastName = userLastName;
         this.userAddress = userAddress;
         this.driversLicenseId = driversLicenseId;
-     //   this.numberOfAccidents = 0;
+        //   this.numberOfAccidents = 0;
     }
 
     public void setUsername(String username) {
@@ -99,4 +99,3 @@ public class User {
         this.Role = Role;
     }
 }
-
