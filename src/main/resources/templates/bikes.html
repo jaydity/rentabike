@@ -78,13 +78,38 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(to right, #00B4DB, #0083B0);
-            border-radius: 20px; /* Match the border radius of the text */
-            z-index: 1; /* Place background shape behind text */
+            border-radius: 20px;
+            z-index: 1;
+        }
+         nav {
+             background-color: #4bb3be;
+             padding: 20px;
+         }
+
+        nav li {
+            display: inline;
+            margin-right: 15px; 
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #555;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #777;
         }
     </style>
 </head>
 <body>
 <h1>List of Bikes</h1>
+<nav>
+    <li><a href="/admin" style="text-decoration: none">Home</a></li>
+</nav>
 <div class="table-container">
     <table>
         <tr>
