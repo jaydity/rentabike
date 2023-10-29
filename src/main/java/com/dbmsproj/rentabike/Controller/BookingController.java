@@ -51,7 +51,7 @@ public class BookingController {
         return "payment";
     }
     @GetMapping("/paymentsuccess")
-//    @ResponseBody
+
     public String success(Model model,HttpSession session, @AuthenticationPrincipal UserDetails userDetails){
         String reg_no = (String)session.getAttribute("reg_no");
         LocalDateTime pickupDate = LocalDateTime.parse((session.getAttribute("pickupDate")).toString());
