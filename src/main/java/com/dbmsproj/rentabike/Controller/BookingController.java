@@ -19,11 +19,11 @@ public class BookingController {
     @Autowired
     private bookingsService bookingsservice;
 
-    @GetMapping("/bookings/{username}")
-    public String getBookings(@PathVariable String username, Model model) {
-        List<bookings> bookings = bookingsservice.getBookings(username);
-        model.addAttribute("bookings", bookings);
-        return "bookingList";
-    }
+//    @GetMapping("/bookings/{username}")
+//    public String getBookings(@PathVariable String username, Model model) {
+//        List<bookings> bookings = bookingsservice.getBookings(username);
+//        model.addAttribute("bookings", bookings);
+//        return "bookingList";
+//    }
 }
 

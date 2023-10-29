@@ -6,15 +6,16 @@ import com.dbmsproj.rentabike.Service.userservice;
 import com.dbmsproj.rentabike.security.SecurityServices;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import com.razorpay.*;
+import java.util.Map;
 
 
 @Controller
@@ -96,4 +97,20 @@ public class UserController {
         return "blog";
     }
 
+    @PostMapping("/payment")
+    @ResponseBody
+    public String createBooking(@RequestParam("amount") String data) throws Exception{
+        System.out.println("Booking: createBooking");
+        System.out.println();
+        int amount = Integer.parseInt(data);
+
+        RazorpayClient client = new RazorpayClient("rzp_test_DtvZs9opsVVbos", "gDYS4yVSTN7S3VUh42U63KSV");
+        JSONObject options = new JSONObject();
+        options.put("amount", amount*100);
+        options.put("currency", "INR");
+        options.put("receipt", "txn_123456");
+        Order order = client.orders.create(options);
+        System.out.println(order);
+        return order.toString();
+    }
 }
