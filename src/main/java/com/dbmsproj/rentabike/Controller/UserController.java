@@ -115,7 +115,7 @@ public class UserController {
         System.out.println();
         int amount = Integer.parseInt(data);
 
-        RazorpayClient client = new RazorpayClient("rzp_test_DtvZs9opsVVbos", "gDYS4yVSTN7S3VUh42U63KSV");
+        RazorpayClient client = new RazorpayClient("rzp_test_sQ8dXiMJeBHGZW", "S0nAJGwlFXbzmxUXOQUYD3ve");
         JSONObject options = new JSONObject();
         options.put("amount", amount*100);
         options.put("currency", "INR");
