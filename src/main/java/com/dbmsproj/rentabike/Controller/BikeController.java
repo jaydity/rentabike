@@ -75,10 +75,15 @@ public class BikeController {
 
         return "bikes";
     }
-    @RequestMapping("/addBike")
+    @GetMapping("/addBike")
     public String goToAddBike(){
         return "addBike";
     }
+//    @PostMapping("/addBike")
+//    public String bike(){
+//        return "bikes";
+//    }
+
 
 //    @GetMapping("/payment")
 //    public String goToPayment(){
