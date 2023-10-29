@@ -167,8 +167,7 @@
     <!--    <li th:text="${user.username}"></li>-->
     <li><a href="/profile" style="text-decoration: none">Profile</a></li>
     <li><a href="/logout" style="text-decoration: none">Logout</a></li>
-    <li><a href="tel:+917337430918" style="text-decoration: none">📞7337430918</a></li>
-    <li><a style="text-decoration: none" href="tel:+911234567890">📞1234567890</a></li>
+    <li><a href="tel:+917337430918" style="text-decoration: none">Call Us</a></li>
   </ul>
 </nav>
 
@@ -191,7 +190,7 @@
     <label for="returnDate">Return Date:</label>
     <input type="datetime-local" id="returnDate" class="search-input" name="returnDate" required>
     <p id="error-message" style="color: red;"></p>
-    <button type="submit">search</button>
+<!--    <button type="submit">search</button>-->
     <!--&gt;>>>>>> Stashed changes-->
 
     <!-- Error message placeholders -->
@@ -237,9 +236,6 @@
         <td>
           <img src="/images/GoodBikes.jpeg" width="250" height="200" alt="Bikes condition">
         </td>
-        <td>
-          <img th:src="@{/images/freeCancellation.jpg}" width="250" height="200" alt="Easy Cancellation">
-        </td>
       </tr>
       <tr>
         <td>
@@ -254,19 +250,16 @@
           <h3>Bikes in condition</h3>
           <p>All bikes are well serviced and are in good condition.</p>
         </td>
-        <td>
-          <h3>Easy cancellation and refund policies</h3>
-          <p>We understand plans can change. Our flexible cancellation and refund policies make it easy for you to adjust your bookings.</p>
-        </td>
       </tr>
       </tbody>
     </table>
   </div>
 
   <h2>Address</h2>
-  <p>Address line1</p>
-  <p>Address line2</p>
-  <p>Karnataka, 111111 India</p>
+  <p>Door Number: AB/CD</p>
+  <p>Locality: locality</p>
+  <p>Bidar City, Bidar District </p>
+  <p> Karnataka, India. PIN: 585402</p>
 
   <h2>Explore</h2>
   <p>About Us</p>
