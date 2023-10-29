@@ -1,11 +1,14 @@
 package com.dbmsproj.rentabike.Controller;
 
 import com.dbmsproj.rentabike.Models.User;
+import com.dbmsproj.rentabike.Models.bookings;
 import com.dbmsproj.rentabike.Repository.UserRepository;
+import com.dbmsproj.rentabike.Repository.bookingsRepository;
 import com.dbmsproj.rentabike.Service.userservice;
 import com.dbmsproj.rentabike.security.SecurityServices;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.razorpay.*;
+
+import java.util.List;
 import java.util.Map;
 
 
@@ -23,11 +28,13 @@ public class UserController {
     private UserRepository userRepository;
     private userservice userService;
     private SecurityServices securityServices;
+    private bookingsRepository bookingsRepo;
     @Autowired
-    public UserController(UserRepository userRepository, userservice userService, SecurityServices securityServices) {
+    public UserController(UserRepository userRepository, userservice userService, SecurityServices securityServices,bookingsRepository bookingsRepo) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.securityServices=securityServices;
+        this.bookingsRepo=bookingsRepo;
     }
 
     public UserController(UserRepository userRepository) {
@@ -92,9 +99,13 @@ public class UserController {
     @GetMapping("/admin")
     public String admin(){return "admin";}
 
-    @GetMapping("/blog")
+    @RequestMapping("/blog")
     public String blog(){
         return "blog";
+    }
+    public String bookBike(@RequestParam("reg_no") String reg_no, HttpSession session){
+        session.setAttribute("reg_no", reg_no);
+        return "payment";
     }
 
     @PostMapping("/payment")
@@ -104,7 +115,7 @@ public class UserController {
         System.out.println();
         int amount = Integer.parseInt(data);
 
-        RazorpayClient client = new RazorpayClient("rzp_test_DtvZs9opsVVbos", "gDYS4yVSTN7S3VUh42U63KSV");
+        RazorpayClient client = new RazorpayClient("rzp_test_sQ8dXiMJeBHGZW", "S0nAJGwlFXbzmxUXOQUYD3ve");
         JSONObject options = new JSONObject();
         options.put("amount", amount*100);
         options.put("currency", "INR");
@@ -113,4 +124,14 @@ public class UserController {
         System.out.println(order);
         return order.toString();
     }
+    @GetMapping("/bookings")
+    public String getbookings(Model model){
+        System.out.println("inside bookings");
+        User user=securityServices.findLoggedInUser();
+        System.out.println(user.getUsername());
+        List<bookings> booking=bookingsRepo.findByUserId(user.getUserId());
+        model.addAttribute("bookings",booking);
+        return "bookings";
+    }
+
 }

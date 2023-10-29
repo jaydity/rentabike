@@ -4,8 +4,13 @@ package com.dbmsproj.rentabike.Controller;
 import com.dbmsproj.rentabike.Models.User;
 import com.dbmsproj.rentabike.Models.bookings;
 import com.dbmsproj.rentabike.Repository.UserRepository;
+import com.dbmsproj.rentabike.Repository.bikesRepository;
+import com.dbmsproj.rentabike.Repository.bookingsRepository;
+import com.dbmsproj.rentabike.Service.PaymentService;
 import com.dbmsproj.rentabike.Service.bookingsService;
 
+import com.dbmsproj.rentabike.Service.userservice;
+import com.dbmsproj.rentabike.security.SecurityServices;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -25,31 +30,48 @@ public class BookingController {
     private bookingsService bookingsservice;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private bikesRepository BikesRepo;
+    @Autowired
+    private bookingsRepository bookingsRepo;
+    @Autowired
+    private PaymentService paymentService;
+    private SecurityServices securityServices;
+    private userservice userService;
+    @Autowired
+    public BookingController(UserRepository userRepository, userservice userService, SecurityServices securityServices) {
+        this.userRepository = userRepository;
+        this.userService = userService;
+        this.securityServices=securityServices;
+    }
 
-//    @PostMapping("/payment")
-//    public String bookBike(@RequestParam("reg_no") String reg_no, HttpSession session){
-//        session.setAttribute("reg_no", reg_no);
-//
-//
-//
-//    }
-    @GetMapping("/payment/success")
-    @ResponseBody
-    public String success(HttpSession session, @AuthenticationPrincipal UserDetails userDetails){
+    @GetMapping("/payment")
+    public String bookBike(@RequestParam("reg_no") String reg_no, HttpSession session){
+        session.setAttribute("reg_no", reg_no);
+        return "payment";
+    }
+    @GetMapping("/paymentsuccess")
+//    @ResponseBody
+    public String success(Model model,HttpSession session, @AuthenticationPrincipal UserDetails userDetails){
         String reg_no = (String)session.getAttribute("reg_no");
-        LocalDateTime pickupDate = LocalDateTime.parse((String)session.getAttribute("pickupDate"));
-        LocalDateTime returnDate = LocalDateTime.parse((String)session.getAttribute("returnDate"));
+        LocalDateTime pickupDate = LocalDateTime.parse((session.getAttribute("pickupDate")).toString());
+        LocalDateTime returnDate = LocalDateTime.parse((session.getAttribute("returnDate")).toString());
         bookings b = new bookings();
         b.setBookingTime(LocalDateTime.now());
         b.setPickupTime(pickupDate);
         b.setReturnTime(returnDate);
         b.setRegistrationNumber(reg_no);
+        long rent=BikesRepo.getRentperHour(reg_no);
+        b.setTotalPayment((int)rent);
         User user = userRepository.getUserByUsername(userDetails.getUsername());
+        paymentService.payment(b);
 //        b.setTotalPayment();
         b.setCustomerId(user.getUserId());
+        bookingsRepo.insertBooking(b);
+//        model.addAttribute("bookings",b);
 
         // create a booking with the above atteibutes
-        return "dfghjkl";
+        return "redirect:/bookings";
     }
 //    @GetMapping("/bookings/{username}")
 //    public String getBookings(@PathVariable String username, Model model) {
@@ -57,6 +79,14 @@ public class BookingController {
 //        model.addAttribute("bookings", bookings);
 //        return "bookingList";
 //    }
+//    @GetMapping("/bookings")
+//    public String getbookings(){
+//        System.out.println("inside bookings");
+//        User user=securityServices.findLoggedInUser();
+//        List<bookings> booking=bookingsRepo.findByUserId(user.getUserId());
+//        return "bookings";
+//    }
+
 
 }
 

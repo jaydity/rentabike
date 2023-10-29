@@ -1,5 +1,6 @@
 package com.dbmsproj.rentabike.Models;
 
+import com.dbmsproj.rentabike.Repository.bikesRepository;
 import com.dbmsproj.rentabike.Service.bikesService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Component
 @NoArgsConstructor
 public class bookings {
     @Getter
@@ -32,16 +32,13 @@ public class bookings {
     private long downPayment;
     private long TotalPayment;
 //    private int issuedBy;
-    @Getter
-    private String feedback;
-    @Autowired
-    private bikesService bS;
-
+//    @Getter
+//    private String feedback;
 
     public bookings(
                 Long bookingId, Long customerId, String registrationNumber, LocalDateTime bookingTime,
                 LocalDateTime pickupTime, LocalDateTime returnTime,
-                int issuedBy, String feedback
+                int issuedBy
             ) {
         this.bookingId = bookingId;
         this.customerId = customerId;
@@ -49,42 +46,44 @@ public class bookings {
         this.bookingTime = bookingTime;
         this.pickupTime = pickupTime;
         this.returnTime = returnTime;
-        this.downPayment = (long) ((0.05)*payment());
-        this.TotalPayment = payment();
+//        this.downPayment = (long) ((0.05)*payment());
+//        this.TotalPayment = payment();
 //        this.issuedBy = issuedBy;
-        this.feedback = feedback;
+//        this.feedback = feedback;
     }
 
-    public long payment(){
-        LocalDateTime startdate=this.getPickupTime();
-        LocalDateTime enddate=this.getReturnTime();
-        Duration duration=Duration.between(startdate,enddate);
-        long hours = duration.toHours();
-
-        // Define your rate per hour
-//        bikesRepository bR=null;
-        long ratePerHour=bS.bikesRatePerHour(RegistrationNumber);
-//        long ratePerHour = 40; // Change this to your actual rate
-        long pay=hours * ratePerHour;
-
-        // Calculate the payment
-        if (hours > 12) {
-            // Calculate the additional hours
-            long additionalHours = hours - 12;
-
-            // Calculate the payment for additional hours
-            long additionalPayment = additionalHours * ratePerHour;
-
-            // Apply a 5% discount to the additional payment
-            double discount = 0.05; // 5% discount
-            pay -= (long) (additionalPayment * discount);
-
-            // Add the additional payment to the total payment
-          //  pay += additionalPayment;
-        }
-
-        return pay;
-    }
+//    public long payment(){
+//
+//        LocalDateTime startdate=this.getPickupTime();
+//        LocalDateTime enddate=this.getReturnTime();
+//        Duration duration=Duration.between(startdate,enddate);
+//        long hours = duration.toHours();
+//
+//        // Define your rate per hour
+////        bikesRepository bR=null;
+//        bikesRepository bikesrepository = new bikesRepository();
+//        long ratePerHour=bikesrepository.getRentperHour(RegistrationNumber);
+////        long ratePerHour = 40; // Change this to your actual rate
+//        long pay=hours * ratePerHour;
+//
+//        // Calculate the payment
+//        if (hours > 12) {
+//            // Calculate the additional hours
+//            long additionalHours = hours - 12;
+//
+//            // Calculate the payment for additional hours
+//            long additionalPayment = additionalHours * ratePerHour;
+//
+//            // Apply a 5% discount to the additional payment
+//            double discount = 0.05; // 5% discount
+//            pay -= (long) (additionalPayment * discount);
+//
+//            // Add the additional payment to the total payment
+//          //  pay += additionalPayment;
+//        }
+//
+//        return pay;
+//    }
     public bookings(Long customerId, String registrationNumber, LocalDateTime bookingTime, LocalDateTime pickupTime, LocalDateTime returnTime, int downPayment, int totalPayment, int issuedBy, String feedback) {
         this.customerId = customerId;
         RegistrationNumber = registrationNumber;
@@ -94,15 +93,15 @@ public class bookings {
         this.downPayment = downPayment;
         TotalPayment = totalPayment;
 //        this.issuedBy = issuedBy;
-        this.feedback = feedback;
+//        this.feedback = feedback;
     }
 
     public int getDownPayment() {
-        return (int) ((0.05)*payment());
+        return 0;
     }
 
     public int getTotalPayment() {
-        return (int) payment();
+        return (int)TotalPayment;
     }
 
 //    public int getIssuedBy() {
@@ -145,7 +144,7 @@ public class bookings {
 //        this.issuedBy = issuedBy;
 //    }
 
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
-    }
+//    public void setFeedback(String feedback) {
+//        this.feedback = feedback;
+//    }
 }
