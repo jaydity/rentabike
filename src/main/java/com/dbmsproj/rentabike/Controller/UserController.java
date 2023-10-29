@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -34,6 +33,8 @@ public class UserController {
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+
     @RequestMapping(path = "/register")
     public String userRegistration(Model model) {
         model.addAttribute("User",new User());
@@ -69,16 +70,9 @@ public class UserController {
         return "redirect:/home";
     }
     @RequestMapping("/home")
-        public String redirectByRole(Authentication authentication) {
-            if (authentication != null) {
-                for (GrantedAuthority authority : authentication.getAuthorities()) {
-                    if (authority.getAuthority().equals("ROLE_ADMIN")) {
-                        return "redirect:/admin";
-                    } else if (authority.getAuthority().equals("ROLE_USER")) {
-                        return "redirect:/homeUser";
-                    }
-                }
-            }
+    public String home(){
+        User user=securityServices.findLoggedInUser();
+        if(user!=null) return "/homeUser";
         return "home";
     }
     @GetMapping("/homeUser")

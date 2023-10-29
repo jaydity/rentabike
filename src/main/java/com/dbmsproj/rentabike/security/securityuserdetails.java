@@ -3,15 +3,12 @@ package com.dbmsproj.rentabike.security;
 import com.dbmsproj.rentabike.Models.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 public class securityuserdetails implements UserDetails{
@@ -29,9 +26,7 @@ public class securityuserdetails implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
-        return authorities;
+        return null;
     }
 
     @Override
