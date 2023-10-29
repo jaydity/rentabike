@@ -228,13 +228,16 @@
       <tbody>
       <tr>
         <td>
-          <img src="/images/largestFleet.jpg" width="250" height="200" alt="Largest Fleet Size">
+          <img src="/images/largestFleet.jpg" width="250" height="200" alt="Largest Fleet Size" style="border: 4px solid #0e0000">
         </td>
         <td>
-          <img src="/images/GoodService.jpg" width="250" height="200" alt="Good service">
+          <img src="/images/GoodService.jpg" width="250" height="200" alt="Good service" style="border: 4px solid #0e0000">
         </td>
         <td>
-          <img src="/images/GoodBikes.jpeg" width="250" height="200" alt="Bikes condition">
+          <img src="/images/GoodBikes.jpeg" width="250" height="200" alt="Bikes condition" style="border: 4px solid #0e0000">
+        </td>
+        <td>
+          <img src="/images/trustworthy.jpg" width="250" height="200" alt="Easy Cancellation" style="border: 4px solid #0e0000">
         </td>
       </tr>
       <tr>
@@ -250,6 +253,10 @@
           <h3>Bikes in condition</h3>
           <p>All bikes are well serviced and are in good condition.</p>
         </td>
+        <td>
+          <h3>Most Trusted Agency</h3>
+          <p>Most people trust RentABike agency for renting a bike.</p>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -262,9 +269,9 @@
   <p> Karnataka, India. PIN: 585402</p>
 
   <h2>Explore</h2>
-  <p>About Us</p>
   <p>Help</p>
-  <p>Contact us</p>
+  <a href="/about">About Us</a>
+  <a href="mailto:mukeshbommadi@gmail.com">Contact us</a>
   <p>Privacy policies</p>
   <p>Terms and conditions</p>
 
@@ -290,20 +297,19 @@
 
     if (pickupDateTime <= now) {
       pickupError.textContent = 'Pickup date and time must be in the future';
-      return false; // Prevent form submission
+      return false;
     }
 
     if (returnDateTime <= now) {
       returnError.textContent = 'Return date and time must be in the future';
-      return false; // Prevent form submission
+      return false;
     }
 
     if (pickupDateTime >= returnDateTime) {
       pickupError.textContent = 'Pickup date and time must be before return date and time';
-      return false; // Prevent form submission
+      return false;
     }
 
-    // Add additional validation as needed
 
     return true; // Form submission will proceed if all validation checks pass
   }

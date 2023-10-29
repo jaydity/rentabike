@@ -42,7 +42,7 @@ public class securityconfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((auth) -> auth
-                                .requestMatchers("/", "/home", "/register", "login", "logout", "/availableBikes", "/images/*", "/bikes/*", "/addBike", "/bikes","/homeUser","/profile", "/admin","/payment","/bookings","/createBooking").permitAll()
+                                .requestMatchers("/", "/home", "/register", "login", "logout", "/availableBikes", "/images/*", "/bikes/*", "/addBike", "/bikes","/homeUser","/profile", "/admin","/payment","/bookings","/createBooking", "/about").permitAll()
                                 .requestMatchers("/addBike").hasRole("ADMIN")
                                 .anyRequest().authenticated()
 //                        .requestMatchers("/signin", "/signup","/login","/css/login.css", "/register","/css/*","/js/*","/pics/*").permitAll()

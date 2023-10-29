@@ -105,6 +105,8 @@ public class UserController {
 
     @GetMapping("/admin")
     public String admin(){return "admin";}
+    @GetMapping("/about")
+    public String about(){return "about";}
 
     @RequestMapping("/blog")
     public String blog(){
