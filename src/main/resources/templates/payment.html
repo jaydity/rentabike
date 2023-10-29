@@ -126,7 +126,7 @@
                   if (response.status === "created") {
                     alert("Redirecting to payment page");
                     let options = {
-                      key: "rzp_test_sQ8dXiMJeBHGZW", // Enter the Key ID generated from the Dashboard
+                      key: "rzp_test_DtvZs9opsVVbos", // Enter the Key ID generated from the Dashboard
                       amount: response.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                       currency: "INR",
                       name: "RentABike",
@@ -139,7 +139,6 @@
                         console.log(response.razorpay_order_id)
                         console.log(response.razorpay_signature)
                         console.log("Payment successful!")
-                        window.location.href = "/paymentsuccess";
                       },
                       prefill: {
                         name: "",
@@ -164,12 +163,8 @@
                     paymentObject.open();
                   }
                   if (response.status === "success") {
-                    // alert("Payment Successful");
-                    console.log("Redirecting to /blog");
-                    window.location.href = "/blog"; // Redirect to the "/blog" page
+                    alert("Payment Successful");
                   }
-
-
                 },
                 error: function (e) {
                     console.log(e);

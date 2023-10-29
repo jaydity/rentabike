@@ -56,18 +56,6 @@ public class bikesRepository {
         String s="SELECT * FROM RENTABIKE.bikes";
         return tmp.query(s,new BikeRowMapper());
     }
-    public long getRentperHour(String reg_no) {
-        String sql = "SELECT * FROM RENTABIKE.bikes WHERE registration_number = " + "'" + reg_no + "'";
-        List<bikes> bike= tmp.query(sql, new BikeRowMapper());
-        try {
-            return bike.get(0).getRatePerHour();
-        }
-        catch (Exception e) {
-            return 0;
-        }
-
-    }
-
 
     public List<bikes> getAvailableBikesBetweenDates(LocalDateTime pickupDate, LocalDateTime returnDate){
         String sql = "SELECT * FROM RENTABIKE.bikes b WHERE b.registration_number " +
