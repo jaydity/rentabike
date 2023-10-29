@@ -2,11 +2,13 @@ package com.dbmsproj.rentabike.Controller;
 
 import com.dbmsproj.rentabike.Models.bikes;
 import com.dbmsproj.rentabike.Repository.bikesRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -16,16 +18,31 @@ public class BikeController {
     public BikeController(bikesRepository BikesRepo){
         this.BikesRepo=BikesRepo;
     }
-    @GetMapping("/availableBikes")
-    public String getAvailableBikes(@RequestParam(name = "hours", required = false) Integer hours,Model model){
+//<<<<<<< Updated upstream
+//    @GetMapping("/availableBikes")
+//    public String getAvailableBikes(@RequestParam(name = "hours", required = false) Integer hours,Model model){
+//        System.out.println("Inside availableBikes");
+//        if(hours!=null){
+//            model.addAttribute("hours",hours);
+//        }
+//////=======
+    @PostMapping("/availableBikes")
+    public String getAvailableBikes(Model model, @RequestParam("pickupDate") LocalDateTime pickupDate, @RequestParam("returnDate") LocalDateTime returnDate, @RequestParam("hours") long hours, HttpSession session){
         System.out.println("Inside availableBikes");
-        if(hours!=null){
-            model.addAttribute("hours",hours);
+        System.out.println(pickupDate);
+        System.out.println(returnDate);
+        session.setAttribute("pickupDate", pickupDate);
+        session.setAttribute("returnDate", returnDate);
+        session.setAttribute("hours",hours);
+////>>>>>>> Stashed changes
+        if(hours!=0) {
+            model.addAttribute("hours", hours);
         }
-        List<bikes> availableBikes=BikesRepo.getAllAvailableBikes();
+        List<bikes> availableBikes=BikesRepo.getAvailableBikesBetweenDates(pickupDate, returnDate);
         model.addAttribute("availableBikes",availableBikes);
         return "availableBikes";
     }
+
     @GetMapping("/bikes")
     public String getAllBikes(Model model){
         List<bikes> allBikes=BikesRepo.getAllBikes();
