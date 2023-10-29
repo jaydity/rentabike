@@ -139,6 +139,7 @@
                         console.log(response.razorpay_order_id)
                         console.log(response.razorpay_signature)
                         console.log("Payment successful!")
+                        window.location.href = "/paymentsuccess";
                       },
                       prefill: {
                         name: "",
@@ -163,8 +164,12 @@
                     paymentObject.open();
                   }
                   if (response.status === "success") {
-                    alert("Payment Successful");
+                    // alert("Payment Successful");
+                    console.log("Redirecting to /blog");
+                    window.location.href = "/blog"; // Redirect to the "/blog" page
                   }
+
+
                 },
                 error: function (e) {
                     console.log(e);

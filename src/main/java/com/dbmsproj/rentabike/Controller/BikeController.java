@@ -43,6 +43,13 @@ public class BikeController {
         return "availableBikes";
     }
 
+    @GetMapping("/reg")
+    public String sdfgh(){
+        long rent=BikesRepo.getRentperHour("1234567");
+        System.out.println(rent);
+        return "dfg";
+    }
+
     @GetMapping("/bikes")
     public String getAllBikes(Model model){
         List<bikes> allBikes=BikesRepo.getAllBikes();
@@ -69,8 +76,8 @@ public class BikeController {
         return "addBike";
     }
 
-    @GetMapping("/payment")
-    public String goToPayment(){
-        return "payment";
-    }
+//    @GetMapping("/payment")
+//    public String goToPayment(){
+//        return "payment";
+//    }
 }
