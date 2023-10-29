@@ -50,7 +50,7 @@ public class BookingController {
         session.setAttribute("reg_no", reg_no);
         return "payment";
     }
-    @GetMapping("/payment/success")
+    @GetMapping("/paymentsuccess")
     @ResponseBody
     public String success(Model model,HttpSession session, @AuthenticationPrincipal UserDetails userDetails){
         String reg_no = (String)session.getAttribute("reg_no");
