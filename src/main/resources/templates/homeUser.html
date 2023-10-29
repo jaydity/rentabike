@@ -110,6 +110,30 @@
 
   </style>
   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var pickupDateInput = document.getElementById("pickupDate");
+      var returnDateInput = document.getElementById("returnDate");
+      var errorMessage = document.getElementById("error-message");
+
+      function validateDates() {
+        var pickupDateTime = new Date(pickupDateInput.value);
+        var returnDateTime = new Date(returnDateInput.value);
+
+        if (pickupDateTime >= returnDateTime) {
+          errorMessage.textContent = "Return time should be in the future of pickup time.";
+          returnDateInput.setCustomValidity("Invalid return time");
+        } else {
+          errorMessage.textContent = "";
+          returnDateInput.setCustomValidity("");
+        }
+      }
+
+      // Add event listeners
+      pickupDateInput.addEventListener("input", validateDates);
+      returnDateInput.addEventListener("input", validateDates);
+    });
+  </script>
+  <script>
     function calculateTotalHours() {
       // Get pickup and return date values from the input fields
       var pickupDate = new Date(document.getElementById('pickupDate').value);
@@ -166,6 +190,7 @@
 
     <label for="returnDate">Return Date:</label>
     <input type="datetime-local" id="returnDate" class="search-input" name="returnDate" required>
+    <p id="error-message" style="color: red;"></p>
     <button type="submit">search</button>
     <!--&gt;>>>>>> Stashed changes-->
 
@@ -177,6 +202,18 @@
     <input type="hidden" id="hours" name="hours" value="0">
 
     <button class="search-button" type="submit">Search</button>
+    <script>
+    // Function to set the min attribute of datetime-local inputs to the current date and time
+    function setMinDateTime() {
+    var now = new Date();
+    var formattedNow = now.toISOString().slice(0, 16);
+    document.getElementById("pickupDate").min = formattedNow;
+    document.getElementById("returnDate").min = formattedNow;
+    }
+
+    // Call the function when the page loads
+    window.onload = setMinDateTime;
+    </script>
   </form>
 
 </div>
