@@ -121,15 +121,16 @@
     <div class="header-background"></div>
 </th>
 </tr>
-<tr th:each="bike, stat: ${allBikes}">
-    <td th:text="${stat.index + 1}"></td>
+<tr th:each="bike : ${availableBikes}">
+    <td> <img th:src="@{'/bikes/' + ${bike.getBikeModel()} + '.jpg'}" alt="Image not found" height="200" width="200"> </td>
     <td th:text="${bike.registrationNumber}"></td>
     <td th:text="${bike.bikeModel}"></td>
     <td th:text="${bike.bikeStatus}"></td>
     <td th:text="${bike.CBookNumber}"></td>
     <td th:text="${bike.Insurance}"></td>
-    <td th:text="${bike.isAvailable}"></td>
     <td th:text="${bike.ratePerHour}"></td>
+    <td th:text="${bike.ratePerHour * hours}"></td>
+    <td>
 </tr>
 </table>
 </div>
