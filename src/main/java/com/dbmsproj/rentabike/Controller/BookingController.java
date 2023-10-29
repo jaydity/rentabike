@@ -26,13 +26,6 @@ public class BookingController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/bookings/{username}")
-    public String getBookings(@PathVariable("username") String username, Model model) {
-        List<bookings> bookings = bookingsservice.getBookings(username);
-        model.addAttribute("bookings", bookings);
-        return "bookingList";
-    }
-
 //    @PostMapping("/payment")
 //    public String bookBike(@RequestParam("reg_no") String reg_no, HttpSession session){
 //        session.setAttribute("reg_no", reg_no);
@@ -58,5 +51,12 @@ public class BookingController {
         // create a booking with the above atteibutes
         return "dfghjkl";
     }
+//    @GetMapping("/bookings/{username}")
+//    public String getBookings(@PathVariable String username, Model model) {
+//        List<bookings> bookings = bookingsservice.getBookings(username);
+//        model.addAttribute("bookings", bookings);
+//        return "bookingList";
+//    }
+
 }
 

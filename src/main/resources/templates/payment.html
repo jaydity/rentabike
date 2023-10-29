@@ -2,6 +2,7 @@
 <html lan="en">
 <head>
   <title>Payment</title>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
   <style>
     body {
@@ -84,23 +85,94 @@
 </header>
 <div class="container">
   <form>
-    <div class="credit-card-details">
-      <label for="cardNumber">Card Number:</label>
-      <input type="text" id="cardNumber" name="cardNumber" class="input-box required" placeholder="Enter Card Number">
-
-      <label for="expiryDate">Expiry Date:</label>
-      <input type="text" id="expiryDate" name="expiryDate" class="input-box required" placeholder="MM/YY">
-
-      <label for="cvv">CVV:</label>
-      <input type="text" id="cvv" name="cvv" class="input-box required" placeholder="CVV">
-    </div>
 
     <label for="amount">Amount:</label>
-    <input type="number" id="amount" name="amount" value="${amountFromBackend}" class="input-box" disabled>
+    <input type="number" id="amount" name="amount" value=300 class="input-box" disabled>
 
-    <button class="payment-button">Pay Now</button>
+    <button class="payment-button" id="payment-button">Pay Now</button>
   </form>
 </div>
+<script>
+  let payment_button = document.getElementById("payment-button").addEventListener("click",(e)=>{
+    e.preventDefault();
+    paymentStart();
+
+  })
+
+  function paymentStart() {
+
+
+    alert("You have started payment process");
+    let amount = document.getElementById("amount").value;
+    console.log(amount);
+    if(amount === '' || amount==null){
+      alert("Please enter amount");
+      return false;
+    }
+
+    $.ajax(
+            {
+                url: "/payment",
+                type: "POST",
+                dataType: 'json',
+                data: new URLSearchParams({
+                  amount: amount
+                }).toString(),
+                keepalive: 5000,
+                contentType:'application/x-www-form-urlencoded',
+                success: function (response) {
+                  console.log(response);
+                  if (response.status === "created") {
+                    alert("Redirecting to payment page");
+                    let options = {
+                      key: "rzp_test_DtvZs9opsVVbos", // Enter the Key ID generated from the Dashboard
+                      amount: response.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                      currency: "INR",
+                      name: "RentABike",
+                      description: "Bike Booking",
+                      image: "images/RentABike_logo.png",
+                      orderId: response.id,
+                      handler: function (response) {
+                        alert("Payment Successful");
+                        console.log(response.razorpay_payment_id)
+                        console.log(response.razorpay_order_id)
+                        console.log(response.razorpay_signature)
+                        console.log("Payment successful!")
+                      },
+                      prefill: {
+                        name: "",
+                        email: "",
+                        phone_number: "",
+                      },
+                      notes:{
+                        address: "RentABike bike rental services, Karnataka",
+                      },
+                      theme: {
+                        color: "#3399cc",
+                      },
+                    }
+                    let paymentObject = new Razorpay(options);
+
+                    paymentObject.on("payment.failed", function (response){
+                      console.log(response.error.code);
+                      console.log(response.error.description);
+                      console.log(response.error.source);
+                      alert("Payment failed because of reason: "+ response.error.reason);
+                    })
+                    paymentObject.open();
+                  }
+                  if (response.status === "success") {
+                    alert("Payment Successful");
+                  }
+                },
+                error: function (e) {
+                    console.log(e);
+                    alert("Payment Failed!");
+                  }
+                }
+    )
+  }
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </body>
