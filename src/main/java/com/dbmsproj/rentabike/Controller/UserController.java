@@ -79,7 +79,14 @@ public class UserController {
     @RequestMapping("/home")
     public String home(){
         User user=securityServices.findLoggedInUser();
-        if(user!=null) return "/homeUser";
+        if(user!=null) {
+            System.out.println("user not null");
+            if (user.getRole().equals("ADMIN")) {
+                return "redirect:/admin";
+            } else {
+                return "/homeUser";
+            }
+        }
         return "home";
     }
     @GetMapping("/homeUser")
