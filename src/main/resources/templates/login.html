@@ -133,8 +133,10 @@
     </ul>
 </nav>
 
+
+
 <div class="login-container">
-    <form method="post"role="form" th:action="@{/login}" class="login-form" style="background-color:#cde8e8 ; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 300px;">
+    <form method="post" role="form" th:action="@{/login}" class="login-form" style="background-color:#cde8e8 ; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 300px;">
         <label for="username" class="form-label">Username:</label>
         <input type="text" id="username" name="username" placeholder="Enter your username" class="form-input" required>
 
@@ -145,6 +147,7 @@
 <!--        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" class="form-input" required>-->
 
         <button type="submit" class="login-button">Login</button>
+
 
         <p style="text-align: center;">Don't have an account? <a href="/register" class="register-link">Register</a></p>
     </form>
