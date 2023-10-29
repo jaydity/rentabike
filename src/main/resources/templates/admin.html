@@ -1,54 +1,78 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Available Bikes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
             text-align: center;
         }
 
-        h1 {
-            background-color: #E37125;
+        header {
+            background-color: #354f82;
             color: #fff;
-            padding: 10px 0;
-            margin: 0;
+            padding: 20px;
+            font-size: 24px;
         }
 
-        table {
-            border-collapse: collapse;
-            width: 80%;
+        nav {
+            background-color: #293d6d;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 800px;
             margin: 20px auto;
             background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             border-radius: 8px;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #E37125;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:hover {
-            background-color: #e0e0e0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
         }
     </style>
 </head>
 <body>
-<h1>Welcome, admin</h1>
+<header>
+    Admin Panel
+</header>
+<nav>
+    <a href="/addBike">Add Bike</a>
+    <a href="/bikes">List of Bikes</a>
+    <a href="/listOfUsers">List of Users</a>
+    <a href="/bookings">Bookings</a>
+</nav>
+<!--<div class="container">-->
+<!--    <section id="add-bike">-->
+<!--        <h2>Add Bike</h2>-->
+<!--        &lt;!&ndash; Add bike form goes here &ndash;&gt;-->
+<!--    </section>-->
 
+<!--    <section id="list-bikes">-->
+<!--        <h2>List of Bikes</h2>-->
+<!--        &lt;!&ndash; Bike list display goes here &ndash;&gt;-->
+<!--    </section>-->
+
+<!--    <section id="list-users">-->
+<!--        <h2>List of Users</h2>-->
+<!--        &lt;!&ndash; User list display goes here &ndash;&gt;-->
+<!--    </section>-->
+
+<!--    <section id="bookings">-->
+<!--        <h2>Bookings</h2>-->
+<!--        &lt;!&ndash; Booking details display goes here &ndash;&gt;-->
+<!--    </section>-->
+<!--</div>-->
 </body>
 </html>
