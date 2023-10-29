@@ -143,4 +143,11 @@ public class UserController {
         return "bookings";
     }
 
+    @GetMapping("/listofusers")
+    public String getListOfUsers(Model model){
+        List<User> listofusers=userRepository.getAllUsers();
+        model.addAttribute("listofusers",listofusers);
+        return "listofusers";
+    }
+
 }

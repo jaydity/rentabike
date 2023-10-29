@@ -64,17 +64,26 @@ public class BikeController {
             @RequestParam("CBookNumber") String CBookNumber,
             @RequestParam("Insurance") String Insurance,
             @RequestParam("isAvailable") boolean isAvailable,
-            @RequestParam("ratePerHour") long ratePerHour
+            @RequestParam("ratePerHour") long ratePerHour,
+            Model model
     ){
         System.out.println("inside addBike");
         bikes bike=new bikes(registrationNumber,bikeModel,bikeStatus,CBookNumber,Insurance,isAvailable,ratePerHour);
         BikesRepo.insertBike(bike);
+        List<bikes> allBikes=BikesRepo.getAllBikes();
+        model.addAttribute("allBikes",allBikes);
+
         return "bikes";
     }
-    @RequestMapping("/addBike")
+    @GetMapping("/addBike")
     public String goToAddBike(){
         return "addBike";
     }
+//    @PostMapping("/addBike")
+//    public String bike(){
+//        return "bikes";
+//    }
+
 
 //    @GetMapping("/payment")
 //    public String goToPayment(){
