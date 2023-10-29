@@ -99,39 +99,39 @@
             <th>
                 <div class="header-text">Bike Model</div>
                 <div class="header-background"></div>
-</th>
-<th>
-    <div class="header-text">Bike Status</div>
-    <div class="header-background"></div>
-</th>
-<th>
-    <div class="header-text">CBook Number</div>
-    <div class="header-background"></div>
-</th>
-<th>
-    <div class="header-text">Insurance</div>
-    <div class="header-background"></div>
-</th>
-<th>
-    <div class="header-text">Is Available</div>
-    <div class="header-background"></div>
-</th>
-<th>
-    <div class="header-text">Rate per Hour</div>
-    <div class="header-background"></div>
-</th>
-</tr>
-<tr th:each="bike, stat: ${allBikes}">
-    <td th:text="${stat.index + 1}"></td>
-    <td th:text="${bike.registrationNumber}"></td>
-    <td th:text="${bike.bikeModel}"></td>
-    <td th:text="${bike.bikeStatus}"></td>
-    <td th:text="${bike.CBookNumber}"></td>
-    <td th:text="${bike.Insurance}"></td>
-    <td th:text="${bike.isAvailable}"></td>
-    <td th:text="${bike.ratePerHour}"></td>
-</tr>
-</table>
+            </th>
+            <th>
+                <div class="header-text">Bike Status</div>
+                <div class="header-background"></div>
+            </th>
+            <th>
+                <div class="header-text">CBook Number</div>
+                <div class="header-background"></div>
+            </th>
+            <th>
+                <div class="header-text">Insurance</div>
+                <div class="header-background"></div>
+            </th>
+            <th>
+                <div class="header-text">Is Available</div>
+                <div class="header-background"></div>
+            </th>
+            <th>
+                <div class="header-text">Rate per Hour</div>
+                <div class="header-background"></div>
+            </th>
+        </tr>
+        <tr th:each="bike, stat: ${allBikes}">
+            <td th:text="${stat.index + 1}"></td>
+            <td th:text="${bike.registrationNumber}"></td>
+            <td th:text="${bike.bikeModel}"></td>
+            <td th:text="${bike.bikeStatus}"></td>
+            <td th:text="${bike.CBookNumber}"></td>
+            <td th:text="${bike.Insurance}"></td>
+            <td th:text="${bike.isAvailable}"></td>
+            <td th:text="${bike.ratePerHour}"></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>
