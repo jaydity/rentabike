@@ -149,22 +149,36 @@
 </nav>
 
 <div class="search-form">
-  <form th:action="@{/availableBikes}" onsubmit="calculateTotalHours()">
-    <label for="pickupDate">Pickup Date and Time:</label>
-    <input type="datetime-local" id="pickupDate" class="search-input" required>
+<!--<<<<<<< Updated upstream-->
+<!--  <form th:action="@{/availableBikes}" onsubmit="calculateTotalHours()">-->
+<!--    <label for="pickupDate">Pickup Date and Time:</label>-->
+<!--    <input type="datetime-local" id="pickupDate" class="search-input" required>-->
 
-    <label for="returnDate">Return Date and Time:</label>
-    <input type="datetime-local" id="returnDate" class="search-input" required>
+<!--    <label for="returnDate">Return Date and Time:</label>-->
+<!--    <input type="datetime-local" id="returnDate" class="search-input" required>-->
+<!--=======-->
+  <form th:action="@{/availableBikes}" onsubmit="calculateTotalHours()" method="post">
+<!--  <form action="/availableBikes" method="post">-->
+
+    <label for="pickupDate">Pickup Date:</label>
+    <input type="datetime-local" id="pickupDate" class="search-input" name="pickupDate" required>
+
+
+    <label for="returnDate">Return Date:</label>
+    <input type="datetime-local" id="returnDate" class="search-input" name="returnDate" required>
+    <button type="submit">search</button>
+<!--&gt;>>>>>> Stashed changes-->
 
     <!-- Error message placeholders -->
     <b><p id="pickupError" style="color: red;"></p></b>
     <b><p id="returnError" style="color: red;"></p></b>
 
     <br>
-    <input type="hidden" id="hours" name="hours">
+    <input type="hidden" id="hours" name="hours" value="0">
 
     <button class="search-button" type="submit">Search</button>
   </form>
+
 </div>
 
 <footer>

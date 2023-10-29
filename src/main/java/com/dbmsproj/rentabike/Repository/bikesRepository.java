@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -32,7 +33,7 @@ public class bikesRepository {
         return tmp.queryForObject(s,long.class,registrationNumber);
     }
 
-    private static class BikeRowMapper implements RowMapper<bikes>{
+    public static class BikeRowMapper implements RowMapper<bikes>{
         @Override
         public bikes mapRow(ResultSet rs, int rowNum) throws SQLException {
             bikes bike = new bikes();
@@ -54,6 +55,16 @@ public class bikesRepository {
     public List<bikes> getAllBikes(){
         String s="SELECT * FROM RENTABIKE.bikes";
         return tmp.query(s,new BikeRowMapper());
+    }
+
+    public List<bikes> getAvailableBikesBetweenDates(LocalDateTime pickupDate, LocalDateTime returnDate){
+        String sql = "SELECT * FROM RENTABIKE.bikes b WHERE b.registration_number " +
+                "NOT IN (" +
+                "SELECT t.registration_number FROM bookings t WHERE " +
+                "(t.pickup_time>= ? AND t.pickup_time<= ?) OR (t.return_time>= ? AND t.return_time<= ?) OR (t.pickup_time<=? AND t.return_time>=?)"
+                +")";
+        return tmp.query(sql, new BikeRowMapper(), pickupDate, returnDate, pickupDate, returnDate, pickupDate, returnDate);
+
     }
 
 }
