@@ -73,7 +73,7 @@ public class bikesRepository {
         String sql = "SELECT * FROM RENTABIKE.bikes b WHERE b.registration_number " +
                 "NOT IN (" +
                 "SELECT t.registration_number FROM bookings t WHERE " +
-                "(t.pickup_time>= ? AND t.pickup_time<= ?) OR (t.return_time>= ? AND t.return_time<= ?) OR (t.pickup_time<=? AND t.return_time>=?)"
+                "(t.pickup_time>= ? AND t.pickup_time<= ?) OR (t.return_time>= ? AND t.return_time<= ?) OR (t.pickup_time<=? AND t.return_time>=?) or (b.is_available=0)"
                 +")";
         return tmp.query(sql, new BikeRowMapper(), pickupDate, returnDate, pickupDate, returnDate, pickupDate, returnDate);
 
