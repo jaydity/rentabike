@@ -53,6 +53,10 @@ public class bookingsRepository {
     };
 
 
+    public List<bookings> getAllBookings(){
+        String sql="SELECT * FROM RENTABIKE.bookings";
+        return tmp.query(sql,bookingsRowMapper);
+    }
     public List<bookings> findByUsername(String username) {
         User user = userRepository.getUserByUsername(username);
         String sql = "SELECT * FROM BOOKINGS WHERE customerId=" + user.getUserId();

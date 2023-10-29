@@ -86,6 +86,13 @@ public class BookingController {
 //        List<bookings> booking=bookingsRepo.findByUserId(user.getUserId());
 //        return "bookings";
 //    }
+    @GetMapping("/allbookings")
+    public String getAllBookings(Model model){
+        List<bookings> allBookings=bookingsRepo.getAllBookings();
+        model.addAttribute("allBookings",allBookings);
+        System.out.println("inside allBookings");
+        return "allBookings";
+    }
 
 
 }

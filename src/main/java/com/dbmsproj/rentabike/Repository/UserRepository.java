@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Repository
 @Service
 public class UserRepository {
@@ -68,5 +70,9 @@ public class UserRepository {
             System.out.println("No user found with the given username");
             return null;
         }
+    }
+    public List<User> getAllUsers(){
+        String sql="SELECT * FROM users";
+        return jdbcTemplate.query(sql,userRowMapper);
     }
 }
