@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -54,6 +55,15 @@ public class securityconfiguration {
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/homeUser", true)
                         .failureForwardUrl("/login")
+//                        .failureHandler((httpServletRequest, httpServletResponse, authenticationException) -> {
+//                            if (authenticationException instanceof UsernameNotFoundException) {
+//                                // Display an alert to the user that no user exists with the username
+//                                httpServletRequest.setAttribute("alertMessage", "No user exists with the username: " + authenticationException.getMessage());
+//                                httpServletRequest.getRequestDispatcher("/login").forward(httpServletRequest, httpServletResponse);
+//                            } else {
+//                                httpServletResponse.sendRedirect("/login");
+//                            }
+//                        })
                         .permitAll()
                 )
                 .logout((logout) ->

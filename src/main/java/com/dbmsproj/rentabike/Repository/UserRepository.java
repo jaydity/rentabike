@@ -4,6 +4,7 @@ import com.dbmsproj.rentabike.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -60,7 +61,7 @@ public class UserRepository {
         return user;
     };
 
-    public User getUserByUsername(String username){
+    public User getUserByUsername(String username) {
         System.out.println("Inside getUserByUsername");
         String sql = "Select * from users where username = " + "'"+username+"'";
         try {
@@ -68,7 +69,7 @@ public class UserRepository {
         }
         catch (Exception e){
             System.out.println("No user found with the given username");
-            return null;
+            throw e;
         }
     }
     public List<User> getAllUsers(){
