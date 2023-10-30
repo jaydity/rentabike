@@ -54,7 +54,7 @@ public class bookingsRepository {
 
 
     public List<bookings> getAllBookings(){
-        String sql="SELECT * FROM RENTABIKE.bookings";
+        String sql="SELECT * FROM RENTABIKE.bookings ORDER BY booking_time DESC";
         return tmp.query(sql,bookingsRowMapper);
     }
     public List<bookings> findByUsername(String username) {
@@ -63,7 +63,7 @@ public class bookingsRepository {
         return tmp.query(sql,bookingsRowMapper);
     }
     public List<bookings> findByUserId(Long userId){
-        String sql="SELECT * FROM RENTABIKE.bookings WHERE customer_id="+userId;
+        String sql="SELECT * FROM RENTABIKE.bookings WHERE customer_id="+userId+" ORDER BY booking_time DESC";
         return tmp.query(sql,bookingsRowMapper);
     }
 }
