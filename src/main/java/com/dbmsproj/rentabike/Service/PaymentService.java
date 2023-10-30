@@ -28,22 +28,22 @@ public class PaymentService {
         long pay=hours * ratePerHour;
 
         // Calculate the payment
-        if (hours > 12) {
-            // Calculate the additional hours
-            long additionalHours = hours - 12;
-
-            // Calculate the payment for additional hours
-            long additionalPayment = additionalHours * ratePerHour;
-
-            // Apply a 5% discount to the additional payment
-            double discount = 0.05; // 5% discount
-            pay -= (long) (additionalPayment * discount);
-
-            // Add the additional payment to the total payment
-            //  pay += additionalPayment;
-        }
+//        if (hours > 12) {
+//            // Calculate the additional hours
+//            long additionalHours = hours - 12;
+//
+//            // Calculate the payment for additional hours
+//            long additionalPayment = additionalHours * ratePerHour;
+//
+//            // Apply a 5% discount to the additional payment
+//            double discount = 0.05; // 5% discount
+//            pay -= (long) (additionalPayment * discount);
+//
+//            // Add the additional payment to the total payment
+//            //  pay += additionalPayment;
+//        }
         b.setTotalPayment((int)pay);
-        b.setDownPayment((int)(0.05*pay));
+        b.setDownPayment((0));
         return pay;
     }
 }

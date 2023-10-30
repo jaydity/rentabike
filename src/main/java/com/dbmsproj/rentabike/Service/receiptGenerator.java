@@ -2,6 +2,7 @@ package com.dbmsproj.rentabike.Service;
 
 import com.dbmsproj.rentabike.Models.User;
 import com.dbmsproj.rentabike.Models.bookings;
+import com.dbmsproj.rentabike.Repository.bikesRepository;
 import com.dbmsproj.rentabike.Repository.bookingsRepository;
 import com.dbmsproj.rentabike.security.SecurityServices;
 import com.lowagie.text.*;
@@ -20,6 +21,8 @@ public class receiptGenerator {
     SecurityServices securityServices;
     @Autowired
     bookingsRepository bookingsRepo;
+    @Autowired
+    bikesRepository bikesRepo;
 
 //    private bookingsRepository(bookingsRepository bookingRepo){
 //        this.bookingRepo=bookingRepo;
@@ -29,6 +32,8 @@ public class receiptGenerator {
         PdfWriter.getInstance(document, response.getOutputStream());
         User user=securityServices.findLoggedInUser();
         List<bookings> booking=bookingsRepo.findByUserId(user.getUserId());
+
+
 
         document.open();
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
@@ -61,31 +66,34 @@ public class receiptGenerator {
         paragraph3.setAlignment(Paragraph.ALIGN_CENTER);
 
         Table details = new Table(2);
+
         details.setWidths(new int[]{200, 200});
-        details.addCell("Booking ID");
-        details.addCell(String.valueOf(booking.get(0).getBookingId()));
-        details.addCell("Customer Name");
-        details.addCell(user.getUserFirstName()+" "+user.getUserLastName());
-        details.addCell("Customer Phone");
-        details.addCell(user.getPhone());
-        details.addCell("Bike Registration Number");
-        details.addCell(booking.get(0).getRegistrationNumber());
-        details.addCell("Bike Model");
-        details.addCell("Bike Model Should come here");  // no need
-        details.addCell("Bike Pickup time");
-        details.addCell(String.valueOf(booking.get(0).getPickupTime()));
-        details.addCell("Bike Drop time");
-        details.addCell(String.valueOf(booking.get(0).getReturnTime()));
-        details.addCell("Bike Rent per hour");
-        details.addCell("Bike Rent per hour Should come here"); // no need
-        details.addCell("Hours");
-        details.addCell("Hours Should come here"); //no need
-        details.addCell("Total Rent");
-        details.addCell("Total Rent Should come here"); // no need
-        details.addCell("Total Payment");
-        details.addCell(String.valueOf(booking.get(0).getTotalPayment()));
-        details.addCell("Booking Time");
-        details.addCell(String.valueOf(booking.get(0).getBookingTime()));
+        details.addCell("\tBooking ID");
+        details.addCell("\t "+String.valueOf(booking.get(0).getBookingId()));
+        details.addCell("\tCustomer Name");
+        details.addCell("\t "+user.getUserFirstName()+" "+user.getUserLastName());
+        details.addCell("\tCustomer Phone");
+        details.addCell("\t "+user.getPhone());
+        details.addCell("\tBike Registration Number");
+        details.addCell("\t "+booking.get(0).getRegistrationNumber());
+//        details.addCell("\tBike Model");
+//        details.addCell("\tBike Model Should come here");  // no need
+        details.addCell("\tBike Pickup time");
+        details.addCell("\t "+(booking.get(0).getPickupTime()));
+        details.addCell("\tBike Drop time");
+        details.addCell("\t "+(booking.get(0).getReturnTime()));
+//        details.addCell("\tBike Rent per hour");
+//        details.addCell("\tBike Rent per hour Should come here"); // no need
+//        details.addCell("\tHours");
+//        details.addCell("\tHours Should come here"); //no need
+//        details.addCell("\tTotal Rent");
+//        details.addCell("\tTotal Rent Should come here"); // no need
+        details.addCell("\tTotal Payment");
+        details.addCell("\t "+(booking.get(0).getTotalPayment()));
+        details.addCell("\tBooking Time");
+        details.addCell("\t "+(booking.get(0).getBookingTime()));
+
+
 
         Paragraph thanks = new Paragraph("Thank you for choosing RentABike Bike Rental Services.\nWe hope you had a great experience with us.\nPlease visit us again.", fontParagraph);
         thanks.setAlignment(Paragraph.ALIGN_CENTER);
@@ -97,6 +105,7 @@ public class receiptGenerator {
         document.add(blankLine);
         document.add(details);
         document.add(blankLine);
+
         document.add(thanks);
         document.close();
 

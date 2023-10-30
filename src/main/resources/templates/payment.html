@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lan="en">
+<html lan="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Payment</title>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -88,7 +88,7 @@
     <p>This amount is only for caution deposit.All the remaining payments will be done at the return</p>
 
     <label for="amount">Amount:</label>
-    <input type="number" id="amount" name="amount" value=1500 class="input-box" disabled>
+    <input type="number" id="amount" name="amount" th:value="${amount}" class="input-box" disabled>
 
     <button class="payment-button" id="payment-button">Pay Now</button>
   </form>

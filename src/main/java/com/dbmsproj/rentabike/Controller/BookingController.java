@@ -46,8 +46,16 @@ public class BookingController {
     }
 
     @GetMapping("/payment")
-    public String bookBike(@RequestParam("reg_no") String reg_no, HttpSession session){
+    public String bookBike(@RequestParam("reg_no") String reg_no, HttpSession session,Model model){
         session.setAttribute("reg_no", reg_no);
+        LocalDateTime pickupDate = LocalDateTime.parse((session.getAttribute("pickupDate")).toString());
+        LocalDateTime returnDate = LocalDateTime.parse((session.getAttribute("returnDate")).toString());
+        long hours = (long) session.getAttribute("hours");
+        int rent=   (int)BikesRepo.getRentperHour(reg_no);
+        long amount = hours*rent;
+        session.setAttribute("amount", amount);
+        model.addAttribute("amount",amount);
+
         return "payment";
     }
     @GetMapping("/paymentsuccess")
