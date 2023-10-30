@@ -1,18 +1,34 @@
 package com.dbmsproj.rentabike.Service;
 
+import com.dbmsproj.rentabike.Models.User;
+import com.dbmsproj.rentabike.Models.bookings;
+import com.dbmsproj.rentabike.Repository.bookingsRepository;
+import com.dbmsproj.rentabike.security.SecurityServices;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 
 @Service
 public class receiptGenerator {
+    @Autowired
+    SecurityServices securityServices;
+    @Autowired
+    bookingsRepository bookingsRepo;
+
+//    private bookingsRepository(bookingsRepository bookingRepo){
+//        this.bookingRepo=bookingRepo;
+//    }
     public void export(HttpServletResponse response) throws IOException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());
+        User user=securityServices.findLoggedInUser();
+        List<bookings> booking=bookingsRepo.findByUserId(user.getUserId());
 
         document.open();
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
@@ -47,29 +63,29 @@ public class receiptGenerator {
         Table details = new Table(2);
         details.setWidths(new int[]{200, 200});
         details.addCell("Booking ID");
-        details.addCell("Booking ID Should come here");
+        details.addCell(String.valueOf(booking.get(0).getBookingId()));
         details.addCell("Customer Name");
-        details.addCell("Customer Name Should come here");
+        details.addCell(user.getUserFirstName()+" "+user.getUserLastName());
         details.addCell("Customer Phone");
-        details.addCell("Customer Phone Should come here");
+        details.addCell(user.getPhone());
         details.addCell("Bike Registration Number");
-        details.addCell("Bike Registration Number Should come here");
+        details.addCell(booking.get(0).getRegistrationNumber());
         details.addCell("Bike Model");
-        details.addCell("Bike Model Should come here");
+        details.addCell("Bike Model Should come here");  // no need
         details.addCell("Bike Pickup time");
-        details.addCell("Bike Pickup time Should come here");
+        details.addCell(String.valueOf(booking.get(0).getPickupTime()));
         details.addCell("Bike Drop time");
-        details.addCell("Bike Drop time Should come here");
+        details.addCell(String.valueOf(booking.get(0).getReturnTime()));
         details.addCell("Bike Rent per hour");
-        details.addCell("Bike Rent per hour Should come here");
+        details.addCell("Bike Rent per hour Should come here"); // no need
         details.addCell("Hours");
-        details.addCell("Hours Should come here");
+        details.addCell("Hours Should come here"); //no need
         details.addCell("Total Rent");
-        details.addCell("Total Rent Should come here");
+        details.addCell("Total Rent Should come here"); // no need
         details.addCell("Total Payment");
-        details.addCell("Total Payment Should come here");
+        details.addCell(String.valueOf(booking.get(0).getTotalPayment()));
         details.addCell("Booking Time");
-        details.addCell("Booking Time Should come here");
+        details.addCell(String.valueOf(booking.get(0).getBookingTime()));
 
         Paragraph thanks = new Paragraph("Thank you for choosing RentABike Bike Rental Services.\nWe hope you had a great experience with us.\nPlease visit us again.", fontParagraph);
         thanks.setAlignment(Paragraph.ALIGN_CENTER);
