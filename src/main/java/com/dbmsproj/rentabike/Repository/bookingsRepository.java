@@ -66,6 +66,11 @@ public class bookingsRepository {
         String sql="SELECT * FROM RENTABIKE.bookings WHERE customer_id="+userId+" ORDER BY booking_time DESC";
         return tmp.query(sql,bookingsRowMapper);
     }
+
+    public List<bookings> findByUserIdLimitOne(Long userId){
+        String sql="SELECT * FROM RENTABIKE.bookings WHERE customer_id="+userId+" ORDER BY booking_time DESC LIMIT 1";
+        return tmp.query(sql,bookingsRowMapper);
+    }
 }
 //
 // long x = tmp.queryforObject()

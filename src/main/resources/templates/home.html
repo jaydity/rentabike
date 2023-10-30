@@ -111,6 +111,8 @@
 
     </style>
     <script>
+        // <h3>5% Discount on 12+ hours
+        // </h3>
         document.addEventListener("DOMContentLoaded", function() {
             var pickupDateInput = document.getElementById("pickupDate");
             var returnDateInput = document.getElementById("returnDate");
@@ -171,7 +173,9 @@
 </nav>
 
 <div class="search-form">
+
     <h3>Get 5% discount on bookings above 12 hours</h3>
+
     <form th:action="@{/availableBikes}" method="post" onsubmit="calculateTotalHours()">
         <label for="pickupDate">Pickup Date and Time:</label>
         <input type="datetime-local" id="pickupDate" class="search-input" required>
