@@ -108,6 +108,18 @@ public class UserController {
     @GetMapping("/about")
     public String about(){return "about";}
 
+    @GetMapping("/contact")
+    public String contact(){return "contact";}
+
+    @GetMapping("/help")
+    public String help(){return "help";}
+
+    @GetMapping("/privacy")
+    public String privacy(){return "privacy";}
+
+    @GetMapping("/terms")
+    public String terms(){return "terms";}
+
     @RequestMapping("/blog")
     public String blog(){
         return "blog";
