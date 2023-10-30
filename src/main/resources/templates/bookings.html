@@ -50,7 +50,7 @@
         .container {
             width: 50%;
             margin: 0 auto;
-            background: rgba(4, 236, 180, 0.41);
+            background: #ffffff;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -104,6 +104,8 @@
         th {
             background-color: #f2f2f2;
         }
+
+        
     </style>
 </head>
 <body>
@@ -125,8 +127,7 @@
 
 
 <div class="container">
-
-    <button onclick="location.href = '/receipt';" th:id="DownloadReceipt" class="float-left submit-button">Click to Download Latest Receipt</button>
+    <button onclick="location.href = '/receipt';" th:id="DownloadReceipt" th:align="centre" class="float-centre submit-button">Click to Download Latest Receipt</button>
     <h1>User Bookings</h1>
     <div class="table-closer">
         <table>
