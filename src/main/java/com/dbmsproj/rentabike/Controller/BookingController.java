@@ -101,6 +101,4 @@ public class BookingController {
         System.out.println("inside allBookings");
         return "allBookings";
     }
-
-
 }
