@@ -23,9 +23,21 @@ public class bikesRepository {
         String s="DELETE FROM bikes WHERE registrationNumber=?";
         tmp.update(s,registrationNumber);
     }
-    public void updateBike(String registrationNumber,String availability){
-        String s="UPDATE bikes SET isAvailable=? WHERE registrationNumber=?";
-        tmp.update(s,availability,registrationNumber);
+    public void updateBike(bikes b) {
+        String sql = "UPDATE RENTABIKE.bikes " +
+                "SET bike_model = ?, bike_status = ?, CBook_number = ?, " +
+                "insurance = ?, is_available = ?, rate_per_hour = ? " +
+                "WHERE registration_number = ?";
+
+        tmp.update(sql, b.getBikeModel(), b.getBikeStatus(), b.getCBookNumber(),
+                b.getInsurance(), b.isAvailable(), b.getRatePerHour(), b.getRegistrationNumber());
+    }
+    public void updateBikeAvailability(String registrationNumber, boolean isAvailable) {
+        String sql = "UPDATE RENTABIKE.bikes " +
+                "SET is_available = ? " +
+                "WHERE registration_number = ?";
+
+        tmp.update(sql, isAvailable, registrationNumber);
     }
 
     public long selectRatePerHour(String registrationNumber){
