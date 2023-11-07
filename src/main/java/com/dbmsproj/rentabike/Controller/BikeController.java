@@ -90,6 +90,15 @@ public class BikeController {
 
         return "bikes";
     }
+    @PostMapping("/deleteBike")
+    public String deleteBike(@RequestParam("registrationNumber") String registrationNumber,Model model){
+        System.out.println("inside deleteBike");
+        bikes bike=new bikes(registrationNumber);
+        BikesRepo.deleteBike(bike);
+        List<bikes> allBikes=BikesRepo.getAllBikes();
+        model.addAttribute("allBikes",allBikes);
+        return "bikes";
+    }
     @GetMapping("/addBike")
     public String goToAddBike(){
         return "addBike";
@@ -97,6 +106,10 @@ public class BikeController {
     @GetMapping("/updateBike")
     public String goToupdateBike(){
         return "updateBike";
+    }
+    @GetMapping("/deleteBike")
+    public String goTodeleteBike(){
+        return "deleteBike";
     }
 //    @PostMapping("/addBike")
 //    public String bike(){
