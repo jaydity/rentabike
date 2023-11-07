@@ -33,6 +33,10 @@ public class bikes {
         this.ratePerHour=ratePerHour;
     }
 
+    public bikes(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
     public String getRegistrationNumber() {
         return registrationNumber;
     }
