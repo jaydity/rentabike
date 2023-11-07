@@ -25,12 +25,10 @@ public class bikesRepository {
     }
     public void updateBike(bikes b) {
         String sql = "UPDATE RENTABIKE.bikes " +
-                "SET bike_model = ?, bike_status = ?, CBook_number = ?, " +
-                "insurance = ?, is_available = ?, rate_per_hour = ? " +
+                "SET is_available = ?, rate_per_hour = ? " +
                 "WHERE registration_number = ?";
 
-        tmp.update(sql, b.getBikeModel(), b.getBikeStatus(), b.getCBookNumber(),
-                b.getInsurance(), b.isAvailable(), b.getRatePerHour(), b.getRegistrationNumber());
+        tmp.update(sql, b.isAvailable(), b.getRatePerHour(), b.getRegistrationNumber());
     }
     public void updateBikeAvailability(String registrationNumber, boolean isAvailable) {
         String sql = "UPDATE RENTABIKE.bikes " +

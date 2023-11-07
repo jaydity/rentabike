@@ -27,6 +27,12 @@ public class bikes {
         this.ratePerHour=ratePerHour;
     }
 
+    public bikes(String registrationNumber, boolean isAvailable, long ratePerHour) {
+        this.registrationNumber = registrationNumber;
+        this.isAvailable = isAvailable;
+        this.ratePerHour=ratePerHour;
+    }
+
     public String getRegistrationNumber() {
         return registrationNumber;
     }

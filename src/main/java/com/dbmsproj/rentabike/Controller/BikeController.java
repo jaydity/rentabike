@@ -78,16 +78,12 @@ public class BikeController {
     @PostMapping("/updateBike")
     public String updateBike(
             @RequestParam("registrationNumber") String registrationNumber,
-            @RequestParam("bikeModel") String bikeModel,
-            @RequestParam("bikeStatus") String bikeStatus,
-            @RequestParam("CBookNumber") String CBookNumber,
-            @RequestParam("Insurance") String Insurance,
             @RequestParam("isAvailable") boolean isAvailable,
             @RequestParam("ratePerHour") long ratePerHour,
             Model model
     ){
         System.out.println("inside updateBike");
-        bikes bike=new bikes(registrationNumber,bikeModel,bikeStatus,CBookNumber,Insurance,isAvailable,ratePerHour);
+        bikes bike=new bikes(registrationNumber,isAvailable,ratePerHour);
         BikesRepo.updateBike(bike);
         List<bikes> allBikes=BikesRepo.getAllBikes();
         model.addAttribute("allBikes",allBikes);
