@@ -19,18 +19,16 @@ public class bikesRepository {
         String s="INSERT INTO RENTABIKE.bikes(registration_number,bike_model,bike_status,CBook_number,insurance,is_available, rate_per_hour) VALUES(?,?,?,?,?,?,?)";
         tmp.update(s,b.getRegistrationNumber(),b.getBikeModel(),b.getBikeStatus(),b.getCBookNumber(),b.getInsurance(),b.isAvailable(), b.getRatePerHour());
     }
-    public void deleteBike(String registrationNumber){
-        String s="DELETE FROM bikes WHERE registrationNumber=?";
-        tmp.update(s,registrationNumber);
+    public void deleteBike(bikes b){
+        String s="DELETE FROM RENTABIKE.bikes WHERE registration_number=?";
+        tmp.update(s,b.getRegistrationNumber());
     }
     public void updateBike(bikes b) {
         String sql = "UPDATE RENTABIKE.bikes " +
-                "SET bike_model = ?, bike_status = ?, CBook_number = ?, " +
-                "insurance = ?, is_available = ?, rate_per_hour = ? " +
+                "SET is_available = ?, rate_per_hour = ? " +
                 "WHERE registration_number = ?";
 
-        tmp.update(sql, b.getBikeModel(), b.getBikeStatus(), b.getCBookNumber(),
-                b.getInsurance(), b.isAvailable(), b.getRatePerHour(), b.getRegistrationNumber());
+        tmp.update(sql, b.isAvailable(), b.getRatePerHour(), b.getRegistrationNumber());
     }
     public void updateBikeAvailability(String registrationNumber, boolean isAvailable) {
         String sql = "UPDATE RENTABIKE.bikes " +
@@ -79,8 +77,6 @@ public class bikesRepository {
         }
 
     }
-
-
     public List<bikes> getAvailableBikesBetweenDates(LocalDateTime pickupDate, LocalDateTime returnDate){
         String sql = "SELECT * FROM RENTABIKE.bikes b WHERE b.registration_number " +
                 "NOT IN (" +

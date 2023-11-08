@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Update Bike</title>
+    <title>Delete Bike</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -57,47 +57,15 @@
 </head>
 <body>
 <div class="container">
-    <h2 class="mt-5">Update a Bike</h2>
-    <form action="/updateBike" method="post">
+    <h2 class="mt-5">Delete Bike</h2>
+    <form action="/deleteBike" method="post">
         <div class="form-group">
             <label for="registrationNumber" style="color: #000000;">Registration Number:</label>
             <input type="text" class="form-control" id="registrationNumber" name="registrationNumber" required>
         </div>
 
-<!--        <div class="form-group">-->
-<!--            <label for="bikeModel" style="color: #000000;">Bike Model:</label>-->
-<!--            <input type="text" class="form-control" id="bikeModel" name="bikeModel" required>-->
-<!--        </div>-->
 
-<!--        <div class="form-group">-->
-<!--            <label for="bikeStatus" style="color: #000000;">Bike Status:</label>-->
-<!--            <input type="text" class="form-control" id="bikeStatus" name="bikeStatus" required>-->
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-<!--            <label for="CBookNumber" style="color: #000000;">CBook Number:</label>-->
-<!--            <input type="text" class="form-control" id="CBookNumber" name="CBookNumber" required>-->
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-<!--            <label for="Insurance" style="color: #000000;">Insurance:</label>-->
-<!--            <input type="text" class="form-control" id="Insurance" name="Insurance" required>-->
-<!--        </div>-->
-
-        <div class="form-group">
-            <label for="isAvailable" style="color: #000000;">Is Available:</label>
-            <select class="form-control" id="isAvailable" name="isAvailable" required>
-                <option value="false">No</option>
-                <option value="true">Yes</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="ratePerHour" style="color: #000000;">Rate per Hour:</label>
-            <input type="number" class="form-control" id="ratePerHour" name="ratePerHour" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Update Bike</button>
+        <button type="submit" class="btn btn-primary">Delete Bike</button>
     </form>
 </div>
 
