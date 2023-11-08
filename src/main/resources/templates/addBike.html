@@ -61,7 +61,7 @@
   <form action="/addBike" method="post">
     <div class="form-group">
       <label for="registrationNumber" style="color: #000000;">Registration Number:</label>
-      <input type="text" class="form-control" id="registrationNumber" name="registrationNumber" required>
+      <input type="text" class="form-control" id="registrationNumber" name="registrationNumber" pattern="(AP|AR|AS|BR|CG|CH|DD|DL|GA|GJ|HP|HR|JH|JK|KA|KL|LA|LD|MH|ML|MN|MP|MZ|NL|OD|PB|PY|RJ|SK|TN|TR|TS|UK|UP|WB)\d{2}[A-Za-z]{2}\d{4}" title="Registration Number should be like KA12BA4187" required>
     </div>
 
     <div class="form-group">
