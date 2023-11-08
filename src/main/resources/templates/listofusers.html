@@ -58,29 +58,29 @@
     <thead>
     <tr>
         <th>User ID</th>
-        <th>Username</th>
+<!--        <th>Username</th>-->
         <th>Phone</th>
         <th>First Name</th>
         <th>Middle Name</th>
         <th>Last Name</th>
         <th>Address</th>
-        <th>Driver's License ID</th>
+<!--        <th>Driver's License ID</th>-->
         <th>Accidents</th>
-        <th>Role</th>
+<!--        <th>Role</th>-->
     </tr>
     </thead>
     <tbody>
     <tr th:each="user : ${listofusers}">
         <td th:text="${user.UserId}"></td>
-        <td th:text="${user.username}"></td>
+<!--        <td th:text="${user.username}"></td>-->
         <td th:text="${user.phone}"></td>
         <td th:text="${user.userFirstName}"></td>
         <td th:text="${user.userMiddleName}"></td>
         <td th:text="${user.userLastName}"></td>
         <td th:text="${user.userAddress}"></td>
-        <td th:text="${user.driversLicenseId}"></td>
+<!--        <td th:text="${user.driversLicenseId}"></td>-->
         <td th:text="${user.numberOfAccidents}"></td>
-        <td th:text="${user.Role}"></td>
+<!--        <td th:text="${user.Role}"></td>-->
     </tr>
     </tbody>
 </table>

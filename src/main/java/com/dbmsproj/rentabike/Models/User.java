@@ -56,6 +56,16 @@ public class User {
         //   this.numberOfAccidents = 0;
     }
 
+    public User(long UserId, String phone, String userFirstName, String userMiddleName, String userLastName, String userAddress, int numberOfAccidents) {
+        this.UserId = UserId;
+        this.phone = phone;
+        this.userFirstName = userFirstName;
+        this.userMiddleName = userMiddleName;
+        this.userLastName = userLastName;
+        this.userAddress = userAddress;
+        this.numberOfAccidents = numberOfAccidents;
+        }
+
     public void setUsername(String username) {
         this.username = username;
     }

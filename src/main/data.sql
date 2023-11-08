@@ -52,6 +52,10 @@ CREATE TABLE Accidents(
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
+CREATE VIEW UsersView AS SELECT
+userId, phone, userFirstName, userMiddleName, userLastName, userAddress, numberOfAccidents
+FROM USERS;
+
 INSERT INTO USERS VALUES(1,'admin_1','admin','9000000000','adminFname','adminMname','adminLname','India','QWERTY1234',0,'ADMIN');
 INSERT INTO USERS VALUES(2,'user_1','user','9000000001','userFname','userMname','userLname','India','QWERTY1235',0,'USER');
 INSERT INTO USERS VALUES(3, 'admin_2','admin2','9000000002','adminFname2','adminMname2','adminLname2','India','QWERTY1236',0,'ADMIN');

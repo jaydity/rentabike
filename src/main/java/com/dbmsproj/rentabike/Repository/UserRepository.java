@@ -61,6 +61,22 @@ public class UserRepository {
         return user;
     };
 
+    private static final RowMapper<User> userViewRowMapper = (rs, rowNum) -> {
+
+        // System.out.println("Inside userViewRowMapper");
+        User user = new User();
+        user.setUserId(rs.getLong("UserId"));
+        user.setphone(rs.getString("phone"));
+        user.setUserFirstName(rs.getString("UserFirstName"));
+        user.setUserMiddleName(rs.getString("UserMiddleName"));
+        user.setUserLastName(rs.getString("UserLastName"));
+        user.setUserAddress(rs.getString("UserAddress"));
+        user.setNumberOfAccidents(rs.getInt("NumberOfAccidents"));
+
+        return user;
+    };
+
+
     public User getUserByUsername(String username) {
         System.out.println("Inside getUserByUsername");
         String sql = "Select * from users where username = " + "'"+username+"'";
@@ -73,7 +89,7 @@ public class UserRepository {
         }
     }
     public List<User> getAllUsers(){
-        String sql="SELECT * FROM users";
-        return jdbcTemplate.query(sql,userRowMapper);
+        String sql="SELECT * FROM usersview";
+        return jdbcTemplate.query(sql,userViewRowMapper);
     }
 }
