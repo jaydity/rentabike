@@ -28,6 +28,14 @@ public class BikeController {
 //////=======
     @PostMapping("/availableBikes")
     public String getAvailableBikes(Model model, @RequestParam("pickupDate") LocalDateTime pickupDate, @RequestParam("returnDate") LocalDateTime returnDate, @RequestParam("hours") long hours, HttpSession session){
+        String response = "You are under Blocklist because you have made more than 2 accidents";
+        int accidental = BikesRepo.getTotalNumberofAccidents();
+        if(accidental>2)
+        {
+            model.addAttribute("message",response);
+            System.out.println("Not a valid coustomer");
+            return "message";
+        }
         System.out.println("Inside availableBikes");
         System.out.println(pickupDate);
         System.out.println(returnDate);

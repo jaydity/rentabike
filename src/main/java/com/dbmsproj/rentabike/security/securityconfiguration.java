@@ -25,10 +25,10 @@ import static org.springframework.security.crypto.password.NoOpPasswordEncoder.g
 @Configuration
 @EnableWebSecurity
 public class securityconfiguration {
-    @Autowired
-//    @Qualifier()
     private userservice userservices;
 
+
+    @Autowired
     securityconfiguration(userservice userservices) {
         this.userservices = userservices;
     }

@@ -1,6 +1,8 @@
 package com.dbmsproj.rentabike.Repository;
 
+import com.dbmsproj.rentabike.Models.User;
 import com.dbmsproj.rentabike.Models.bikes;
+import com.dbmsproj.rentabike.security.SecurityServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -15,6 +17,12 @@ import java.util.List;
 public class bikesRepository {
     @Autowired
     private JdbcTemplate tmp;
+    private SecurityServices securityServices;
+
+    public bikesRepository(SecurityServices securityServices) {
+        this.securityServices = securityServices;
+    }
+
     public void insertBike(bikes b){
         String s="INSERT INTO RENTABIKE.bikes(registration_number,bike_model,bike_status,CBook_number,insurance,is_available, rate_per_hour) VALUES(?,?,?,?,?,?,?)";
         tmp.update(s,b.getRegistrationNumber(),b.getBikeModel(),b.getBikeStatus(),b.getCBookNumber(),b.getInsurance(),b.isAvailable(), b.getRatePerHour());
@@ -77,13 +85,23 @@ public class bikesRepository {
         }
 
     }
+
+    public int getTotalNumberofAccidents(){
+        User user=securityServices.findLoggedInUser();
+        return user.getNumberOfAccidents();
+    }
+
+
+
     public List<bikes> getAvailableBikesBetweenDates(LocalDateTime pickupDate, LocalDateTime returnDate){
+        User user=securityServices.findLoggedInUser();
+        int x=user.getNumberOfAccidents();
         String sql = "SELECT * FROM RENTABIKE.bikes b WHERE b.registration_number " +
                 "NOT IN (" +
                 "SELECT t.registration_number FROM bookings t WHERE " +
-                "(t.pickup_time>= ? AND t.pickup_time<= ?) OR (t.return_time>= ? AND t.return_time<= ?) OR (t.pickup_time<=? AND t.return_time>=?) or (b.is_available=0)"
+                "(t.pickup_time>= ? AND t.pickup_time<= ?) OR (t.return_time>= ? AND t.return_time<= ?) OR (t.pickup_time<=? AND t.return_time>=?) or (b.is_available=0) or (?>2)"
                 +")";
-        return tmp.query(sql, new BikeRowMapper(), pickupDate, returnDate, pickupDate, returnDate, pickupDate, returnDate);
+        return tmp.query(sql, new BikeRowMapper(), pickupDate, returnDate, pickupDate, returnDate, pickupDate, returnDate,x);
 
     }
 

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User List</title>
 
-    <!-- Add CSS for styling -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,8 +48,33 @@
         tr:hover {
             background-color: #e0e0e0;
         }
+        nav {
+            background-color: #4bb3be;
+            padding: 20px;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #555;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #777;
+        }
     </style>
 </head>
+<nav>
+    <li><a href="/admin" style="text-decoration: none">Home</a></li>
+</nav>
 <body>
 <h1>User List</h1>
 
