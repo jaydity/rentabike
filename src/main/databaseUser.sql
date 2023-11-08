@@ -9,7 +9,7 @@ GRANT ALL ON rentabike.* TO 'dbuser'@'localhost';
 
 USE RENTABIKE;
 
--- Create bikeupdatelogs table with changetime attribute
+-- Create bikeupdatelogs table with change time attribute
 CREATE TABLE IF NOT EXISTS bikeupdatelogs (
     logId INT AUTO_INCREMENT PRIMARY KEY,
     registration_number VARCHAR(255),
@@ -52,3 +52,29 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+CREATE TRIGGER after_insert_accidents
+    AFTER INSERT ON accidents
+    FOR EACH ROW
+BEGIN
+    UPDATE Users SET Users.numberofAccidents = Users.numberofAccidents+1 WHERE USERID = NEW.USERID;
+END;
+
+//
+delimiter //
+
+delimiter //
+create trigger after_update_users
+    after update on users
+    for each row
+begin
+    if new.numberOfAccidents <> old.numberOfAccidents then
+		if new.numberOfAccidents > 2 then
+			INSERT INTO blocklist (userId, blocktime)
+			VALUES (OLD.userId, now());
+end if;
+end if;
+end;
+
+//
+delimiter ;
