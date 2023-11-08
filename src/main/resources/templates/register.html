@@ -115,9 +115,22 @@
         <li><a href="/blog" style="text-decoration: none">Blog</a></li>
         <li><a href="/login" style="text-decoration: none; color: #fff;">Login/Signup</a></li>
         <li><a href="tel:+917337430918" style="text-decoration: none">📞7337430918</a></li>
-        <li><a style="text-decoration: none" href="tel:+911234567890">📞1234567890</a></li>
     </ul>
 </nav>
+
+<script>
+
+    function validatePhoneNumber(input) {
+        var phoneNumberPattern = /^(?:(?:\+|0{0,2})91(\s*|[\-])?|[0]?)?([6789]\d{2}([ -]?)\d{3}([ -]?)\d{4})$/;
+        if (input.value.match(phoneNumberPattern)) {
+            input.setCustomValidity('');
+        } else {
+            input.setCustomValidity('Enter a valid phone number');
+            alert("Enter a valid phone number");
+        }
+
+    }
+</script>
 
 <div class="container">
     <h1>User Registration</h1>
@@ -138,23 +151,15 @@
         <label for="userLastName">Last Name:</label>
         <input type="text" id="userLastName" name="userLastName" required>
 
-        <label for="phone">Phone Number (10 digits):</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+        <label for="phone">Phone Number (10 digits and without any spaces):</label>
+        <input type="tel" id="phone" name="phone" pattern="[6-9]{1}[0-9]{9}" required title="Phone number should start with a digit from 6 to 9 and have 10 digits">
 
-        <!--        <label for="username">Username:</label>-->
-        <!--        <input type="text" id="username" name="username" required>-->
-
-        <!--        <label for="password">Password:</label>-->
-        <!--        <input type="password" id="password" name="password" required>-->
-
-        <!--        <label for="phoneNumber">Phone Number (10 digits):</label>-->
-        <!--        <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required>-->
 
         <label for="userAddress">Address:</label>
         <input type="text" id="userAddress" name="userAddress" required>
 
         <label for="driversLicenseId">Driver's License Number:</label>
-        <input type="text" id="driversLicenseId" name="driversLicenseId" required>
+        <input type="text" id="driversLicenseId" name="driversLicenseId" pattern="(AP|AR|AS|BR|CG|CH|DD|DL|GA|GJ|HP|HR|JH|JK|KA|KL|LA|LD|MH|ML|MN|MP|MZ|NL|OD|PB|PY|RJ|SK|TN|TR|TS|UK|UP|WB){2}[0-9]{2}[0-9]{4}[0-9]{7}" required title="Example format: RJ1320120123456">
 
         <input type="submit" value="Register">
     </form>
