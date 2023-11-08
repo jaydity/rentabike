@@ -5,6 +5,7 @@ import com.dbmsproj.rentabike.Models.bikes;
 import com.dbmsproj.rentabike.Repository.AccidentsRepository;
 import com.dbmsproj.rentabike.Repository.bikesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -34,7 +35,7 @@ public class AccidentController {
     @PostMapping("/addAccident")
     public String addAccident(@RequestParam("registrationNumber") String registrationNumber,
                               @RequestParam("userId") Long userId,
-                              @RequestParam("accidentDate") Date accidentDate ,
+                              @RequestParam("accidentDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date accidentDate,
                               @RequestParam("accidentLocation") String accidentLocation,
                               @RequestParam("accidentDescription") String accidentDescription,
                               Model model
@@ -44,6 +45,7 @@ public class AccidentController {
         accidentRepository.insertaccident(accidents);
         List<Accidents> allAccidents=accidentRepository.getAllAccidents();
         model.addAttribute("allAccidents",allAccidents);
+        System.out.println("Accident Insertion Successful");
         return "accidents";
     }
 

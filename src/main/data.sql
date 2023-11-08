@@ -42,6 +42,16 @@ CREATE TABLE bookings(
     FOREIGN KEY (customer_id) REFERENCES users(userId)
 );
 
+CREATE TABLE Accidents(
+    accidentId INT AUTO_INCREMENT PRIMARY KEY,
+    registration_number VARCHAR(255),
+    userId BIGINT,
+    accidentDate DATE,
+    accidentLocation VARCHAR(255),
+    accidentDescription TEXT,
+    FOREIGN KEY (userId) REFERENCES users(userId)
+);
+
 INSERT INTO USERS VALUES(1,'admin_1','admin','9000000000','adminFname','adminMname','adminLname','India','QWERTY1234',0,'ADMIN');
 INSERT INTO USERS VALUES(2,'user_1','user','9000000001','userFname','userMname','userLname','India','QWERTY1235',0,'USER');
 INSERT INTO USERS VALUES(3, 'admin_2','admin2','9000000002','adminFname2','adminMname2','adminLname2','India','QWERTY1236',0,'ADMIN');

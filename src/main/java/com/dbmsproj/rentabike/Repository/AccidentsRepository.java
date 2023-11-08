@@ -17,7 +17,7 @@ public class AccidentsRepository {
     @Autowired
     private JdbcTemplate tmp;
     public void insertaccident(Accidents a){
-        String s="INSERT INTO RENTABIKE.bikes(registrationNumber,userId,accidentDate,accidentLocation,accidentDescription) VALUES(?,?,?,?,?)";
+        String s="INSERT INTO RENTABIKE.accidents(registration_number,userId,accidentDate,accidentLocation,accidentDescription) VALUES(?,?,?,?,?)";
         tmp.update(s,a.getRegistrationNumber(),a.getUserId(),a.getAccidentDate(),a.getAccidentLocation(),a.getAccidentDescription());
     }
 
