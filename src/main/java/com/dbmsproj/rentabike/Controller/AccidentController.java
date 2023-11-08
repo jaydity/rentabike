@@ -5,6 +5,7 @@ import com.dbmsproj.rentabike.Models.bikes;
 import com.dbmsproj.rentabike.Repository.AccidentsRepository;
 import com.dbmsproj.rentabike.Repository.bikesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Controller
 public class AccidentController {
     private final AccidentsRepository accidentRepository;
 
@@ -25,7 +26,7 @@ public class AccidentController {
     }
     
     
-    
+
     @GetMapping("/addAccident")
     public String goToaccidents(){
         return "addAccident";
@@ -41,6 +42,13 @@ public class AccidentController {
         System.out.println("inside add Accident");
         Accidents accidents=new Accidents(registrationNumber,userId,accidentDate,accidentLocation,accidentDescription);
         accidentRepository.insertaccident(accidents);
+        List<Accidents> allAccidents=accidentRepository.getAllAccidents();
+        model.addAttribute("allAccidents",allAccidents);
+        return "accidents";
+    }
+
+    @GetMapping("/accidents")
+    public String getAllBikes(Model model){
         List<Accidents> allAccidents=accidentRepository.getAllAccidents();
         model.addAttribute("allAccidents",allAccidents);
         return "accidents";
