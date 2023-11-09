@@ -152,7 +152,9 @@ DELIMITER ;
 
 /********************************* Insert Dummy Data *********************************/
 
+SELECT * FROM USERS;
 
+UPDATE USERS SET ROLE="ADMIN" where userId <= 2;
 
 
 
