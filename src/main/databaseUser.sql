@@ -62,7 +62,7 @@ CREATE TABLE Accidents(
 
 create table if not exists blocklist(
 	`userId` Bigint primary key,
-	`reason` varchar(255) default "Number of accidents more than 3",
+	`reason` varchar(255) default "Number of accidents more than 2",
 	`blocktime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (userId) references users(userId)
 );
@@ -113,8 +113,8 @@ CREATE TRIGGER before_delete_bikes
 BEFORE DELETE ON bikes
 FOR EACH ROW
 BEGIN
-    INSERT INTO bikesdeletelogs (registration_number)
-    VALUES (OLD.registration_number);
+    INSERT INTO bikesdeletelogs (registration_number,deletetime)
+    VALUES (OLD.registration_number,now());
 END;
 
 //
