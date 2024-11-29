@@ -104,7 +104,15 @@ public class UserController {
     public String error(){return "error";}
 
     @GetMapping("/admin")
-    public String admin(){return "admin";}
+    public String admin(Model model){
+        User user = securityServices.findLoggedInUser();
+        String role = user.getRole();
+        System.out.println(role);
+        if(role.equals("admin"))
+            return "admin";
+        else
+            return "redirect:/homeUser";
+    }
     @GetMapping("/about")
     public String about(){return "about";}
 

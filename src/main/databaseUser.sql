@@ -8,7 +8,7 @@ DROP DATABASE IF EXISTS rentabike;
 CREATE DATABASE rentabike;
 DROP USER IF EXISTS 'dbuser'@'localhost';
 CREATE USER 'dbuser'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL ON rentabike.* TO 'dbuser'@'localhost';
+-- GRANT ALL ON rentabike.* TO 'dbuser'@'localhost';
 USE rentabike;
 SET SQL_SAFE_UPDATES = 0;
 /********************************* Create Tables *********************************/
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS bikesdeletelogs (
 
 /**** Run this from dbuser (don't know why this is failing to execute here) ****/
 
--- CREATE VIEW UsersView AS SELECT userId, phone, userFirstName, userMiddleName, userLastName, userAddress, numberOfAccidents FROM users;
+-- CREATE VIEW UsersView AS SELECT userId, phone, userFirstName, userMiddleName, userLastName, userAddress, numberOfAccidents FROM users;
 
 /********************************* Create Triggers *********************************/
 

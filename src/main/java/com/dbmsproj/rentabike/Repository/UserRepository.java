@@ -89,7 +89,7 @@ public class UserRepository {
         }
     }
     public List<User> getAllUsers(){
-        String sql="SELECT * FROM usersview";
+        String sql="SELECT * FROM users";
         return jdbcTemplate.query(sql,userViewRowMapper);
     }
 }

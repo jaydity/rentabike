@@ -16,27 +16,34 @@ public class securityuserdetails implements UserDetails{
     private User user;
 
     public void setUser(User user) {
+        System.out.println("Hello, World2!");
         this.user = user;
     }
 
     public securityuserdetails(User user){
+        System.out.println("Hello, World1!");
         this.user = user;
     }
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        System.out.println("Hello, World3!");
         return null;
     }
 
     @Override
     public String getPassword() {
+
+        System.out.println("Hello, World4!");
         return user.getPassword();
     }
 
 
     @Override
     public String getUsername() {
+        System.out.println("Hello, World5!");
         return user.getUsername();
     }
 //    @Override/,hy
